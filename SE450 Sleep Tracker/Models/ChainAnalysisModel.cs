@@ -46,7 +46,7 @@ namespace SE450_Sleep_Tracker.Models
             set;
         }
 
-        public UserModel AssociatedUser
+        public string UserID
         {
             get;
             set;

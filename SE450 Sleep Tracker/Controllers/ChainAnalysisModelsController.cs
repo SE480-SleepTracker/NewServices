@@ -76,6 +76,7 @@ namespace SE450_Sleep_Tracker.Controllers
         /// <param name="chn_id"></param>
         /// <returns></returns>
         [HttpGet]
+        [Authorize]
         public IHttpActionResult GetSleepLogModel(int chn_id)
         {
             using (SleepMonitor model = new SleepMonitor(connectionString))
@@ -85,11 +86,12 @@ namespace SE450_Sleep_Tracker.Controllers
                     return BadRequest("Does not exist");
                 else
                 {
-                    var user = model.Usr_User.FirstOrDefault(usr => usr.Usr_ID == analysis.Chn_usr_ID);
+                    //var user = model.Usr_User.FirstOrDefault(usr => usr.Usr_ID == analysis.Chn_usr_ID);
 
-                    // TODO: should this be the email address or full name?
-                    // Also, migrate this to the new Accounts token
-                    if (user == null || !user.Usr_EmailAddress.Equals(user.Usr_EmailAddress))
+                    var user = model.AspNetUsers.FirstOrDefault(usr => usr.Id.Trim().ToLower().Equals(analysis.Chn_aur_id.Trim().ToLower()));
+
+                    // TODO: is this right?
+                    if (user == null || !User.Identity.Name.Trim().ToLower().Equals(user.UserName.Trim().ToLower()))
                         return Unauthorized();
                     else
                     {
@@ -102,11 +104,11 @@ namespace SE450_Sleep_Tracker.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetAllAnalysisForUser([FromODataUri] int usr_id)
+        public IHttpActionResult GetAllAnalysisForUser([FromODataUri] string usr_id)
         {
             using (SleepMonitor monitor = new SleepMonitor(connectionString))
             {
-                IEnumerable<ChainAnalysisModel> analysis = monitor.Chn_ChainAnalysis.Where(chn => chn.Chn_usr_ID == usr_id).Select(chn => new ChainAnalysisModel(chn));
+                IEnumerable<ChainAnalysisModel> analysis = monitor.Chn_ChainAnalysis.Where(chn => chn.Chn_aur_id == usr_id).Select(chn => new ChainAnalysisModel(chn));
 
                 return Json<IEnumerable<ChainAnalysisModel>>(analysis);
             }
@@ -142,7 +144,7 @@ namespace SE450_Sleep_Tracker.Controllers
 
             using (SleepMonitor db = new SleepMonitor(connectionString))
             {
-                var associatedUser = db.Usr_User.FirstOrDefault(usr => usr.Usr_ID == chainAnalysisModel.AssociatedUser.ID);
+                var associatedUser = db.AspNetUsers.FirstOrDefault(usr => usr.Id.Trim().ToLower().Equals(chainAnalysisModel.UserID.Trim().ToLower()));
             }
 
             // return Created(chainAnalysisModel);

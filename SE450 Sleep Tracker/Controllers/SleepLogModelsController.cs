@@ -65,7 +65,7 @@ namespace SE450_Sleep_Tracker.Controllers
                 {
                     SleepQuality = (ushort?)dbM.Slp_SleepQuality,
                     TimeToSleepUserLogged = new DateTime(dbM.Slp_TimeToSleepUserLogged.HasValue ? dbM.Slp_TimeToSleepUserLogged.Value.Ticks : DateTime.Now.Ticks), // TODO: this is wrong
-                    AssociatedUser = new UserModel(monitor.Usr_User.FirstOrDefault(usr => usr.Usr_ID == dbM.Slp_usr_ID)),
+                    UserID = dbM.Slp_aur_id,
                     Date = dbM.Slp_date,
                     ID = dbM.Slp_ID,
                     TimeToBed = new DateTime(dbM.Slp_TimeToBed.Ticks, DateTimeKind.Unspecified) // TODO: this is wrong
