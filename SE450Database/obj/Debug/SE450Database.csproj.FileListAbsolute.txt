@@ -1,0 +1,5 @@
+e:\my documents\visual studio 2013\Projects\SE450 Sleep Tracker\SE450Database\bin\Debug\SE450Database.dll
+e:\my documents\visual studio 2013\Projects\SE450 Sleep Tracker\SE450Database\bin\Debug\SE450Database.pdb
+e:\my documents\visual studio 2013\Projects\SE450 Sleep Tracker\SE450Database\obj\Debug\SE450Database.csprojResolveAssemblyReference.cache
+e:\my documents\visual studio 2013\Projects\SE450 Sleep Tracker\SE450Database\obj\Debug\SE450Database.dll
+e:\my documents\visual studio 2013\Projects\SE450 Sleep Tracker\SE450Database\obj\Debug\SE450Database.pdb
