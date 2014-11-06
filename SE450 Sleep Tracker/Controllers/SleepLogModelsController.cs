@@ -155,10 +155,14 @@ namespace SE450_Sleep_Tracker.Controllers
         // DELETE: odata/SleepLogModels(5)
         public IHttpActionResult Delete([FromODataUri] int key)
         {
-            // TODO: Add delete logic here.
+            using (SleepMonitor monitor = new SleepMonitor(connectionString))
+            {
+                var toRemove = monitor.Slp_SleepLog.FirstOrDefault(log => log.Slp_ID == key);
 
-            // return StatusCode(HttpStatusCode.NoContent);
-            return StatusCode(HttpStatusCode.NotImplemented);
+                monitor.Slp_SleepLog.DeleteOnSubmit(toRemove);
+
+                return Ok();
+            }
         }
     }
 }
