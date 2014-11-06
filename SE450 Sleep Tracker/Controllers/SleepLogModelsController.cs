@@ -63,6 +63,7 @@ namespace SE450_Sleep_Tracker.Controllers
         /// </summary>
         /// <param name="key">ID of the log</param>
         /// <returns>Either a HTTP unauthorized code, Http 404 (not found), or a JSON-serialized <see cref="SleepLogModel"/> object</returns>
+        [HttpGet]
         public IHttpActionResult GetSleepLogModel([FromODataUri] int key)
         {
             Slp_SleepLog dbM;
@@ -112,7 +113,13 @@ namespace SE450_Sleep_Tracker.Controllers
         }
 
         // POST: odata/SleepLogModels
-        public async Task<IHttpActionResult> Post(SleepLogModel sleepLogModel)
+        /// <summary>
+        /// Asynchronously create a new sleep log
+        /// </summary>
+        /// <param name="sleepLogModel">JSON-serialized <see cref="SleepLogModel"/></param>
+        /// <returns>HTTP Created or Bad Request</returns>
+        [HttpPost]
+        public async Task<IHttpActionResult> Post([FromBody] SleepLogModel sleepLogModel)
         {
             if (!ModelState.IsValid)
             {
