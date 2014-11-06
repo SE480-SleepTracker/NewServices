@@ -13,6 +13,7 @@ using SE450_Sleep_Tracker.Models;
 using Microsoft.Data.OData;
 using System.Configuration;
 using SE450Database;
+using System.Threading.Tasks;
 
 namespace SE450_Sleep_Tracker.Controllers
 {
@@ -38,6 +39,8 @@ namespace SE450_Sleep_Tracker.Controllers
         }
 
         // GET: odata/SleepLogModels
+        [HttpGet]
+        [EnableQuery]
         public IHttpActionResult GetSleepLogModels(ODataQueryOptions<SleepLogModel> queryOptions)
         {
             // validate the query.
@@ -55,24 +58,34 @@ namespace SE450_Sleep_Tracker.Controllers
         }
 
         // GET: odata/SleepLogModels(5)
+        /// <summary>
+        /// Get a sleep log by ID
+        /// </summary>
+        /// <param name="key">ID of the log</param>
+        /// <returns>Either a HTTP unauthorized code, Http 404 (not found), or a JSON-serialized <see cref="SleepLogModel"/> object</returns>
         public IHttpActionResult GetSleepLogModel([FromODataUri] int key)
         {
+            Slp_SleepLog dbM;
+
             using (SleepMonitor monitor = new SleepMonitor(connectionString))
             {
-                var dbM = monitor.Slp_SleepLog.FirstOrDefault(slp => slp.Slp_ID == key);
-
-                var model = new SleepLogModel()
-                {
-                    SleepQuality = (ushort?)dbM.Slp_SleepQuality,
-                    TimeToSleepUserLogged = new DateTime(dbM.Slp_TimeToSleepUserLogged.HasValue ? dbM.Slp_TimeToSleepUserLogged.Value.Ticks : DateTime.Now.Ticks), // TODO: this is wrong
-                    UserID = dbM.Slp_aur_id,
-                    Date = dbM.Slp_date,
-                    ID = dbM.Slp_ID,
-                    TimeToBed = new DateTime(dbM.Slp_TimeToBed.Ticks, DateTimeKind.Unspecified) // TODO: this is wrong
-                };
-
-                return Json<SleepLogModel>(model);
+                dbM = monitor.Slp_SleepLog.FirstOrDefault(slp => slp.Slp_ID == key);
             }
+
+            if (dbM == null)
+                return NotFound();
+
+            var model = new SleepLogModel()
+            {
+                SleepQuality = (ushort?)dbM.Slp_SleepQuality,
+                TimeToSleepUserLogged = new DateTime(dbM.Slp_TimeToSleepUserLogged.HasValue ? dbM.Slp_TimeToSleepUserLogged.Value.Ticks : DateTime.Now.Ticks), // TODO: this is wrong
+                UserID = dbM.Slp_aur_id,
+                Date = dbM.Slp_date,
+                ID = dbM.Slp_ID,
+                TimeToBed = new DateTime(dbM.Slp_TimeToBed.Ticks, DateTimeKind.Unspecified) // TODO: this is wrong
+            };
+
+            return Json<SleepLogModel>(model);
 
             // return Ok<SleepLogModel>(sleepLogModel);
             //return StatusCode(HttpStatusCode.NotImplemented);
@@ -99,17 +112,23 @@ namespace SE450_Sleep_Tracker.Controllers
         }
 
         // POST: odata/SleepLogModels
-        public IHttpActionResult Post(SleepLogModel sleepLogModel)
+        public async Task<IHttpActionResult> Post(SleepLogModel sleepLogModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            // TODO: Add create logic here.
+            var model = await sleepLogModel.ToDBObject();
 
-            // return Created(sleepLogModel);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            using (SleepMonitor monitor = new SleepMonitor(connectionString))
+            {
+                monitor.Slp_SleepLog.InsertOnSubmit(model);
+
+                monitor.SubmitChanges();
+            }
+
+            return Created<SleepLogModel>(sleepLogModel);
         }
 
         // PATCH: odata/SleepLogModels(5)

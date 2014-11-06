@@ -13,6 +13,8 @@ using SE450_Sleep_Tracker.Models;
 using Microsoft.Data.OData;
 using SE450Database;
 using System.Configuration;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SE450_Sleep_Tracker.Controllers
 {
@@ -26,6 +28,7 @@ namespace SE450_Sleep_Tracker.Controllers
     builder.EntitySet<ChainAnalysisModel>("ChainAnalysisModels");
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
+    [Authorize]
     public class ChainAnalysisModelsController : ODataController
     {
         private static ODataValidationSettings _validationSettings = new ODataValidationSettings();
@@ -37,7 +40,14 @@ namespace SE450_Sleep_Tracker.Controllers
         }
 
         // GET: odata/ChainAnalysisModels
-        public IHttpActionResult GetChainAnalysisModels(ODataQueryOptions<ChainAnalysisModel> queryOptions)
+        /// <summary>
+        /// Query this
+        /// </summary>
+        /// <param name="queryOptions">OData query options; currently only filter, orderby, top, and skip are supported</param>
+        /// <returns>Not Implemented code currently; this isn't done yet</returns>
+        [HttpGet]
+        [EnableQuery]
+        public IHttpActionResult Get(ODataQueryOptions<ChainAnalysisModel> queryOptions)
         {
             // validate the query.
             try
@@ -54,36 +64,21 @@ namespace SE450_Sleep_Tracker.Controllers
         }
 
         // GET: odata/ChainAnalysisModels(5)
-        public IHttpActionResult GetChainAnalysisModel([FromODataUri] int key, ODataQueryOptions<ChainAnalysisModel> queryOptions)
-        {
-            // validate the query.
-            try
-            {
-                queryOptions.Validate(_validationSettings);
-            }
-            catch (ODataException ex)
-            {
-                return BadRequest(ex.Message);
-            }
 
-            // return Ok<ChainAnalysisModel>(chainAnalysisModel);
-            return StatusCode(HttpStatusCode.NotImplemented);
-        }
 
         /// <summary>
-        /// Get an action for
+        /// Get a chain analysis
         /// </summary>
-        /// <param name="chn_id"></param>
-        /// <returns></returns>
+        /// <param name="chn_id">ID of the chain analysis</param>
+        /// <returns>Either a 404 Not Found code, Unauthorized code, or a JSON-serialized <see cref="ChainAnalysisModel"/> instance</returns>
         [HttpGet]
-        [Authorize]
-        public IHttpActionResult GetSleepLogModel(int chn_id)
+        public IHttpActionResult Get([FromODataUri] int chn_id)
         {
             using (SleepMonitor model = new SleepMonitor(connectionString))
             {
                 var analysis = model.Chn_ChainAnalysis.FirstOrDefault(chn => chn.Chn_ID == chn_id);
                 if (analysis == null)
-                    return BadRequest("Does not exist");
+                    return NotFound();
                 else
                 {
                     //var user = model.Usr_User.FirstOrDefault(usr => usr.Usr_ID == analysis.Chn_usr_ID);
@@ -106,45 +101,59 @@ namespace SE450_Sleep_Tracker.Controllers
         [HttpGet]
         public IHttpActionResult GetAllAnalysisForUser([FromODataUri] string usr_id)
         {
+            IEnumerable<ChainAnalysisModel> analysis;
+
             using (SleepMonitor monitor = new SleepMonitor(connectionString))
             {
-                IEnumerable<ChainAnalysisModel> analysis = monitor.Chn_ChainAnalysis.Where(chn => chn.Chn_aur_id == usr_id).Select(chn => new ChainAnalysisModel(chn));
-
-                return Json<IEnumerable<ChainAnalysisModel>>(analysis);
+                analysis = monitor.Chn_ChainAnalysis.Where(chn => chn.Chn_aur_id == usr_id).Select(chn => new ChainAnalysisModel(chn));
             }
+
+            return Json<IEnumerable<ChainAnalysisModel>>(analysis);
         }
 
         // PUT: odata/ChainAnalysisModels(5)
-        public IHttpActionResult Put([FromODataUri] int key, Delta<ChainAnalysisModel> delta)
+        // TODO: improve security for this to restrict it to the user
+        public IHttpActionResult Put([FromODataUri] int key, [FromBody] ChainAnalysisModel model)
         {
-            Validate(delta.GetEntity());
+            //Validate(delta.GetEntity());
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            // TODO: Get the entity here.
+            using (SleepMonitor monitor = new SleepMonitor(connectionString))
+            {
+                var item = monitor.Chn_ChainAnalysis.FirstOrDefault(chn => chn.Chn_ID == key);
 
-            // delta.Put(chainAnalysisModel);
+                // Do this
 
-            // TODO: Save the patched entity.
+                monitor.SubmitChanges();
+                //item.Bhv_Behavior = model.BehaviorChain.Select(bhv => new Bhv_Behavior { })
+            }
 
             // return Updated(chainAnalysisModel);
             return StatusCode(HttpStatusCode.NotImplemented);
         }
 
         // POST: odata/ChainAnalysisModels
-        public IHttpActionResult Post(ChainAnalysisModel chainAnalysisModel)
+        [HttpPost]
+        public async Task<IHttpActionResult> Post([FromBody] ChainAnalysisModel chainAnalysisModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var dbObj = await chainAnalysisModel.ToDBObject();
+
             using (SleepMonitor db = new SleepMonitor(connectionString))
             {
-                var associatedUser = db.AspNetUsers.FirstOrDefault(usr => usr.Id.Trim().ToLower().Equals(chainAnalysisModel.UserID.Trim().ToLower()));
+                //var associatedUser = db.AspNetUsers.FirstOrDefault(usr => usr.Id.Trim().ToLower().Equals(chainAnalysisModel.UserID.Trim().ToLower()));
+
+                db.Chn_ChainAnalysis.InsertOnSubmit(dbObj);
+
+                db.SubmitChanges();
             }
 
             // return Created(chainAnalysisModel);

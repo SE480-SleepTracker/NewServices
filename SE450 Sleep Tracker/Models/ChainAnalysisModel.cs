@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SE450Database;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SE450_Sleep_Tracker.Models
 {
@@ -14,7 +16,7 @@ namespace SE450_Sleep_Tracker.Models
             // TODO: finish
         }
 
-        public Chn_ChainAnalysis ToDBObject()
+        public async Task<Chn_ChainAnalysis> ToDBObject()
         {
             Chn_ChainAnalysis analysis = new Chn_ChainAnalysis();
             //analysis.Tht_Thought.AddRange(this.Thoughts.Select(new Tht_Thought() { Tht_Thought1 = );
@@ -35,7 +37,10 @@ namespace SE450_Sleep_Tracker.Models
 
                 order++;
             }
-            // TODO: writed
+
+            analysis.Chn_DateAndTime = this.Time;
+            
+            // TODO: write
             return analysis;
         }
 
@@ -53,6 +58,12 @@ namespace SE450_Sleep_Tracker.Models
         }
 
         public String ProblemBehavior
+        {
+            get;
+            set;
+        }
+
+        public string Location
         {
             get;
             set;
