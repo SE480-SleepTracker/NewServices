@@ -29,6 +29,24 @@ namespace SE450Database
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void Insert__MigrationHistory(__MigrationHistory instance);
+    partial void Update__MigrationHistory(__MigrationHistory instance);
+    partial void Delete__MigrationHistory(__MigrationHistory instance);
+    partial void InsertAspNetRoles(AspNetRoles instance);
+    partial void UpdateAspNetRoles(AspNetRoles instance);
+    partial void DeleteAspNetRoles(AspNetRoles instance);
+    partial void InsertAspNetUserClaims(AspNetUserClaims instance);
+    partial void UpdateAspNetUserClaims(AspNetUserClaims instance);
+    partial void DeleteAspNetUserClaims(AspNetUserClaims instance);
+    partial void InsertAspNetUserLogins(AspNetUserLogins instance);
+    partial void UpdateAspNetUserLogins(AspNetUserLogins instance);
+    partial void DeleteAspNetUserLogins(AspNetUserLogins instance);
+    partial void InsertAspNetUserRoles(AspNetUserRoles instance);
+    partial void UpdateAspNetUserRoles(AspNetUserRoles instance);
+    partial void DeleteAspNetUserRoles(AspNetUserRoles instance);
+    partial void InsertAspNetUsers(AspNetUsers instance);
+    partial void UpdateAspNetUsers(AspNetUsers instance);
+    partial void DeleteAspNetUsers(AspNetUsers instance);
     partial void InsertAwk_NighttimeAwakenings(Awk_NighttimeAwakenings instance);
     partial void UpdateAwk_NighttimeAwakenings(Awk_NighttimeAwakenings instance);
     partial void DeleteAwk_NighttimeAwakenings(Awk_NighttimeAwakenings instance);
@@ -98,9 +116,6 @@ namespace SE450Database
     partial void InsertTht_Thought(Tht_Thought instance);
     partial void UpdateTht_Thought(Tht_Thought instance);
     partial void DeleteTht_Thought(Tht_Thought instance);
-    partial void InsertUsr_User(Usr_User instance);
-    partial void UpdateUsr_User(Usr_User instance);
-    partial void DeleteUsr_User(Usr_User instance);
     partial void InsertVul_Vulnerability(Vul_Vulnerability instance);
     partial void UpdateVul_Vulnerability(Vul_Vulnerability instance);
     partial void DeleteVul_Vulnerability(Vul_Vulnerability instance);
@@ -131,6 +146,54 @@ namespace SE450Database
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<@__MigrationHistory> @__MigrationHistory
+		{
+			get
+			{
+				return this.GetTable<@__MigrationHistory>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AspNetRoles> AspNetRoles
+		{
+			get
+			{
+				return this.GetTable<AspNetRoles>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AspNetUserClaims> AspNetUserClaims
+		{
+			get
+			{
+				return this.GetTable<AspNetUserClaims>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AspNetUserLogins> AspNetUserLogins
+		{
+			get
+			{
+				return this.GetTable<AspNetUserLogins>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AspNetUserRoles> AspNetUserRoles
+		{
+			get
+			{
+				return this.GetTable<AspNetUserRoles>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AspNetUsers> AspNetUsers
+		{
+			get
+			{
+				return this.GetTable<AspNetUsers>();
+			}
 		}
 		
 		public System.Data.Linq.Table<Awk_NighttimeAwakenings> Awk_NighttimeAwakenings
@@ -317,14 +380,6 @@ namespace SE450Database
 			}
 		}
 		
-		public System.Data.Linq.Table<Usr_User> Usr_User
-		{
-			get
-			{
-				return this.GetTable<Usr_User>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Vul_Vulnerability> Vul_Vulnerability
 		{
 			get
@@ -340,65 +395,1349 @@ namespace SE450Database
 				return this.GetTable<Wtp_WaysToPrevent>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.__MigrationHistory")]
+	public partial class @__MigrationHistory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.fn_diagramobjects", IsComposable=true)]
-		[return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")]
-		public System.Nullable<int> Fn_diagramobjects()
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _MigrationId;
+		
+		private string _ContextKey;
+		
+		private System.Data.Linq.Binary _Model;
+		
+		private string _ProductVersion;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMigrationIdChanging(string value);
+    partial void OnMigrationIdChanged();
+    partial void OnContextKeyChanging(string value);
+    partial void OnContextKeyChanged();
+    partial void OnModelChanging(System.Data.Linq.Binary value);
+    partial void OnModelChanged();
+    partial void OnProductVersionChanging(string value);
+    partial void OnProductVersionChanged();
+    #endregion
+		
+		public @__MigrationHistory()
 		{
-			return ((System.Nullable<int>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod()))).ReturnValue));
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_alterdiagram")]
-		[return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")]
-		public int Sp_alterdiagram([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(128)")] string diagramname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> owner_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> version, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarBinary(MAX)")] System.Data.Linq.Binary definition)
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MigrationId", DbType="NVarChar(150) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MigrationId
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), diagramname, owner_id, version, definition);
-			return ((int)(result.ReturnValue));
+			get
+			{
+				return this._MigrationId;
+			}
+			set
+			{
+				if ((this._MigrationId != value))
+				{
+					this.OnMigrationIdChanging(value);
+					this.SendPropertyChanging();
+					this._MigrationId = value;
+					this.SendPropertyChanged("MigrationId");
+					this.OnMigrationIdChanged();
+				}
+			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_creatediagram")]
-		[return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")]
-		public int Sp_creatediagram([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(128)")] string diagramname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> owner_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> version, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarBinary(MAX)")] System.Data.Linq.Binary definition)
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContextKey", DbType="NVarChar(300) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ContextKey
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), diagramname, owner_id, version, definition);
-			return ((int)(result.ReturnValue));
+			get
+			{
+				return this._ContextKey;
+			}
+			set
+			{
+				if ((this._ContextKey != value))
+				{
+					this.OnContextKeyChanging(value);
+					this.SendPropertyChanging();
+					this._ContextKey = value;
+					this.SendPropertyChanged("ContextKey");
+					this.OnContextKeyChanged();
+				}
+			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_dropdiagram")]
-		[return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")]
-		public int Sp_dropdiagram([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(128)")] string diagramname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> owner_id)
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Model", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Model
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), diagramname, owner_id);
-			return ((int)(result.ReturnValue));
+			get
+			{
+				return this._Model;
+			}
+			set
+			{
+				if ((this._Model != value))
+				{
+					this.OnModelChanging(value);
+					this.SendPropertyChanging();
+					this._Model = value;
+					this.SendPropertyChanged("Model");
+					this.OnModelChanged();
+				}
+			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_helpdiagramdefinition")]
-		public ISingleResult<Sp_helpdiagramdefinitionResult> Sp_helpdiagramdefinition([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(128)")] string diagramname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> owner_id)
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductVersion", DbType="NVarChar(32) NOT NULL", CanBeNull=false)]
+		public string ProductVersion
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), diagramname, owner_id);
-			return ((ISingleResult<Sp_helpdiagramdefinitionResult>)(result.ReturnValue));
+			get
+			{
+				return this._ProductVersion;
+			}
+			set
+			{
+				if ((this._ProductVersion != value))
+				{
+					this.OnProductVersionChanging(value);
+					this.SendPropertyChanging();
+					this._ProductVersion = value;
+					this.SendPropertyChanged("ProductVersion");
+					this.OnProductVersionChanged();
+				}
+			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_helpdiagrams")]
-		public ISingleResult<Sp_helpdiagramsResult> Sp_helpdiagrams([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(128)")] string diagramname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> owner_id)
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), diagramname, owner_id);
-			return ((ISingleResult<Sp_helpdiagramsResult>)(result.ReturnValue));
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_renamediagram")]
-		[return: global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")]
-		public int Sp_renamediagram([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(128)")] string diagramname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> owner_id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(128)")] string new_diagramname)
+		protected virtual void SendPropertyChanged(String propertyName)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), diagramname, owner_id, new_diagramname);
-			return ((int)(result.ReturnValue));
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetRoles")]
+	public partial class AspNetRoles : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Id;
+		
+		private string _Name;
+		
+		private EntitySet<AspNetUserRoles> _AspNetUserRoles;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(string value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public AspNetRoles()
+		{
+			this._AspNetUserRoles = new EntitySet<AspNetUserRoles>(new Action<AspNetUserRoles>(this.attach_AspNetUserRoles), new Action<AspNetUserRoles>(this.detach_AspNetUserRoles));
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.usr_GetAllUsers")]
-		public ISingleResult<Usr_GetAllUsersResult> Usr_GetAllUsers()
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Id
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<Usr_GetAllUsersResult>)(result.ReturnValue));
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId", Storage="_AspNetUserRoles", ThisKey="Id", OtherKey="RoleId", DeleteRule="CASCADE")]
+		public EntitySet<AspNetUserRoles> AspNetUserRoles
+		{
+			get
+			{
+				return this._AspNetUserRoles;
+			}
+			set
+			{
+				this._AspNetUserRoles.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_AspNetUserRoles(AspNetUserRoles entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetRoles = this;
+		}
+		
+		private void detach_AspNetUserRoles(AspNetUserRoles entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetRoles = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUserClaims")]
+	public partial class AspNetUserClaims : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _UserId;
+		
+		private string _ClaimType;
+		
+		private string _ClaimValue;
+		
+		private EntityRef<AspNetUsers> _AspNetUsers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnUserIdChanging(string value);
+    partial void OnUserIdChanged();
+    partial void OnClaimTypeChanging(string value);
+    partial void OnClaimTypeChanged();
+    partial void OnClaimValueChanging(string value);
+    partial void OnClaimValueChanged();
+    #endregion
+		
+		public AspNetUserClaims()
+		{
+			this._AspNetUsers = default(EntityRef<AspNetUsers>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._AspNetUsers.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClaimType", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ClaimType
+		{
+			get
+			{
+				return this._ClaimType;
+			}
+			set
+			{
+				if ((this._ClaimType != value))
+				{
+					this.OnClaimTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ClaimType = value;
+					this.SendPropertyChanged("ClaimType");
+					this.OnClaimTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClaimValue", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string ClaimValue
+		{
+			get
+			{
+				return this._ClaimValue;
+			}
+			set
+			{
+				if ((this._ClaimValue != value))
+				{
+					this.OnClaimValueChanging(value);
+					this.SendPropertyChanging();
+					this._ClaimValue = value;
+					this.SendPropertyChanged("ClaimValue");
+					this.OnClaimValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId", Storage="_AspNetUsers", ThisKey="UserId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public AspNetUsers AspNetUsers
+		{
+			get
+			{
+				return this._AspNetUsers.Entity;
+			}
+			set
+			{
+				AspNetUsers previousValue = this._AspNetUsers.Entity;
+				if (((previousValue != value) 
+							|| (this._AspNetUsers.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AspNetUsers.Entity = null;
+						previousValue.AspNetUserClaims.Remove(this);
+					}
+					this._AspNetUsers.Entity = value;
+					if ((value != null))
+					{
+						value.AspNetUserClaims.Add(this);
+						this._UserId = value.Id;
+					}
+					else
+					{
+						this._UserId = default(string);
+					}
+					this.SendPropertyChanged("AspNetUsers");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUserLogins")]
+	public partial class AspNetUserLogins : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _LoginProvider;
+		
+		private string _ProviderKey;
+		
+		private string _UserId;
+		
+		private EntityRef<AspNetUsers> _AspNetUsers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLoginProviderChanging(string value);
+    partial void OnLoginProviderChanged();
+    partial void OnProviderKeyChanging(string value);
+    partial void OnProviderKeyChanged();
+    partial void OnUserIdChanging(string value);
+    partial void OnUserIdChanged();
+    #endregion
+		
+		public AspNetUserLogins()
+		{
+			this._AspNetUsers = default(EntityRef<AspNetUsers>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginProvider", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string LoginProvider
+		{
+			get
+			{
+				return this._LoginProvider;
+			}
+			set
+			{
+				if ((this._LoginProvider != value))
+				{
+					this.OnLoginProviderChanging(value);
+					this.SendPropertyChanging();
+					this._LoginProvider = value;
+					this.SendPropertyChanged("LoginProvider");
+					this.OnLoginProviderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProviderKey", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ProviderKey
+		{
+			get
+			{
+				return this._ProviderKey;
+			}
+			set
+			{
+				if ((this._ProviderKey != value))
+				{
+					this.OnProviderKeyChanging(value);
+					this.SendPropertyChanging();
+					this._ProviderKey = value;
+					this.SendPropertyChanged("ProviderKey");
+					this.OnProviderKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._AspNetUsers.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId", Storage="_AspNetUsers", ThisKey="UserId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public AspNetUsers AspNetUsers
+		{
+			get
+			{
+				return this._AspNetUsers.Entity;
+			}
+			set
+			{
+				AspNetUsers previousValue = this._AspNetUsers.Entity;
+				if (((previousValue != value) 
+							|| (this._AspNetUsers.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AspNetUsers.Entity = null;
+						previousValue.AspNetUserLogins.Remove(this);
+					}
+					this._AspNetUsers.Entity = value;
+					if ((value != null))
+					{
+						value.AspNetUserLogins.Add(this);
+						this._UserId = value.Id;
+					}
+					else
+					{
+						this._UserId = default(string);
+					}
+					this.SendPropertyChanged("AspNetUsers");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUserRoles")]
+	public partial class AspNetUserRoles : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _UserId;
+		
+		private string _RoleId;
+		
+		private EntityRef<AspNetRoles> _AspNetRoles;
+		
+		private EntityRef<AspNetUsers> _AspNetUsers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserIdChanging(string value);
+    partial void OnUserIdChanged();
+    partial void OnRoleIdChanging(string value);
+    partial void OnRoleIdChanged();
+    #endregion
+		
+		public AspNetUserRoles()
+		{
+			this._AspNetRoles = default(EntityRef<AspNetRoles>);
+			this._AspNetUsers = default(EntityRef<AspNetUsers>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._AspNetUsers.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string RoleId
+		{
+			get
+			{
+				return this._RoleId;
+			}
+			set
+			{
+				if ((this._RoleId != value))
+				{
+					if (this._AspNetRoles.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRoleIdChanging(value);
+					this.SendPropertyChanging();
+					this._RoleId = value;
+					this.SendPropertyChanged("RoleId");
+					this.OnRoleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId", Storage="_AspNetRoles", ThisKey="RoleId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public AspNetRoles AspNetRoles
+		{
+			get
+			{
+				return this._AspNetRoles.Entity;
+			}
+			set
+			{
+				AspNetRoles previousValue = this._AspNetRoles.Entity;
+				if (((previousValue != value) 
+							|| (this._AspNetRoles.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AspNetRoles.Entity = null;
+						previousValue.AspNetUserRoles.Remove(this);
+					}
+					this._AspNetRoles.Entity = value;
+					if ((value != null))
+					{
+						value.AspNetUserRoles.Add(this);
+						this._RoleId = value.Id;
+					}
+					else
+					{
+						this._RoleId = default(string);
+					}
+					this.SendPropertyChanged("AspNetRoles");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId", Storage="_AspNetUsers", ThisKey="UserId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public AspNetUsers AspNetUsers
+		{
+			get
+			{
+				return this._AspNetUsers.Entity;
+			}
+			set
+			{
+				AspNetUsers previousValue = this._AspNetUsers.Entity;
+				if (((previousValue != value) 
+							|| (this._AspNetUsers.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AspNetUsers.Entity = null;
+						previousValue.AspNetUserRoles.Remove(this);
+					}
+					this._AspNetUsers.Entity = value;
+					if ((value != null))
+					{
+						value.AspNetUserRoles.Add(this);
+						this._UserId = value.Id;
+					}
+					else
+					{
+						this._UserId = default(string);
+					}
+					this.SendPropertyChanged("AspNetUsers");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUsers")]
+	public partial class AspNetUsers : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Id;
+		
+		private string _Hometown;
+		
+		private string _Email;
+		
+		private bool _EmailConfirmed;
+		
+		private string _PasswordHash;
+		
+		private string _SecurityStamp;
+		
+		private string _PhoneNumber;
+		
+		private bool _PhoneNumberConfirmed;
+		
+		private bool _TwoFactorEnabled;
+		
+		private System.Nullable<System.DateTime> _LockoutEndDateUtc;
+		
+		private bool _LockoutEnabled;
+		
+		private int _AccessFailedCount;
+		
+		private string _UserName;
+		
+		private EntitySet<Cfn_CaffeineConsumption> _Cfn_CaffeineConsumption;
+		
+		private EntitySet<Chn_ChainAnalysis> _Chn_ChainAnalysis;
+		
+		private EntitySet<Ctr_ConcentrationLog> _Ctr_ConcentrationLog;
+		
+		private EntitySet<AspNetUserClaims> _AspNetUserClaims;
+		
+		private EntitySet<AspNetUserLogins> _AspNetUserLogins;
+		
+		private EntitySet<AspNetUserRoles> _AspNetUserRoles;
+		
+		private EntitySet<Eml_EmotionLog> _Eml_EmotionLog;
+		
+		private EntitySet<Exr_Exercise> _Exr_Exercise;
+		
+		private EntitySet<Ftg_FatigueLevels> _Ftg_FatigueLevels;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(string value);
+    partial void OnIdChanged();
+    partial void OnHometownChanging(string value);
+    partial void OnHometownChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnEmailConfirmedChanging(bool value);
+    partial void OnEmailConfirmedChanged();
+    partial void OnPasswordHashChanging(string value);
+    partial void OnPasswordHashChanged();
+    partial void OnSecurityStampChanging(string value);
+    partial void OnSecurityStampChanged();
+    partial void OnPhoneNumberChanging(string value);
+    partial void OnPhoneNumberChanged();
+    partial void OnPhoneNumberConfirmedChanging(bool value);
+    partial void OnPhoneNumberConfirmedChanged();
+    partial void OnTwoFactorEnabledChanging(bool value);
+    partial void OnTwoFactorEnabledChanged();
+    partial void OnLockoutEndDateUtcChanging(System.Nullable<System.DateTime> value);
+    partial void OnLockoutEndDateUtcChanged();
+    partial void OnLockoutEnabledChanging(bool value);
+    partial void OnLockoutEnabledChanged();
+    partial void OnAccessFailedCountChanging(int value);
+    partial void OnAccessFailedCountChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    #endregion
+		
+		public AspNetUsers()
+		{
+			this._Cfn_CaffeineConsumption = new EntitySet<Cfn_CaffeineConsumption>(new Action<Cfn_CaffeineConsumption>(this.attach_Cfn_CaffeineConsumption), new Action<Cfn_CaffeineConsumption>(this.detach_Cfn_CaffeineConsumption));
+			this._Chn_ChainAnalysis = new EntitySet<Chn_ChainAnalysis>(new Action<Chn_ChainAnalysis>(this.attach_Chn_ChainAnalysis), new Action<Chn_ChainAnalysis>(this.detach_Chn_ChainAnalysis));
+			this._Ctr_ConcentrationLog = new EntitySet<Ctr_ConcentrationLog>(new Action<Ctr_ConcentrationLog>(this.attach_Ctr_ConcentrationLog), new Action<Ctr_ConcentrationLog>(this.detach_Ctr_ConcentrationLog));
+			this._AspNetUserClaims = new EntitySet<AspNetUserClaims>(new Action<AspNetUserClaims>(this.attach_AspNetUserClaims), new Action<AspNetUserClaims>(this.detach_AspNetUserClaims));
+			this._AspNetUserLogins = new EntitySet<AspNetUserLogins>(new Action<AspNetUserLogins>(this.attach_AspNetUserLogins), new Action<AspNetUserLogins>(this.detach_AspNetUserLogins));
+			this._AspNetUserRoles = new EntitySet<AspNetUserRoles>(new Action<AspNetUserRoles>(this.attach_AspNetUserRoles), new Action<AspNetUserRoles>(this.detach_AspNetUserRoles));
+			this._Eml_EmotionLog = new EntitySet<Eml_EmotionLog>(new Action<Eml_EmotionLog>(this.attach_Eml_EmotionLog), new Action<Eml_EmotionLog>(this.detach_Eml_EmotionLog));
+			this._Exr_Exercise = new EntitySet<Exr_Exercise>(new Action<Exr_Exercise>(this.attach_Exr_Exercise), new Action<Exr_Exercise>(this.detach_Exr_Exercise));
+			this._Ftg_FatigueLevels = new EntitySet<Ftg_FatigueLevels>(new Action<Ftg_FatigueLevels>(this.attach_Ftg_FatigueLevels), new Action<Ftg_FatigueLevels>(this.detach_Ftg_FatigueLevels));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hometown", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string Hometown
+		{
+			get
+			{
+				return this._Hometown;
+			}
+			set
+			{
+				if ((this._Hometown != value))
+				{
+					this.OnHometownChanging(value);
+					this.SendPropertyChanging();
+					this._Hometown = value;
+					this.SendPropertyChanged("Hometown");
+					this.OnHometownChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(256)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailConfirmed", DbType="Bit NOT NULL")]
+		public bool EmailConfirmed
+		{
+			get
+			{
+				return this._EmailConfirmed;
+			}
+			set
+			{
+				if ((this._EmailConfirmed != value))
+				{
+					this.OnEmailConfirmedChanging(value);
+					this.SendPropertyChanging();
+					this._EmailConfirmed = value;
+					this.SendPropertyChanged("EmailConfirmed");
+					this.OnEmailConfirmedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordHash", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string PasswordHash
+		{
+			get
+			{
+				return this._PasswordHash;
+			}
+			set
+			{
+				if ((this._PasswordHash != value))
+				{
+					this.OnPasswordHashChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordHash = value;
+					this.SendPropertyChanged("PasswordHash");
+					this.OnPasswordHashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecurityStamp", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string SecurityStamp
+		{
+			get
+			{
+				return this._SecurityStamp;
+			}
+			set
+			{
+				if ((this._SecurityStamp != value))
+				{
+					this.OnSecurityStampChanging(value);
+					this.SendPropertyChanging();
+					this._SecurityStamp = value;
+					this.SendPropertyChanged("SecurityStamp");
+					this.OnSecurityStampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public string PhoneNumber
+		{
+			get
+			{
+				return this._PhoneNumber;
+			}
+			set
+			{
+				if ((this._PhoneNumber != value))
+				{
+					this.OnPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNumber = value;
+					this.SendPropertyChanged("PhoneNumber");
+					this.OnPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumberConfirmed", DbType="Bit NOT NULL")]
+		public bool PhoneNumberConfirmed
+		{
+			get
+			{
+				return this._PhoneNumberConfirmed;
+			}
+			set
+			{
+				if ((this._PhoneNumberConfirmed != value))
+				{
+					this.OnPhoneNumberConfirmedChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNumberConfirmed = value;
+					this.SendPropertyChanged("PhoneNumberConfirmed");
+					this.OnPhoneNumberConfirmedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TwoFactorEnabled", DbType="Bit NOT NULL")]
+		public bool TwoFactorEnabled
+		{
+			get
+			{
+				return this._TwoFactorEnabled;
+			}
+			set
+			{
+				if ((this._TwoFactorEnabled != value))
+				{
+					this.OnTwoFactorEnabledChanging(value);
+					this.SendPropertyChanging();
+					this._TwoFactorEnabled = value;
+					this.SendPropertyChanged("TwoFactorEnabled");
+					this.OnTwoFactorEnabledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LockoutEndDateUtc", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LockoutEndDateUtc
+		{
+			get
+			{
+				return this._LockoutEndDateUtc;
+			}
+			set
+			{
+				if ((this._LockoutEndDateUtc != value))
+				{
+					this.OnLockoutEndDateUtcChanging(value);
+					this.SendPropertyChanging();
+					this._LockoutEndDateUtc = value;
+					this.SendPropertyChanged("LockoutEndDateUtc");
+					this.OnLockoutEndDateUtcChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LockoutEnabled", DbType="Bit NOT NULL")]
+		public bool LockoutEnabled
+		{
+			get
+			{
+				return this._LockoutEnabled;
+			}
+			set
+			{
+				if ((this._LockoutEnabled != value))
+				{
+					this.OnLockoutEnabledChanging(value);
+					this.SendPropertyChanging();
+					this._LockoutEnabled = value;
+					this.SendPropertyChanged("LockoutEnabled");
+					this.OnLockoutEnabledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessFailedCount", DbType="Int NOT NULL")]
+		public int AccessFailedCount
+		{
+			get
+			{
+				return this._AccessFailedCount;
+			}
+			set
+			{
+				if ((this._AccessFailedCount != value))
+				{
+					this.OnAccessFailedCountChanging(value);
+					this.SendPropertyChanging();
+					this._AccessFailedCount = value;
+					this.SendPropertyChanged("AccessFailedCount");
+					this.OnAccessFailedCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_cfn_CaffeineConsumption_AspNetUsers", Storage="_Cfn_CaffeineConsumption", ThisKey="Id", OtherKey="Cfn_aur_id", DeleteRule="NO ACTION")]
+		public EntitySet<Cfn_CaffeineConsumption> Cfn_CaffeineConsumption
+		{
+			get
+			{
+				return this._Cfn_CaffeineConsumption;
+			}
+			set
+			{
+				this._Cfn_CaffeineConsumption.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_chn_ChainAnalysis_usr_User", Storage="_Chn_ChainAnalysis", ThisKey="Id", OtherKey="Chn_aur_id", DeleteRule="NO ACTION")]
+		public EntitySet<Chn_ChainAnalysis> Chn_ChainAnalysis
+		{
+			get
+			{
+				return this._Chn_ChainAnalysis;
+			}
+			set
+			{
+				this._Chn_ChainAnalysis.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ctr_ConcentrationLog_usr_User", Storage="_Ctr_ConcentrationLog", ThisKey="Id", OtherKey="Ctr_aur_id", DeleteRule="NO ACTION")]
+		public EntitySet<Ctr_ConcentrationLog> Ctr_ConcentrationLog
+		{
+			get
+			{
+				return this._Ctr_ConcentrationLog;
+			}
+			set
+			{
+				this._Ctr_ConcentrationLog.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId", Storage="_AspNetUserClaims", ThisKey="Id", OtherKey="UserId", DeleteRule="CASCADE")]
+		public EntitySet<AspNetUserClaims> AspNetUserClaims
+		{
+			get
+			{
+				return this._AspNetUserClaims;
+			}
+			set
+			{
+				this._AspNetUserClaims.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId", Storage="_AspNetUserLogins", ThisKey="Id", OtherKey="UserId", DeleteRule="CASCADE")]
+		public EntitySet<AspNetUserLogins> AspNetUserLogins
+		{
+			get
+			{
+				return this._AspNetUserLogins;
+			}
+			set
+			{
+				this._AspNetUserLogins.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId", Storage="_AspNetUserRoles", ThisKey="Id", OtherKey="UserId", DeleteRule="CASCADE")]
+		public EntitySet<AspNetUserRoles> AspNetUserRoles
+		{
+			get
+			{
+				return this._AspNetUserRoles;
+			}
+			set
+			{
+				this._AspNetUserRoles.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_eml_EmotionLog_usr_User", Storage="_Eml_EmotionLog", ThisKey="Id", OtherKey="Eml_aur_id", DeleteRule="NO ACTION")]
+		public EntitySet<Eml_EmotionLog> Eml_EmotionLog
+		{
+			get
+			{
+				return this._Eml_EmotionLog;
+			}
+			set
+			{
+				this._Eml_EmotionLog.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_exr_Exercise_usr_User", Storage="_Exr_Exercise", ThisKey="Id", OtherKey="Exr_aur_id", DeleteRule="NO ACTION")]
+		public EntitySet<Exr_Exercise> Exr_Exercise
+		{
+			get
+			{
+				return this._Exr_Exercise;
+			}
+			set
+			{
+				this._Exr_Exercise.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ftg_FatigueLevels_usr_User", Storage="_Ftg_FatigueLevels", ThisKey="Id", OtherKey="Ftg_aur_id", DeleteRule="NO ACTION")]
+		public EntitySet<Ftg_FatigueLevels> Ftg_FatigueLevels
+		{
+			get
+			{
+				return this._Ftg_FatigueLevels;
+			}
+			set
+			{
+				this._Ftg_FatigueLevels.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Cfn_CaffeineConsumption(Cfn_CaffeineConsumption entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = this;
+		}
+		
+		private void detach_Cfn_CaffeineConsumption(Cfn_CaffeineConsumption entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = null;
+		}
+		
+		private void attach_Chn_ChainAnalysis(Chn_ChainAnalysis entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = this;
+		}
+		
+		private void detach_Chn_ChainAnalysis(Chn_ChainAnalysis entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = null;
+		}
+		
+		private void attach_Ctr_ConcentrationLog(Ctr_ConcentrationLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = this;
+		}
+		
+		private void detach_Ctr_ConcentrationLog(Ctr_ConcentrationLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = null;
+		}
+		
+		private void attach_AspNetUserClaims(AspNetUserClaims entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = this;
+		}
+		
+		private void detach_AspNetUserClaims(AspNetUserClaims entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = null;
+		}
+		
+		private void attach_AspNetUserLogins(AspNetUserLogins entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = this;
+		}
+		
+		private void detach_AspNetUserLogins(AspNetUserLogins entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = null;
+		}
+		
+		private void attach_AspNetUserRoles(AspNetUserRoles entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = this;
+		}
+		
+		private void detach_AspNetUserRoles(AspNetUserRoles entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = null;
+		}
+		
+		private void attach_Eml_EmotionLog(Eml_EmotionLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = this;
+		}
+		
+		private void detach_Eml_EmotionLog(Eml_EmotionLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = null;
+		}
+		
+		private void attach_Exr_Exercise(Exr_Exercise entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = this;
+		}
+		
+		private void detach_Exr_Exercise(Exr_Exercise entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = null;
+		}
+		
+		private void attach_Ftg_FatigueLevels(Ftg_FatigueLevels entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = this;
+		}
+		
+		private void detach_Ftg_FatigueLevels(Ftg_FatigueLevels entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUsers = null;
 		}
 	}
 	
@@ -732,9 +2071,11 @@ namespace SE450Database
 		
 		private int _Cfn_cft_ID;
 		
-		private int _Cfn_usr_ID;
+		private string _Cfn_aur_id;
 		
 		private int _Cfn_number;
+		
+		private EntityRef<AspNetUsers> _AspNetUsers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -746,14 +2087,15 @@ namespace SE450Database
     partial void OnCfn_DateTimeChanged();
     partial void OnCfn_cft_IDChanging(int value);
     partial void OnCfn_cft_IDChanged();
-    partial void OnCfn_usr_IDChanging(int value);
-    partial void OnCfn_usr_IDChanged();
+    partial void OnCfn_aur_idChanging(string value);
+    partial void OnCfn_aur_idChanged();
     partial void OnCfn_numberChanging(int value);
     partial void OnCfn_numberChanged();
     #endregion
 		
 		public Cfn_CaffeineConsumption()
 		{
+			this._AspNetUsers = default(EntityRef<AspNetUsers>);
 			OnCreated();
 		}
 		
@@ -817,22 +2159,22 @@ namespace SE450Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="cfn_usr_ID", Storage="_Cfn_usr_ID", DbType="Int NOT NULL")]
-		public int Cfn_usr_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="cfn_aur_id", Storage="_Cfn_aur_id", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string Cfn_aur_id
 		{
 			get
 			{
-				return this._Cfn_usr_ID;
+				return this._Cfn_aur_id;
 			}
 			set
 			{
-				if ((this._Cfn_usr_ID != value))
+				if ((this._Cfn_aur_id != value))
 				{
-					this.OnCfn_usr_IDChanging(value);
+					this.OnCfn_aur_idChanging(value);
 					this.SendPropertyChanging();
-					this._Cfn_usr_ID = value;
-					this.SendPropertyChanged("Cfn_usr_ID");
-					this.OnCfn_usr_IDChanged();
+					this._Cfn_aur_id = value;
+					this.SendPropertyChanged("Cfn_aur_id");
+					this.OnCfn_aur_idChanged();
 				}
 			}
 		}
@@ -853,6 +2195,40 @@ namespace SE450Database
 					this._Cfn_number = value;
 					this.SendPropertyChanged("Cfn_number");
 					this.OnCfn_numberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_cfn_CaffeineConsumption_AspNetUsers", Storage="_AspNetUsers", ThisKey="Cfn_aur_id", OtherKey="Id", IsForeignKey=true)]
+		public AspNetUsers AspNetUsers
+		{
+			get
+			{
+				return this._AspNetUsers.Entity;
+			}
+			set
+			{
+				AspNetUsers previousValue = this._AspNetUsers.Entity;
+				if (((previousValue != value) 
+							|| (this._AspNetUsers.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AspNetUsers.Entity = null;
+						previousValue.Cfn_CaffeineConsumption.Remove(this);
+					}
+					this._AspNetUsers.Entity = value;
+					if ((value != null))
+					{
+						value.Cfn_CaffeineConsumption.Add(this);
+						this._Cfn_aur_id = value.Id;
+					}
+					else
+					{
+						this._Cfn_aur_id = default(string);
+					}
+					this.SendPropertyChanged("AspNetUsers");
 				}
 			}
 		}
@@ -1057,7 +2433,7 @@ namespace SE450Database
 		
 		private int _Chn_ID;
 		
-		private int _Chn_usr_ID;
+		private string _Chn_aur_id;
 		
 		private string _Chn_ProblemBehavior;
 		
@@ -1067,7 +2443,7 @@ namespace SE450Database
 		
 		private EntitySet<Bhv_Behavior> _Bhv_Behavior;
 		
-		private EntityRef<Usr_User> _Usr_User;
+		private EntityRef<AspNetUsers> _AspNetUsers;
 		
 		private EntitySet<Emt_Emotions> _Emt_Emotions;
 		
@@ -1093,8 +2469,8 @@ namespace SE450Database
     partial void OnCreated();
     partial void OnChn_IDChanging(int value);
     partial void OnChn_IDChanged();
-    partial void OnChn_usr_IDChanging(int value);
-    partial void OnChn_usr_IDChanged();
+    partial void OnChn_aur_idChanging(string value);
+    partial void OnChn_aur_idChanged();
     partial void OnChn_ProblemBehaviorChanging(string value);
     partial void OnChn_ProblemBehaviorChanged();
     partial void OnChn_DateAndTimeChanging(System.DateTime value);
@@ -1106,7 +2482,7 @@ namespace SE450Database
 		public Chn_ChainAnalysis()
 		{
 			this._Bhv_Behavior = new EntitySet<Bhv_Behavior>(new Action<Bhv_Behavior>(this.attach_Bhv_Behavior), new Action<Bhv_Behavior>(this.detach_Bhv_Behavior));
-			this._Usr_User = default(EntityRef<Usr_User>);
+			this._AspNetUsers = default(EntityRef<AspNetUsers>);
 			this._Emt_Emotions = new EntitySet<Emt_Emotions>(new Action<Emt_Emotions>(this.attach_Emt_Emotions), new Action<Emt_Emotions>(this.detach_Emt_Emotions));
 			this._Gft_GoalsForTomorrow = new EntitySet<Gft_GoalsForTomorrow>(new Action<Gft_GoalsForTomorrow>(this.attach_Gft_GoalsForTomorrow), new Action<Gft_GoalsForTomorrow>(this.detach_Gft_GoalsForTomorrow));
 			this._Imc_ImmediateConsequences = new EntitySet<Imc_ImmediateConsequences>(new Action<Imc_ImmediateConsequences>(this.attach_Imc_ImmediateConsequences), new Action<Imc_ImmediateConsequences>(this.detach_Imc_ImmediateConsequences));
@@ -1139,22 +2515,22 @@ namespace SE450Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="chn_usr_ID", Storage="_Chn_usr_ID", DbType="Int NOT NULL")]
-		public int Chn_usr_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="chn_aur_id", Storage="_Chn_aur_id", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string Chn_aur_id
 		{
 			get
 			{
-				return this._Chn_usr_ID;
+				return this._Chn_aur_id;
 			}
 			set
 			{
-				if ((this._Chn_usr_ID != value))
+				if ((this._Chn_aur_id != value))
 				{
-					this.OnChn_usr_IDChanging(value);
+					this.OnChn_aur_idChanging(value);
 					this.SendPropertyChanging();
-					this._Chn_usr_ID = value;
-					this.SendPropertyChanged("Chn_usr_ID");
-					this.OnChn_usr_IDChanged();
+					this._Chn_aur_id = value;
+					this.SendPropertyChanged("Chn_aur_id");
+					this.OnChn_aur_idChanged();
 				}
 			}
 		}
@@ -1232,36 +2608,36 @@ namespace SE450Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_chn_ChainAnalysis_usr_User", Storage="_Usr_User", ThisKey="Chn_usr_ID", OtherKey="Usr_ID", IsForeignKey=true)]
-		public Usr_User Usr_User
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_chn_ChainAnalysis_usr_User", Storage="_AspNetUsers", ThisKey="Chn_aur_id", OtherKey="Id", IsForeignKey=true)]
+		public AspNetUsers AspNetUsers
 		{
 			get
 			{
-				return this._Usr_User.Entity;
+				return this._AspNetUsers.Entity;
 			}
 			set
 			{
-				Usr_User previousValue = this._Usr_User.Entity;
+				AspNetUsers previousValue = this._AspNetUsers.Entity;
 				if (((previousValue != value) 
-							|| (this._Usr_User.HasLoadedOrAssignedValue == false)))
+							|| (this._AspNetUsers.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Usr_User.Entity = null;
+						this._AspNetUsers.Entity = null;
 						previousValue.Chn_ChainAnalysis.Remove(this);
 					}
-					this._Usr_User.Entity = value;
+					this._AspNetUsers.Entity = value;
 					if ((value != null))
 					{
 						value.Chn_ChainAnalysis.Add(this);
-						this._Chn_usr_ID = value.Usr_ID;
+						this._Chn_aur_id = value.Id;
 					}
 					else
 					{
-						this._Chn_usr_ID = default(int);
+						this._Chn_aur_id = default(string);
 					}
-					this.SendPropertyChanged("Usr_User");
+					this.SendPropertyChanged("AspNetUsers");
 				}
 			}
 		}
@@ -1534,11 +2910,11 @@ namespace SE450Database
 		
 		private System.DateTime _Ctr_logDate;
 		
-		private int _Ctr_usr_id;
+		private string _Ctr_aur_id;
 		
 		private short _Ctr_concentrationLevels;
 		
-		private EntityRef<Usr_User> _Usr_User;
+		private EntityRef<AspNetUsers> _AspNetUsers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1548,15 +2924,15 @@ namespace SE450Database
     partial void OnCtr_idChanged();
     partial void OnCtr_logDateChanging(System.DateTime value);
     partial void OnCtr_logDateChanged();
-    partial void OnCtr_usr_idChanging(int value);
-    partial void OnCtr_usr_idChanged();
+    partial void OnCtr_aur_idChanging(string value);
+    partial void OnCtr_aur_idChanged();
     partial void OnCtr_concentrationLevelsChanging(short value);
     partial void OnCtr_concentrationLevelsChanged();
     #endregion
 		
 		public Ctr_ConcentrationLog()
 		{
-			this._Usr_User = default(EntityRef<Usr_User>);
+			this._AspNetUsers = default(EntityRef<AspNetUsers>);
 			OnCreated();
 		}
 		
@@ -1600,22 +2976,22 @@ namespace SE450Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="ctr_usr_id", Storage="_Ctr_usr_id", DbType="Int NOT NULL")]
-		public int Ctr_usr_id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="ctr_aur_id", Storage="_Ctr_aur_id", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string Ctr_aur_id
 		{
 			get
 			{
-				return this._Ctr_usr_id;
+				return this._Ctr_aur_id;
 			}
 			set
 			{
-				if ((this._Ctr_usr_id != value))
+				if ((this._Ctr_aur_id != value))
 				{
-					this.OnCtr_usr_idChanging(value);
+					this.OnCtr_aur_idChanging(value);
 					this.SendPropertyChanging();
-					this._Ctr_usr_id = value;
-					this.SendPropertyChanged("Ctr_usr_id");
-					this.OnCtr_usr_idChanged();
+					this._Ctr_aur_id = value;
+					this.SendPropertyChanged("Ctr_aur_id");
+					this.OnCtr_aur_idChanged();
 				}
 			}
 		}
@@ -1640,36 +3016,36 @@ namespace SE450Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ctr_ConcentrationLog_usr_User", Storage="_Usr_User", ThisKey="Ctr_usr_id", OtherKey="Usr_ID", IsForeignKey=true)]
-		public Usr_User Usr_User
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ctr_ConcentrationLog_usr_User", Storage="_AspNetUsers", ThisKey="Ctr_aur_id", OtherKey="Id", IsForeignKey=true)]
+		public AspNetUsers AspNetUsers
 		{
 			get
 			{
-				return this._Usr_User.Entity;
+				return this._AspNetUsers.Entity;
 			}
 			set
 			{
-				Usr_User previousValue = this._Usr_User.Entity;
+				AspNetUsers previousValue = this._AspNetUsers.Entity;
 				if (((previousValue != value) 
-							|| (this._Usr_User.HasLoadedOrAssignedValue == false)))
+							|| (this._AspNetUsers.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Usr_User.Entity = null;
+						this._AspNetUsers.Entity = null;
 						previousValue.Ctr_ConcentrationLog.Remove(this);
 					}
-					this._Usr_User.Entity = value;
+					this._AspNetUsers.Entity = value;
 					if ((value != null))
 					{
 						value.Ctr_ConcentrationLog.Add(this);
-						this._Ctr_usr_id = value.Usr_ID;
+						this._Ctr_aur_id = value.Id;
 					}
 					else
 					{
-						this._Ctr_usr_id = default(int);
+						this._Ctr_aur_id = default(string);
 					}
-					this.SendPropertyChanged("Usr_User");
+					this.SendPropertyChanged("AspNetUsers");
 				}
 			}
 		}
@@ -1705,7 +3081,7 @@ namespace SE450Database
 		
 		private System.DateTime _Eml_logTime;
 		
-		private int _Eml_usr_id;
+		private string _Eml_aur_id;
 		
 		private int _Eml_pre_id;
 		
@@ -1715,7 +3091,7 @@ namespace SE450Database
 		
 		private EntityRef<Pre_PredefinedEmotion> _Pre_PredefinedEmotion;
 		
-		private EntityRef<Usr_User> _Usr_User;
+		private EntityRef<AspNetUsers> _AspNetUsers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1725,8 +3101,8 @@ namespace SE450Database
     partial void OnEml_IDChanged();
     partial void OnEml_logTimeChanging(System.DateTime value);
     partial void OnEml_logTimeChanged();
-    partial void OnEml_usr_idChanging(int value);
-    partial void OnEml_usr_idChanged();
+    partial void OnEml_aur_idChanging(string value);
+    partial void OnEml_aur_idChanged();
     partial void OnEml_pre_idChanging(int value);
     partial void OnEml_pre_idChanged();
     partial void OnEml_intensityChanging(short value);
@@ -1738,7 +3114,7 @@ namespace SE450Database
 		public Eml_EmotionLog()
 		{
 			this._Pre_PredefinedEmotion = default(EntityRef<Pre_PredefinedEmotion>);
-			this._Usr_User = default(EntityRef<Usr_User>);
+			this._AspNetUsers = default(EntityRef<AspNetUsers>);
 			OnCreated();
 		}
 		
@@ -1782,22 +3158,22 @@ namespace SE450Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="eml_usr_id", Storage="_Eml_usr_id", DbType="Int NOT NULL")]
-		public int Eml_usr_id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="eml_aur_id", Storage="_Eml_aur_id", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string Eml_aur_id
 		{
 			get
 			{
-				return this._Eml_usr_id;
+				return this._Eml_aur_id;
 			}
 			set
 			{
-				if ((this._Eml_usr_id != value))
+				if ((this._Eml_aur_id != value))
 				{
-					this.OnEml_usr_idChanging(value);
+					this.OnEml_aur_idChanging(value);
 					this.SendPropertyChanging();
-					this._Eml_usr_id = value;
-					this.SendPropertyChanged("Eml_usr_id");
-					this.OnEml_usr_idChanged();
+					this._Eml_aur_id = value;
+					this.SendPropertyChanged("Eml_aur_id");
+					this.OnEml_aur_idChanged();
 				}
 			}
 		}
@@ -1896,36 +3272,36 @@ namespace SE450Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_eml_EmotionLog_usr_User", Storage="_Usr_User", ThisKey="Eml_usr_id", OtherKey="Usr_ID", IsForeignKey=true)]
-		public Usr_User Usr_User
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_eml_EmotionLog_usr_User", Storage="_AspNetUsers", ThisKey="Eml_aur_id", OtherKey="Id", IsForeignKey=true)]
+		public AspNetUsers AspNetUsers
 		{
 			get
 			{
-				return this._Usr_User.Entity;
+				return this._AspNetUsers.Entity;
 			}
 			set
 			{
-				Usr_User previousValue = this._Usr_User.Entity;
+				AspNetUsers previousValue = this._AspNetUsers.Entity;
 				if (((previousValue != value) 
-							|| (this._Usr_User.HasLoadedOrAssignedValue == false)))
+							|| (this._AspNetUsers.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Usr_User.Entity = null;
+						this._AspNetUsers.Entity = null;
 						previousValue.Eml_EmotionLog.Remove(this);
 					}
-					this._Usr_User.Entity = value;
+					this._AspNetUsers.Entity = value;
 					if ((value != null))
 					{
 						value.Eml_EmotionLog.Add(this);
-						this._Eml_usr_id = value.Usr_ID;
+						this._Eml_aur_id = value.Id;
 					}
 					else
 					{
-						this._Eml_usr_id = default(int);
+						this._Eml_aur_id = default(string);
 					}
-					this.SendPropertyChanged("Usr_User");
+					this.SendPropertyChanged("AspNetUsers");
 				}
 			}
 		}
@@ -2257,7 +3633,7 @@ namespace SE450Database
 		
 		private int _Exr_ID;
 		
-		private int _Exr_usr_ID;
+		private string _Exr_aur_id;
 		
 		private int _Exr_exi_ID;
 		
@@ -2271,7 +3647,7 @@ namespace SE450Database
 		
 		private EntityRef<Ext_ExerciseTypes> _Ext_ExerciseTypes;
 		
-		private EntityRef<Usr_User> _Usr_User;
+		private EntityRef<AspNetUsers> _AspNetUsers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2279,8 +3655,8 @@ namespace SE450Database
     partial void OnCreated();
     partial void OnExr_IDChanging(int value);
     partial void OnExr_IDChanged();
-    partial void OnExr_usr_IDChanging(int value);
-    partial void OnExr_usr_IDChanged();
+    partial void OnExr_aur_idChanging(string value);
+    partial void OnExr_aur_idChanged();
     partial void OnExr_exi_IDChanging(int value);
     partial void OnExr_exi_IDChanged();
     partial void OnExr_startChanging(System.DateTime value);
@@ -2295,7 +3671,7 @@ namespace SE450Database
 		{
 			this._Exi_ExerciseIntensity = default(EntityRef<Exi_ExerciseIntensity>);
 			this._Ext_ExerciseTypes = default(EntityRef<Ext_ExerciseTypes>);
-			this._Usr_User = default(EntityRef<Usr_User>);
+			this._AspNetUsers = default(EntityRef<AspNetUsers>);
 			OnCreated();
 		}
 		
@@ -2319,22 +3695,22 @@ namespace SE450Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="exr_usr_ID", Storage="_Exr_usr_ID", DbType="Int NOT NULL")]
-		public int Exr_usr_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="exr_aur_id", Storage="_Exr_aur_id", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string Exr_aur_id
 		{
 			get
 			{
-				return this._Exr_usr_ID;
+				return this._Exr_aur_id;
 			}
 			set
 			{
-				if ((this._Exr_usr_ID != value))
+				if ((this._Exr_aur_id != value))
 				{
-					this.OnExr_usr_IDChanging(value);
+					this.OnExr_aur_idChanging(value);
 					this.SendPropertyChanging();
-					this._Exr_usr_ID = value;
-					this.SendPropertyChanged("Exr_usr_ID");
-					this.OnExr_usr_IDChanged();
+					this._Exr_aur_id = value;
+					this.SendPropertyChanged("Exr_aur_id");
+					this.OnExr_aur_idChanged();
 				}
 			}
 		}
@@ -2487,36 +3863,36 @@ namespace SE450Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_exr_Exercise_usr_User", Storage="_Usr_User", ThisKey="Exr_usr_ID", OtherKey="Usr_ID", IsForeignKey=true)]
-		public Usr_User Usr_User
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_exr_Exercise_usr_User", Storage="_AspNetUsers", ThisKey="Exr_aur_id", OtherKey="Id", IsForeignKey=true)]
+		public AspNetUsers AspNetUsers
 		{
 			get
 			{
-				return this._Usr_User.Entity;
+				return this._AspNetUsers.Entity;
 			}
 			set
 			{
-				Usr_User previousValue = this._Usr_User.Entity;
+				AspNetUsers previousValue = this._AspNetUsers.Entity;
 				if (((previousValue != value) 
-							|| (this._Usr_User.HasLoadedOrAssignedValue == false)))
+							|| (this._AspNetUsers.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Usr_User.Entity = null;
+						this._AspNetUsers.Entity = null;
 						previousValue.Exr_Exercise.Remove(this);
 					}
-					this._Usr_User.Entity = value;
+					this._AspNetUsers.Entity = value;
 					if ((value != null))
 					{
 						value.Exr_Exercise.Add(this);
-						this._Exr_usr_ID = value.Usr_ID;
+						this._Exr_aur_id = value.Id;
 					}
 					else
 					{
-						this._Exr_usr_ID = default(int);
+						this._Exr_aur_id = default(string);
 					}
-					this.SendPropertyChanged("Usr_User");
+					this.SendPropertyChanged("AspNetUsers");
 				}
 			}
 		}
@@ -2716,9 +4092,9 @@ namespace SE450Database
 		
 		private System.DateTime _Ftg_logTime;
 		
-		private int _Ftg_usr_id;
+		private string _Ftg_aur_id;
 		
-		private EntityRef<Usr_User> _Usr_User;
+		private EntityRef<AspNetUsers> _AspNetUsers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2730,13 +4106,13 @@ namespace SE450Database
     partial void OnFtg_levelChanged();
     partial void OnFtg_logTimeChanging(System.DateTime value);
     partial void OnFtg_logTimeChanged();
-    partial void OnFtg_usr_idChanging(int value);
-    partial void OnFtg_usr_idChanged();
+    partial void OnFtg_aur_idChanging(string value);
+    partial void OnFtg_aur_idChanged();
     #endregion
 		
 		public Ftg_FatigueLevels()
 		{
-			this._Usr_User = default(EntityRef<Usr_User>);
+			this._AspNetUsers = default(EntityRef<AspNetUsers>);
 			OnCreated();
 		}
 		
@@ -2800,56 +4176,56 @@ namespace SE450Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="ftg_usr_id", Storage="_Ftg_usr_id", DbType="Int NOT NULL")]
-		public int Ftg_usr_id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="ftg_aur_id", Storage="_Ftg_aur_id", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string Ftg_aur_id
 		{
 			get
 			{
-				return this._Ftg_usr_id;
+				return this._Ftg_aur_id;
 			}
 			set
 			{
-				if ((this._Ftg_usr_id != value))
+				if ((this._Ftg_aur_id != value))
 				{
-					this.OnFtg_usr_idChanging(value);
+					this.OnFtg_aur_idChanging(value);
 					this.SendPropertyChanging();
-					this._Ftg_usr_id = value;
-					this.SendPropertyChanged("Ftg_usr_id");
-					this.OnFtg_usr_idChanged();
+					this._Ftg_aur_id = value;
+					this.SendPropertyChanged("Ftg_aur_id");
+					this.OnFtg_aur_idChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ftg_FatigueLevels_usr_User", Storage="_Usr_User", ThisKey="Ftg_usr_id", OtherKey="Usr_ID", IsForeignKey=true)]
-		public Usr_User Usr_User
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ftg_FatigueLevels_usr_User", Storage="_AspNetUsers", ThisKey="Ftg_aur_id", OtherKey="Id", IsForeignKey=true)]
+		public AspNetUsers AspNetUsers
 		{
 			get
 			{
-				return this._Usr_User.Entity;
+				return this._AspNetUsers.Entity;
 			}
 			set
 			{
-				Usr_User previousValue = this._Usr_User.Entity;
+				AspNetUsers previousValue = this._AspNetUsers.Entity;
 				if (((previousValue != value) 
-							|| (this._Usr_User.HasLoadedOrAssignedValue == false)))
+							|| (this._AspNetUsers.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Usr_User.Entity = null;
+						this._AspNetUsers.Entity = null;
 						previousValue.Ftg_FatigueLevels.Remove(this);
 					}
-					this._Usr_User.Entity = value;
+					this._AspNetUsers.Entity = value;
 					if ((value != null))
 					{
 						value.Ftg_FatigueLevels.Add(this);
-						this._Ftg_usr_id = value.Usr_ID;
+						this._Ftg_aur_id = value.Id;
 					}
 					else
 					{
-						this._Ftg_usr_id = default(int);
+						this._Ftg_aur_id = default(string);
 					}
-					this.SendPropertyChanged("Usr_User");
+					this.SendPropertyChanged("AspNetUsers");
 				}
 			}
 		}
@@ -3867,7 +5243,7 @@ namespace SE450Database
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Rwd_usr_ID;
+		private string _Rwd_aur_id;
 		
 		private string _Rwd_RewardName;
 		
@@ -3887,8 +5263,8 @@ namespace SE450Database
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnRwd_usr_IDChanging(int value);
-    partial void OnRwd_usr_IDChanged();
+    partial void OnRwd_aur_idChanging(string value);
+    partial void OnRwd_aur_idChanged();
     partial void OnRwd_RewardNameChanging(string value);
     partial void OnRwd_RewardNameChanged();
     partial void OnRwd_gsr_idChanging(System.Nullable<int> value);
@@ -3907,22 +5283,22 @@ namespace SE450Database
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="rwd_usr_ID", Storage="_Rwd_usr_ID", DbType="Int NOT NULL")]
-		public int Rwd_usr_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="rwd_aur_id", Storage="_Rwd_aur_id", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string Rwd_aur_id
 		{
 			get
 			{
-				return this._Rwd_usr_ID;
+				return this._Rwd_aur_id;
 			}
 			set
 			{
-				if ((this._Rwd_usr_ID != value))
+				if ((this._Rwd_aur_id != value))
 				{
-					this.OnRwd_usr_IDChanging(value);
+					this.OnRwd_aur_idChanging(value);
 					this.SendPropertyChanging();
-					this._Rwd_usr_ID = value;
-					this.SendPropertyChanged("Rwd_usr_ID");
-					this.OnRwd_usr_IDChanged();
+					this._Rwd_aur_id = value;
+					this.SendPropertyChanged("Rwd_aur_id");
+					this.OnRwd_aur_idChanged();
 				}
 			}
 		}
@@ -4133,7 +5509,7 @@ namespace SE450Database
 		
 		private int _Slp_ID;
 		
-		private int _Slp_usr_ID;
+		private string _Slp_aur_id;
 		
 		private System.DateTime _Slp_date;
 		
@@ -4153,8 +5529,8 @@ namespace SE450Database
     partial void OnCreated();
     partial void OnSlp_IDChanging(int value);
     partial void OnSlp_IDChanged();
-    partial void OnSlp_usr_IDChanging(int value);
-    partial void OnSlp_usr_IDChanged();
+    partial void OnSlp_aur_idChanging(string value);
+    partial void OnSlp_aur_idChanged();
     partial void OnSlp_dateChanging(System.DateTime value);
     partial void OnSlp_dateChanged();
     partial void OnSlp_TimeToSleepUserLoggedChanging(System.Nullable<System.TimeSpan> value);
@@ -4193,22 +5569,22 @@ namespace SE450Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="slp_usr_ID", Storage="_Slp_usr_ID", DbType="Int NOT NULL")]
-		public int Slp_usr_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="slp_aur_id", Storage="_Slp_aur_id", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string Slp_aur_id
 		{
 			get
 			{
-				return this._Slp_usr_ID;
+				return this._Slp_aur_id;
 			}
 			set
 			{
-				if ((this._Slp_usr_ID != value))
+				if ((this._Slp_aur_id != value))
 				{
-					this.OnSlp_usr_IDChanging(value);
+					this.OnSlp_aur_idChanging(value);
 					this.SendPropertyChanging();
-					this._Slp_usr_ID = value;
-					this.SendPropertyChanged("Slp_usr_ID");
-					this.OnSlp_usr_IDChanged();
+					this._Slp_aur_id = value;
+					this.SendPropertyChanged("Slp_aur_id");
+					this.OnSlp_aur_idChanged();
 				}
 			}
 		}
@@ -4657,352 +6033,6 @@ namespace SE450Database
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.usr_User")]
-	public partial class Usr_User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Usr_ID;
-		
-		private string _Usr_FirstName;
-		
-		private string _Usr_LastName;
-		
-		private int _Usr_CurrentChecks;
-		
-		private string _Usr_EmailAddress;
-		
-		private string _Usr_CellPhone;
-		
-		private string _Usr_HomePhone;
-		
-		private EntitySet<Chn_ChainAnalysis> _Chn_ChainAnalysis;
-		
-		private EntitySet<Ctr_ConcentrationLog> _Ctr_ConcentrationLog;
-		
-		private EntitySet<Eml_EmotionLog> _Eml_EmotionLog;
-		
-		private EntitySet<Exr_Exercise> _Exr_Exercise;
-		
-		private EntitySet<Ftg_FatigueLevels> _Ftg_FatigueLevels;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUsr_IDChanging(int value);
-    partial void OnUsr_IDChanged();
-    partial void OnUsr_FirstNameChanging(string value);
-    partial void OnUsr_FirstNameChanged();
-    partial void OnUsr_LastNameChanging(string value);
-    partial void OnUsr_LastNameChanged();
-    partial void OnUsr_CurrentChecksChanging(int value);
-    partial void OnUsr_CurrentChecksChanged();
-    partial void OnUsr_EmailAddressChanging(string value);
-    partial void OnUsr_EmailAddressChanged();
-    partial void OnUsr_CellPhoneChanging(string value);
-    partial void OnUsr_CellPhoneChanged();
-    partial void OnUsr_HomePhoneChanging(string value);
-    partial void OnUsr_HomePhoneChanged();
-    #endregion
-		
-		public Usr_User()
-		{
-			this._Chn_ChainAnalysis = new EntitySet<Chn_ChainAnalysis>(new Action<Chn_ChainAnalysis>(this.attach_Chn_ChainAnalysis), new Action<Chn_ChainAnalysis>(this.detach_Chn_ChainAnalysis));
-			this._Ctr_ConcentrationLog = new EntitySet<Ctr_ConcentrationLog>(new Action<Ctr_ConcentrationLog>(this.attach_Ctr_ConcentrationLog), new Action<Ctr_ConcentrationLog>(this.detach_Ctr_ConcentrationLog));
-			this._Eml_EmotionLog = new EntitySet<Eml_EmotionLog>(new Action<Eml_EmotionLog>(this.attach_Eml_EmotionLog), new Action<Eml_EmotionLog>(this.detach_Eml_EmotionLog));
-			this._Exr_Exercise = new EntitySet<Exr_Exercise>(new Action<Exr_Exercise>(this.attach_Exr_Exercise), new Action<Exr_Exercise>(this.detach_Exr_Exercise));
-			this._Ftg_FatigueLevels = new EntitySet<Ftg_FatigueLevels>(new Action<Ftg_FatigueLevels>(this.attach_Ftg_FatigueLevels), new Action<Ftg_FatigueLevels>(this.detach_Ftg_FatigueLevels));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_ID", Storage="_Usr_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Usr_ID
-		{
-			get
-			{
-				return this._Usr_ID;
-			}
-			set
-			{
-				if ((this._Usr_ID != value))
-				{
-					this.OnUsr_IDChanging(value);
-					this.SendPropertyChanging();
-					this._Usr_ID = value;
-					this.SendPropertyChanged("Usr_ID");
-					this.OnUsr_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_FirstName", Storage="_Usr_FirstName", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Usr_FirstName
-		{
-			get
-			{
-				return this._Usr_FirstName;
-			}
-			set
-			{
-				if ((this._Usr_FirstName != value))
-				{
-					this.OnUsr_FirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._Usr_FirstName = value;
-					this.SendPropertyChanged("Usr_FirstName");
-					this.OnUsr_FirstNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_LastName", Storage="_Usr_LastName", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Usr_LastName
-		{
-			get
-			{
-				return this._Usr_LastName;
-			}
-			set
-			{
-				if ((this._Usr_LastName != value))
-				{
-					this.OnUsr_LastNameChanging(value);
-					this.SendPropertyChanging();
-					this._Usr_LastName = value;
-					this.SendPropertyChanged("Usr_LastName");
-					this.OnUsr_LastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_CurrentChecks", Storage="_Usr_CurrentChecks", DbType="Int NOT NULL")]
-		public int Usr_CurrentChecks
-		{
-			get
-			{
-				return this._Usr_CurrentChecks;
-			}
-			set
-			{
-				if ((this._Usr_CurrentChecks != value))
-				{
-					this.OnUsr_CurrentChecksChanging(value);
-					this.SendPropertyChanging();
-					this._Usr_CurrentChecks = value;
-					this.SendPropertyChanged("Usr_CurrentChecks");
-					this.OnUsr_CurrentChecksChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_EmailAddress", Storage="_Usr_EmailAddress", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Usr_EmailAddress
-		{
-			get
-			{
-				return this._Usr_EmailAddress;
-			}
-			set
-			{
-				if ((this._Usr_EmailAddress != value))
-				{
-					this.OnUsr_EmailAddressChanging(value);
-					this.SendPropertyChanging();
-					this._Usr_EmailAddress = value;
-					this.SendPropertyChanged("Usr_EmailAddress");
-					this.OnUsr_EmailAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_CellPhone", Storage="_Usr_CellPhone", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Usr_CellPhone
-		{
-			get
-			{
-				return this._Usr_CellPhone;
-			}
-			set
-			{
-				if ((this._Usr_CellPhone != value))
-				{
-					this.OnUsr_CellPhoneChanging(value);
-					this.SendPropertyChanging();
-					this._Usr_CellPhone = value;
-					this.SendPropertyChanged("Usr_CellPhone");
-					this.OnUsr_CellPhoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_HomePhone", Storage="_Usr_HomePhone", DbType="VarChar(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public string Usr_HomePhone
-		{
-			get
-			{
-				return this._Usr_HomePhone;
-			}
-			set
-			{
-				if ((this._Usr_HomePhone != value))
-				{
-					this.OnUsr_HomePhoneChanging(value);
-					this.SendPropertyChanging();
-					this._Usr_HomePhone = value;
-					this.SendPropertyChanged("Usr_HomePhone");
-					this.OnUsr_HomePhoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_chn_ChainAnalysis_usr_User", Storage="_Chn_ChainAnalysis", ThisKey="Usr_ID", OtherKey="Chn_usr_ID", DeleteRule="NO ACTION")]
-		public EntitySet<Chn_ChainAnalysis> Chn_ChainAnalysis
-		{
-			get
-			{
-				return this._Chn_ChainAnalysis;
-			}
-			set
-			{
-				this._Chn_ChainAnalysis.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ctr_ConcentrationLog_usr_User", Storage="_Ctr_ConcentrationLog", ThisKey="Usr_ID", OtherKey="Ctr_usr_id", DeleteRule="NO ACTION")]
-		public EntitySet<Ctr_ConcentrationLog> Ctr_ConcentrationLog
-		{
-			get
-			{
-				return this._Ctr_ConcentrationLog;
-			}
-			set
-			{
-				this._Ctr_ConcentrationLog.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_eml_EmotionLog_usr_User", Storage="_Eml_EmotionLog", ThisKey="Usr_ID", OtherKey="Eml_usr_id", DeleteRule="NO ACTION")]
-		public EntitySet<Eml_EmotionLog> Eml_EmotionLog
-		{
-			get
-			{
-				return this._Eml_EmotionLog;
-			}
-			set
-			{
-				this._Eml_EmotionLog.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_exr_Exercise_usr_User", Storage="_Exr_Exercise", ThisKey="Usr_ID", OtherKey="Exr_usr_ID", DeleteRule="NO ACTION")]
-		public EntitySet<Exr_Exercise> Exr_Exercise
-		{
-			get
-			{
-				return this._Exr_Exercise;
-			}
-			set
-			{
-				this._Exr_Exercise.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_ftg_FatigueLevels_usr_User", Storage="_Ftg_FatigueLevels", ThisKey="Usr_ID", OtherKey="Ftg_usr_id", DeleteRule="NO ACTION")]
-		public EntitySet<Ftg_FatigueLevels> Ftg_FatigueLevels
-		{
-			get
-			{
-				return this._Ftg_FatigueLevels;
-			}
-			set
-			{
-				this._Ftg_FatigueLevels.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Chn_ChainAnalysis(Chn_ChainAnalysis entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usr_User = this;
-		}
-		
-		private void detach_Chn_ChainAnalysis(Chn_ChainAnalysis entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usr_User = null;
-		}
-		
-		private void attach_Ctr_ConcentrationLog(Ctr_ConcentrationLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usr_User = this;
-		}
-		
-		private void detach_Ctr_ConcentrationLog(Ctr_ConcentrationLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usr_User = null;
-		}
-		
-		private void attach_Eml_EmotionLog(Eml_EmotionLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usr_User = this;
-		}
-		
-		private void detach_Eml_EmotionLog(Eml_EmotionLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usr_User = null;
-		}
-		
-		private void attach_Exr_Exercise(Exr_Exercise entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usr_User = this;
-		}
-		
-		private void detach_Exr_Exercise(Exr_Exercise entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usr_User = null;
-		}
-		
-		private void attach_Ftg_FatigueLevels(Ftg_FatigueLevels entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usr_User = this;
-		}
-		
-		private void detach_Ftg_FatigueLevels(Ftg_FatigueLevels entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usr_User = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vul_Vulnerability")]
 	public partial class Vul_Vulnerability : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -5293,282 +6323,6 @@ namespace SE450Database
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	public partial class Sp_helpdiagramdefinitionResult
-	{
-		
-		private System.Nullable<int> _Version;
-		
-		private System.Data.Linq.Binary _Definition;
-		
-		public Sp_helpdiagramdefinitionResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="version", Storage="_Version", DbType="Int")]
-		public System.Nullable<int> Version
-		{
-			get
-			{
-				return this._Version;
-			}
-			set
-			{
-				if ((this._Version != value))
-				{
-					this._Version = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="definition", Storage="_Definition", DbType="VarBinary(MAX)", CanBeNull=true)]
-		public System.Data.Linq.Binary Definition
-		{
-			get
-			{
-				return this._Definition;
-			}
-			set
-			{
-				if ((this._Definition != value))
-				{
-					this._Definition = value;
-				}
-			}
-		}
-	}
-	
-	public partial class Sp_helpdiagramsResult
-	{
-		
-		private string _Database;
-		
-		private string _Name;
-		
-		private System.Nullable<int> _ID;
-		
-		private string _Owner;
-		
-		private System.Nullable<int> _OwnerID;
-		
-		public Sp_helpdiagramsResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Database", DbType="NVarChar(128)")]
-		public string Database
-		{
-			get
-			{
-				return this._Database;
-			}
-			set
-			{
-				if ((this._Database != value))
-				{
-					this._Database = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(128)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
-		public System.Nullable<int> ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="NVarChar(128)")]
-		public string Owner
-		{
-			get
-			{
-				return this._Owner;
-			}
-			set
-			{
-				if ((this._Owner != value))
-				{
-					this._Owner = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OwnerID", DbType="Int")]
-		public System.Nullable<int> OwnerID
-		{
-			get
-			{
-				return this._OwnerID;
-			}
-			set
-			{
-				if ((this._OwnerID != value))
-				{
-					this._OwnerID = value;
-				}
-			}
-		}
-	}
-	
-	public partial class Usr_GetAllUsersResult
-	{
-		
-		private System.Nullable<int> _Usr_ID;
-		
-		private string _Usr_FirstName;
-		
-		private string _Usr_LastName;
-		
-		private System.Nullable<int> _Usr_CurrentChecks;
-		
-		private string _Usr_EmailAddress;
-		
-		private string _Usr_CellPhone;
-		
-		private string _Usr_HomePhone;
-		
-		public Usr_GetAllUsersResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_ID", Storage="_Usr_ID", DbType="Int")]
-		public System.Nullable<int> Usr_ID
-		{
-			get
-			{
-				return this._Usr_ID;
-			}
-			set
-			{
-				if ((this._Usr_ID != value))
-				{
-					this._Usr_ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_FirstName", Storage="_Usr_FirstName", DbType="VarChar(MAX)")]
-		public string Usr_FirstName
-		{
-			get
-			{
-				return this._Usr_FirstName;
-			}
-			set
-			{
-				if ((this._Usr_FirstName != value))
-				{
-					this._Usr_FirstName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_LastName", Storage="_Usr_LastName", DbType="VarChar(MAX)")]
-		public string Usr_LastName
-		{
-			get
-			{
-				return this._Usr_LastName;
-			}
-			set
-			{
-				if ((this._Usr_LastName != value))
-				{
-					this._Usr_LastName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_CurrentChecks", Storage="_Usr_CurrentChecks", DbType="Int")]
-		public System.Nullable<int> Usr_CurrentChecks
-		{
-			get
-			{
-				return this._Usr_CurrentChecks;
-			}
-			set
-			{
-				if ((this._Usr_CurrentChecks != value))
-				{
-					this._Usr_CurrentChecks = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_EmailAddress", Storage="_Usr_EmailAddress", DbType="VarChar(MAX)")]
-		public string Usr_EmailAddress
-		{
-			get
-			{
-				return this._Usr_EmailAddress;
-			}
-			set
-			{
-				if ((this._Usr_EmailAddress != value))
-				{
-					this._Usr_EmailAddress = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_CellPhone", Storage="_Usr_CellPhone", DbType="VarChar(MAX)")]
-		public string Usr_CellPhone
-		{
-			get
-			{
-				return this._Usr_CellPhone;
-			}
-			set
-			{
-				if ((this._Usr_CellPhone != value))
-				{
-					this._Usr_CellPhone = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="usr_HomePhone", Storage="_Usr_HomePhone", DbType="VarChar(MAX)")]
-		public string Usr_HomePhone
-		{
-			get
-			{
-				return this._Usr_HomePhone;
-			}
-			set
-			{
-				if ((this._Usr_HomePhone != value))
-				{
-					this._Usr_HomePhone = value;
-				}
 			}
 		}
 	}
