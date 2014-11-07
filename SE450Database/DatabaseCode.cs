@@ -65,6 +65,9 @@ namespace SE450Database
     partial void InsertCtr_ConcentrationLog(Ctr_ConcentrationLog instance);
     partial void UpdateCtr_ConcentrationLog(Ctr_ConcentrationLog instance);
     partial void DeleteCtr_ConcentrationLog(Ctr_ConcentrationLog instance);
+    partial void InsertEht_EmotionLogThought(Eht_EmotionLogThought instance);
+    partial void UpdateEht_EmotionLogThought(Eht_EmotionLogThought instance);
+    partial void DeleteEht_EmotionLogThought(Eht_EmotionLogThought instance);
     partial void InsertEml_EmotionLog(Eml_EmotionLog instance);
     partial void UpdateEml_EmotionLog(Eml_EmotionLog instance);
     partial void DeleteEml_EmotionLog(Eml_EmotionLog instance);
@@ -241,6 +244,14 @@ namespace SE450Database
 			get
 			{
 				return this.GetTable<Ctr_ConcentrationLog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Eht_EmotionLogThought> Eht_EmotionLogThought
+		{
+			get
+			{
+				return this.GetTable<Eht_EmotionLogThought>();
 			}
 		}
 		
@@ -3046,6 +3057,116 @@ namespace SE450Database
 						this._Ctr_aur_id = default(string);
 					}
 					this.SendPropertyChanged("AspNetUsers");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.eht_EmotionLogThought")]
+	public partial class Eht_EmotionLogThought : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Eth_order;
+		
+		private int _Eth_eml_ID;
+		
+		private string _Eth_Thought;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEth_orderChanging(int value);
+    partial void OnEth_orderChanged();
+    partial void OnEth_eml_IDChanging(int value);
+    partial void OnEth_eml_IDChanged();
+    partial void OnEth_ThoughtChanging(string value);
+    partial void OnEth_ThoughtChanged();
+    #endregion
+		
+		public Eht_EmotionLogThought()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="eth_order", Storage="_Eth_order", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Eth_order
+		{
+			get
+			{
+				return this._Eth_order;
+			}
+			set
+			{
+				if ((this._Eth_order != value))
+				{
+					this.OnEth_orderChanging(value);
+					this.SendPropertyChanging();
+					this._Eth_order = value;
+					this.SendPropertyChanged("Eth_order");
+					this.OnEth_orderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="eth_eml_ID", Storage="_Eth_eml_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Eth_eml_ID
+		{
+			get
+			{
+				return this._Eth_eml_ID;
+			}
+			set
+			{
+				if ((this._Eth_eml_ID != value))
+				{
+					this.OnEth_eml_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Eth_eml_ID = value;
+					this.SendPropertyChanged("Eth_eml_ID");
+					this.OnEth_eml_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="eth_Thought", Storage="_Eth_Thought", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Eth_Thought
+		{
+			get
+			{
+				return this._Eth_Thought;
+			}
+			set
+			{
+				if ((this._Eth_Thought != value))
+				{
+					this.OnEth_ThoughtChanging(value);
+					this.SendPropertyChanging();
+					this._Eth_Thought = value;
+					this.SendPropertyChanged("Eth_Thought");
+					this.OnEth_ThoughtChanged();
 				}
 			}
 		}
