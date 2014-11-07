@@ -74,7 +74,8 @@ namespace SE450_Sleep_Tracker.Controllers
         [HttpGet]
         public IHttpActionResult Get([FromODataUri] int chn_id)
         {
-            using (SleepMonitor model = new SleepMonitor(connectionString))
+            // http://localhost:12345/api/ChainAnalysisModels/5
+            using (var model = new SleepMonitor(connectionString))
             {
                 var analysis = model.Chn_ChainAnalysis.FirstOrDefault(chn => chn.Chn_ID == chn_id);
                 if (analysis == null)
@@ -103,17 +104,24 @@ namespace SE450_Sleep_Tracker.Controllers
         {
             IEnumerable<ChainAnalysisModel> analysis;
 
-            using (SleepMonitor monitor = new SleepMonitor(connectionString))
+            using (var monitor = new SleepMonitor(connectionString))
             {
                 analysis = monitor.Chn_ChainAnalysis.Where(chn => chn.Chn_aur_id == usr_id).Select(chn => new ChainAnalysisModel(chn));
             }
 
-            return Json<IEnumerable<ChainAnalysisModel>>(analysis);
+            return Json(analysis);
+            //return Json<IEnumerable<ChainAnalysisModel>>(analysis);
         }
 
         // PUT: odata/ChainAnalysisModels(5)
         // TODO: improve security for this to restrict it to the user
-        public IHttpActionResult Put([FromODataUri] int key, [FromBody] ChainAnalysisModel model)
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="key">ID of the chain analysis we're updating</param>
+        /// <param name="model"><see cref="ChainAnalysisModel"/> to replace the instance with. Passed in on body.</param>
+        /// <returns></returns>
+        public async Task<IHttpActionResult> Put([FromODataUri] int key, [FromBody] ChainAnalysisModel model)
         {
             //Validate(delta.GetEntity());
 
@@ -122,22 +130,26 @@ namespace SE450_Sleep_Tracker.Controllers
                 return BadRequest(ModelState);
             }
 
-            using (SleepMonitor monitor = new SleepMonitor(connectionString))
+            using (var monitor = new SleepMonitor(connectionString))
             {
                 var item = monitor.Chn_ChainAnalysis.FirstOrDefault(chn => chn.Chn_ID == key);
 
-                // Do this
+                item = await model.ToDBObject();
 
                 monitor.SubmitChanges();
                 //item.Bhv_Behavior = model.BehaviorChain.Select(bhv => new Bhv_Behavior { })
-            }
+            } // Dispose of DB connection
 
             // return Updated(chainAnalysisModel);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            return Ok();
         }
 
         // POST: odata/ChainAnalysisModels
-        [HttpPost]
+        /// <summary>
+        /// Create a new chain analysis
+        /// </summary>
+        /// <param name="chainAnalysisModel"><see cref="ChainAnalysisModel"/> to add.</param>
+        /// <returns>Either Bad Request, Unauthorized, or Created</returns>
         public async Task<IHttpActionResult> Post([FromBody] ChainAnalysisModel chainAnalysisModel)
         {
             if (!ModelState.IsValid)
@@ -147,7 +159,7 @@ namespace SE450_Sleep_Tracker.Controllers
 
             var dbObj = await chainAnalysisModel.ToDBObject();
 
-            using (SleepMonitor db = new SleepMonitor(connectionString))
+            using (var db = new SleepMonitor(connectionString))
             {
                 //var associatedUser = db.AspNetUsers.FirstOrDefault(usr => usr.Id.Trim().ToLower().Equals(chainAnalysisModel.UserID.Trim().ToLower()));
 
@@ -157,7 +169,7 @@ namespace SE450_Sleep_Tracker.Controllers
             }
 
             // return Created(chainAnalysisModel);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            return Created(dbObj);
         }
 
         // PATCH: odata/ChainAnalysisModels(5)
