@@ -68,7 +68,7 @@ namespace SE450_Sleep_Tracker.Controllers
         {
             Slp_SleepLog dbM;
 
-            using (SleepMonitor monitor = new SleepMonitor(connectionString))
+            using (var monitor = new SleepMonitor(connectionString))
             {
                 dbM = monitor.Slp_SleepLog.FirstOrDefault(slp => slp.Slp_ID == key);
             }
@@ -86,20 +86,34 @@ namespace SE450_Sleep_Tracker.Controllers
                 TimeToBed = new DateTime(dbM.Slp_TimeToBed.Ticks, DateTimeKind.Unspecified) // TODO: this is wrong
             };
 
-            return Json<SleepLogModel>(model);
+            return Json(model);
 
             // return Ok<SleepLogModel>(sleepLogModel);
             //return StatusCode(HttpStatusCode.NotImplemented);
         }
 
         // PUT: odata/SleepLogModels(5)
-        public IHttpActionResult Put([FromODataUri] int key, Delta<SleepLogModel> delta)
+        public IHttpActionResult Put([FromODataUri] int key, SleepLogModel delta)
         {
-            Validate(delta.GetEntity());
+            //Validate(delta.GetEntity());
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            using (var db = new SleepMonitor(connectionString))
+            {
+                var item = db.Slp_SleepLog.FirstOrDefault(itm => itm.Slp_ID == key);
+                if (item == null)
+                    return NotFound();
+
+                var tm = new SleepLogModel(item);
+                tm = delta;
+
+                item = tm.ToDBObject().Result;
+
+                db.SubmitChanges();
             }
 
             // TODO: Get the entity here.
@@ -109,7 +123,7 @@ namespace SE450_Sleep_Tracker.Controllers
             // TODO: Save the patched entity.
 
             // return Updated(sleepLogModel);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            return Updated(delta);
         }
 
         // POST: odata/SleepLogModels
@@ -128,7 +142,7 @@ namespace SE450_Sleep_Tracker.Controllers
 
             var model = await sleepLogModel.ToDBObject();
 
-            using (SleepMonitor monitor = new SleepMonitor(connectionString))
+            using (var monitor = new SleepMonitor(connectionString))
             {
                 monitor.Slp_SleepLog.InsertOnSubmit(model);
 
@@ -162,14 +176,19 @@ namespace SE450_Sleep_Tracker.Controllers
         // DELETE: odata/SleepLogModels(5)
         public IHttpActionResult Delete([FromODataUri] int key)
         {
-            using (SleepMonitor monitor = new SleepMonitor(connectionString))
+            using (var monitor = new SleepMonitor(connectionString))
             {
                 var toRemove = monitor.Slp_SleepLog.FirstOrDefault(log => log.Slp_ID == key);
 
+                if (toRemove == null)
+                    return NotFound();
+
                 monitor.Slp_SleepLog.DeleteOnSubmit(toRemove);
 
-                return Ok();
+                monitor.SubmitChanges();
             }
+
+            return Ok();
         }
     }
 }

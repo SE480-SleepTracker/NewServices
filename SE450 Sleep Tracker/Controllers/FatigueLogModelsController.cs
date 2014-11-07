@@ -62,6 +62,12 @@ namespace SE450_Sleep_Tracker.Controllers
                 return NotFound();
         }
 
+        /// <summary>
+        /// Gefatigue levels for a uder by date
+        /// </summary>
+        /// <param name="userID">ID of the user. From URL.</param>
+        /// <param name="date">Log date. From URL.</param>
+        /// <returns></returns>
         public IHttpActionResult GetFatigueLogModels([FromODataUri] string userID, [FromODataUri] DateTime date)
         {
             List<FatigueLogModel> list;
@@ -211,10 +217,21 @@ namespace SE450_Sleep_Tracker.Controllers
         // DELETE: odata/FatigueLogModels(5)
         public IHttpActionResult Delete([FromODataUri] int key)
         {
+            using (var model = new SleepMonitor(connectionString))
+            {
+                var record = model.Ftg_FatigueLevels.FirstOrDefault(ftg => ftg.Ftg_ID == key);
+
+                if (record == null)
+                    return NotFound();
+
+                model.Ftg_FatigueLevels.DeleteOnSubmit(record);
+
+                model.SubmitChanges();
+            }
             // TODO: Add delete logic here.
 
             // return StatusCode(HttpStatusCode.NoContent);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            return Ok();
         }
     }
 }

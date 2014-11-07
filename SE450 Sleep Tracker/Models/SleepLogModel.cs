@@ -66,6 +66,22 @@ namespace SE450_Sleep_Tracker.Models
             }
         }
 
+        public SleepLogModel()
+        {
+        }
+
+        public SleepLogModel(Slp_SleepLog log)
+        {
+            ID = log.Slp_ID;
+            SleepQuality = (ushort?)log.Slp_SleepQuality;
+            Date = log.Slp_date;
+            FatigueLevel = log.Slp_FatigueLevel;
+            TimeToBed = new DateTime(log.Slp_TimeToBed.Ticks); // TODO Wrong
+            TimeToSleepUserLogged = new DateTime(log.Slp_TimeToSleepUserLogged.Value.Ticks); // TODO Wrong
+            UserID = log.Slp_aur_id;
+
+        }
+
         public async Task<Slp_SleepLog> ToDBObject()
         {
             return new Slp_SleepLog
