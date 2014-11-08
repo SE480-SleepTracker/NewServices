@@ -134,6 +134,9 @@ namespace SE450_Sleep_Tracker.Controllers
             {
                 var item = monitor.Chn_ChainAnalysis.FirstOrDefault(chn => chn.Chn_ID == key);
 
+                if (item == null)
+                    return NotFound();
+
                 item = await model.ToDBObject();
 
                 monitor.SubmitChanges();
