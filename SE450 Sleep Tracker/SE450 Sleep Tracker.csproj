@@ -244,6 +244,9 @@
     <Compile Include="Models\CaffeineTypeModel.cs" />
     <Compile Include="Models\ChainAnalysisModel.cs" />
     <Compile Include="Models\EmotionLogModel.cs" />
+    <Compile Include="Models\ExerciseIntensityModel.cs" />
+    <Compile Include="Models\ExerciseLogModel.cs" />
+    <Compile Include="Models\ExerciseTypeModel.cs" />
     <Compile Include="Models\FatigueLogModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ProductModel.cs" />
