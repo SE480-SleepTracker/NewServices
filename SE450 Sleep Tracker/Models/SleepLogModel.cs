@@ -82,7 +82,7 @@ namespace SE450_Sleep_Tracker.Models
 
         }
 
-        public async Task<Slp_SleepLog> ToDBObject()
+        public Slp_SleepLog ToDBObject()
         {
             return new Slp_SleepLog
             {
@@ -91,7 +91,7 @@ namespace SE450_Sleep_Tracker.Models
                 Slp_FatigueLevel = this.FatigueLevel,
                 Slp_SleepQuality = (short?)this.SleepQuality,
                 Slp_ID = ID,
-                Slp_TimeToBed = (this.TimeToBed == null ? new TimeSpan() : new TimeSpan(TimeToBed.Hour, TimeToBed.Minute, TimeToBed.Second)),
+                Slp_TimeToBed = new TimeSpan(TimeToBed.Hour, TimeToBed.Minute, TimeToBed.Second),
                 Slp_TimeToSleepUserLogged = this.TimeToSleepUserLogged == null ? null : (TimeSpan?)new TimeSpan(TimeToSleepUserLogged.Value.Hour, TimeToSleepUserLogged.Value.Minute, TimeToSleepUserLogged.Value.Second)
             };
         }

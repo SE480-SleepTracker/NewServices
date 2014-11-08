@@ -111,7 +111,7 @@ namespace SE450_Sleep_Tracker.Controllers
                 var tm = new SleepLogModel(item);
                 tm = delta;
 
-                item = tm.ToDBObject().Result;
+                item = tm.ToDBObject();
 
                 db.SubmitChanges();
             }
@@ -133,14 +133,14 @@ namespace SE450_Sleep_Tracker.Controllers
         /// <param name="sleepLogModel">JSON-serialized <see cref="SleepLogModel"/></param>
         /// <returns>HTTP Created or Bad Request</returns>
         [HttpPost]
-        public async Task<IHttpActionResult> Post([FromBody] SleepLogModel sleepLogModel)
+        public IHttpActionResult Post([FromBody] SleepLogModel sleepLogModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var model = await sleepLogModel.ToDBObject();
+            var model = sleepLogModel.ToDBObject();
 
             using (var monitor = new SleepMonitor(connectionString))
             {
@@ -149,7 +149,7 @@ namespace SE450_Sleep_Tracker.Controllers
                 monitor.SubmitChanges();
             }
 
-            return Created<SleepLogModel>(sleepLogModel);
+            return Created(sleepLogModel);
         }
 
         // PATCH: odata/SleepLogModels(5)
