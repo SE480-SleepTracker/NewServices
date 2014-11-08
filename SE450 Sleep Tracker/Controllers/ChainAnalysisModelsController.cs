@@ -137,7 +137,7 @@ namespace SE450_Sleep_Tracker.Controllers
                 if (item == null)
                     return NotFound();
 
-                item = await model.ToDBObject();
+                item = model.ToDBObject();
 
                 monitor.SubmitChanges();
                 //item.Bhv_Behavior = model.BehaviorChain.Select(bhv => new Bhv_Behavior { })
@@ -160,7 +160,7 @@ namespace SE450_Sleep_Tracker.Controllers
                 return BadRequest(ModelState);
             }
 
-            var dbObj = await chainAnalysisModel.ToDBObject();
+            var dbObj = chainAnalysisModel.ToDBObject();
 
             using (var db = new SleepMonitor(connectionString))
             {

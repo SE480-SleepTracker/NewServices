@@ -16,9 +16,9 @@ namespace SE450_Sleep_Tracker.Models
             // TODO: finish
         }
 
-        public async Task<Chn_ChainAnalysis> ToDBObject()
+        public Chn_ChainAnalysis ToDBObject()
         {
-            Chn_ChainAnalysis analysis = new Chn_ChainAnalysis();
+            var analysis = new Chn_ChainAnalysis();
             //analysis.Tht_Thought.AddRange(this.Thoughts.Select(new Tht_Thought() { Tht_Thought1 = );
             //analysis.Usr_User = this.AssociatedUser;
             //analysis.Vul_Vulnerability.AddRange(this.)
@@ -26,7 +26,7 @@ namespace SE450_Sleep_Tracker.Models
             int order = 0;
             foreach (string vulnerability in Vulnerabilities)
             {
-                Vul_Vulnerability vul = new Vul_Vulnerability()
+                var vul = new Vul_Vulnerability
                 {
                     Vul_chn_id = this.ID,
                     Vul_Vulnerability1 = vulnerability,
