@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SE450Database;
+using System.ComponentModel.DataAnnotations;
 
 namespace SE450_Sleep_Tracker.Models
 {
@@ -10,10 +11,14 @@ namespace SE450_Sleep_Tracker.Models
     {
         public int ID { get; set; }
 
+        [Range(1, 10)]
+        [Required]
         public short Level { get; set; }
 
+        [Required]
         public DateTime LogTime { get; set; }
 
+        // TODO: foreign key
         public string UserID { get; set; }
 
         public FatigueLogModel()
