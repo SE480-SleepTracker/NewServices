@@ -30,9 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,8 +49,145 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="awk_NighttimeAwakenings.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bhv_Behavior.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cfn_CaffeineConsumption.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cft_CaffeineType.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="chn_ChainAnalysis.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ctr_ConcentrationLog.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseCode.cs" />
+    <Compile Include="eht_EmotionLogThought.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eml_EmotionLog.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="emt_Emotions.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exi_ExerciseIntensity.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exr_Exercise.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ext_ExerciseTypes.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Framework.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Framework.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Framework.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Framework.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Framework.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ftg_FatigueLevels.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gft_GoalsForTomorrow.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gsr_GlobalSuggestions.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="imc_ImmediateConsequences.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ltc_LongTermConsequences.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ltg_LongTermGoal.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prd_Product.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pre_PredefinedEmotion.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rwd_Rewards.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="slp_SleepLog.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="stg_ShortTermGoals.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tht_Thought.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vul_Vulnerability.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wtp_WaysToPrevent.cs">
+      <DependentUpon>Framework.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Framework.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Framework.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Framework.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Framework.edmx</DependentUpon>
+      <LastGenOutput>Framework.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Framework.edmx.diagram">
+      <DependentUpon>Framework.edmx</DependentUpon>
+    </None>
+    <None Include="Framework.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Framework.edmx</DependentUpon>
+      <LastGenOutput>Framework.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
