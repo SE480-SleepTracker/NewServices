@@ -1,0 +1,1985 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SleepMonitorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Hometown" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="awk_NighttimeAwakenings">
+          <Key>
+            <PropertyRef Name="awk_ID" />
+          </Key>
+          <Property Name="awk_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="awk_start" Type="datetime" Nullable="false" />
+          <Property Name="awk_end" Type="datetime" />
+          <Property Name="awk_slp_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bhv_Behavior">
+          <Key>
+            <PropertyRef Name="bhv_order" />
+            <PropertyRef Name="bhv_chn_id" />
+          </Key>
+          <Property Name="bhv_order" Type="int" Nullable="false" />
+          <Property Name="bhv_chn_id" Type="int" Nullable="false" />
+          <Property Name="bhv_BehaviorDesc" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cfn_CaffeineConsumption">
+          <Key>
+            <PropertyRef Name="cfn_ID" />
+          </Key>
+          <Property Name="cfn_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cfn_DateTime" Type="datetime" Nullable="false" />
+          <Property Name="cfn_cft_ID" Type="int" Nullable="false" />
+          <Property Name="cfn_aur_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="cfn_number" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cft_CaffeineType">
+          <Key>
+            <PropertyRef Name="cft_id" />
+          </Key>
+          <Property Name="cft_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cft_amount" Type="float" Nullable="false" />
+          <Property Name="cft_size" Type="float" Nullable="false" />
+          <Property Name="prd_Product" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="chn_ChainAnalysis">
+          <Key>
+            <PropertyRef Name="chn_ID" />
+          </Key>
+          <Property Name="chn_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chn_aur_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="chn_ProblemBehavior" Type="varchar(max)" Nullable="false" />
+          <Property Name="chn_DateAndTime" Type="datetime" Nullable="false" />
+          <Property Name="chn_Location" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="ctr_ConcentrationLog">
+          <Key>
+            <PropertyRef Name="ctr_id" />
+          </Key>
+          <Property Name="ctr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ctr_logDate" Type="datetime" Nullable="false" />
+          <Property Name="ctr_aur_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ctr_concentrationLevels" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eht_EmotionLogThought">
+          <Key>
+            <PropertyRef Name="eth_order" />
+            <PropertyRef Name="eth_eml_ID" />
+          </Key>
+          <Property Name="eth_order" Type="int" Nullable="false" />
+          <Property Name="eth_eml_ID" Type="int" Nullable="false" />
+          <Property Name="eth_Thought" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eml_EmotionLog">
+          <Key>
+            <PropertyRef Name="eml_ID" />
+          </Key>
+          <Property Name="eml_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eml_logTime" Type="datetime" Nullable="false" />
+          <Property Name="eml_aur_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="eml_pre_id" Type="int" Nullable="false" />
+          <Property Name="eml_intensity" Type="smallint" Nullable="false" />
+          <Property Name="eml_trigger" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="emt_Emotions">
+          <Key>
+            <PropertyRef Name="emt_order" />
+            <PropertyRef Name="emt_chn_id" />
+          </Key>
+          <Property Name="emt_order" Type="int" Nullable="false" />
+          <Property Name="emt_pre_id" Type="int" Nullable="false" />
+          <Property Name="emt_chn_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="exi_ExerciseIntensity">
+          <Key>
+            <PropertyRef Name="exi_id" />
+          </Key>
+          <Property Name="exi_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="exi_intensity" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="exr_Exercise">
+          <Key>
+            <PropertyRef Name="exr_ID" />
+          </Key>
+          <Property Name="exr_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="exr_aur_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="exr_exi_ID" Type="int" Nullable="false" />
+          <Property Name="exr_start" Type="datetime" Nullable="false" />
+          <Property Name="exr_end" Type="datetime" Nullable="false" />
+          <Property Name="exr_ext_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ext_ExerciseTypes">
+          <Key>
+            <PropertyRef Name="ext_ID" />
+          </Key>
+          <Property Name="ext_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ext_exi_intensity" Type="int" Nullable="false" />
+          <Property Name="ext_calories_per_hour" Type="float" Nullable="false" />
+          <Property Name="ext_name" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ftg_FatigueLevels">
+          <Key>
+            <PropertyRef Name="ftg_ID" />
+          </Key>
+          <Property Name="ftg_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ftg_level" Type="smallint" Nullable="false" />
+          <Property Name="ftg_logTime" Type="datetime" Nullable="false" />
+          <Property Name="ftg_aur_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gft_GoalsForTomorrow">
+          <Key>
+            <PropertyRef Name="gft_order" />
+            <PropertyRef Name="gft_chn_id" />
+          </Key>
+          <Property Name="gft_order" Type="int" Nullable="false" />
+          <Property Name="gft_chn_id" Type="int" Nullable="false" />
+          <Property Name="gft_Goal" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gsr_GlobalSuggestions">
+          <Key>
+            <PropertyRef Name="gsr_id" />
+          </Key>
+          <Property Name="gsr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gsr_RewardName" Type="varchar(max)" Nullable="false" />
+          <Property Name="gsr_CheckMarksNeeded" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="imc_ImmediateConsequences">
+          <Key>
+            <PropertyRef Name="imc_order" />
+            <PropertyRef Name="imc_chn_id" />
+          </Key>
+          <Property Name="imc_order" Type="int" Nullable="false" />
+          <Property Name="imc_chn_id" Type="int" Nullable="false" />
+          <Property Name="imc_Consequence" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ltc_LongTermConsequences">
+          <Key>
+            <PropertyRef Name="ltc_order" />
+            <PropertyRef Name="ltc_chn_id" />
+          </Key>
+          <Property Name="ltc_order" Type="int" Nullable="false" />
+          <Property Name="ltc_chn_id" Type="int" Nullable="false" />
+          <Property Name="ltc_Consequence" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ltg_LongTermGoal">
+          <Key>
+            <PropertyRef Name="ltg_order" />
+            <PropertyRef Name="ltg_chn_id" />
+          </Key>
+          <Property Name="ltg_order" Type="int" Nullable="false" />
+          <Property Name="ltg_chn_id" Type="int" Nullable="false" />
+          <Property Name="ltg_Goal" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prd_Product">
+          <Key>
+            <PropertyRef Name="prd_ID" />
+          </Key>
+          <Property Name="prd_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prd_Name" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pre_PredefinedEmotion">
+          <Key>
+            <PropertyRef Name="pre_ID" />
+          </Key>
+          <Property Name="pre_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pre_Emotion" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rwd_Rewards">
+          <Key>
+            <PropertyRef Name="rwd_ID" />
+          </Key>
+          <Property Name="rwd_aur_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="rwd_RewardName" Type="varchar(max)" />
+          <Property Name="rwd_gsr_id" Type="int" />
+          <Property Name="rwd_NumCheckMarksRequired" Type="int" />
+          <Property Name="rwd_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="slp_SleepLog">
+          <Key>
+            <PropertyRef Name="slp_ID" />
+          </Key>
+          <Property Name="slp_ID" Type="int" Nullable="false" />
+          <Property Name="slp_aur_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="slp_date" Type="date" Nullable="false" />
+          <Property Name="slp_TimeToSleepUserLogged" Type="time" Precision="7" />
+          <Property Name="slp_TimeToBed" Type="time" Precision="7" Nullable="false" />
+          <Property Name="slp_SleepQuality" Type="smallint" />
+          <Property Name="slp_FatigueLevel" Type="smallint" />
+        </EntityType>
+        <EntityType Name="stg_ShortTermGoals">
+          <Key>
+            <PropertyRef Name="stg_order" />
+            <PropertyRef Name="stg_chn_id" />
+          </Key>
+          <Property Name="stg_order" Type="int" Nullable="false" />
+          <Property Name="stg_chn_id" Type="int" Nullable="false" />
+          <Property Name="stg_Goal" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tht_Thought">
+          <Key>
+            <PropertyRef Name="tht_order" />
+            <PropertyRef Name="tht_chn_ID" />
+          </Key>
+          <Property Name="tht_order" Type="int" Nullable="false" />
+          <Property Name="tht_chn_ID" Type="int" Nullable="false" />
+          <Property Name="tht_Thought" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vul_Vulnerability">
+          <Key>
+            <PropertyRef Name="vul_order" />
+            <PropertyRef Name="vul_chn_id" />
+          </Key>
+          <Property Name="vul_order" Type="int" Nullable="false" />
+          <Property Name="vul_chn_id" Type="int" Nullable="false" />
+          <Property Name="vul_Vulnerability" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wtp_WaysToPrevent">
+          <Key>
+            <PropertyRef Name="wtp_order" />
+            <PropertyRef Name="wtp_chn_id" />
+          </Key>
+          <Property Name="wtp_order" Type="int" Nullable="false" />
+          <Property Name="wtp_chn_id" Type="int" Nullable="false" />
+          <Property Name="wtp_WayToPrevent" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_awk_NighttimeAwakenings_slp_SleepLog">
+          <End Role="slp_SleepLog" Type="Self.slp_SleepLog" Multiplicity="1" />
+          <End Role="awk_NighttimeAwakenings" Type="Self.awk_NighttimeAwakenings" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="slp_SleepLog">
+              <PropertyRef Name="slp_ID" />
+            </Principal>
+            <Dependent Role="awk_NighttimeAwakenings">
+              <PropertyRef Name="awk_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bhv_Behavior_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="bhv_Behavior" Type="Self.bhv_Behavior" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="bhv_Behavior">
+              <PropertyRef Name="bhv_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cfn_CaffeineConsumption_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="cfn_CaffeineConsumption" Type="Self.cfn_CaffeineConsumption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="cfn_CaffeineConsumption">
+              <PropertyRef Name="cfn_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cft_CaffeineType_prd_Product">
+          <End Role="prd_Product" Type="Self.prd_Product" Multiplicity="1" />
+          <End Role="cft_CaffeineType" Type="Self.cft_CaffeineType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="prd_Product">
+              <PropertyRef Name="prd_ID" />
+            </Principal>
+            <Dependent Role="cft_CaffeineType">
+              <PropertyRef Name="cft_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chn_ChainAnalysis_usr_User">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctr_ConcentrationLog_usr_User">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ctr_ConcentrationLog" Type="Self.ctr_ConcentrationLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ctr_ConcentrationLog">
+              <PropertyRef Name="ctr_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eml_EmotionLog_pre_PredefinedEmotion">
+          <End Role="pre_PredefinedEmotion" Type="Self.pre_PredefinedEmotion" Multiplicity="1" />
+          <End Role="eml_EmotionLog" Type="Self.eml_EmotionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pre_PredefinedEmotion">
+              <PropertyRef Name="pre_ID" />
+            </Principal>
+            <Dependent Role="eml_EmotionLog">
+              <PropertyRef Name="eml_pre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eml_EmotionLog_usr_User">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="eml_EmotionLog" Type="Self.eml_EmotionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="eml_EmotionLog">
+              <PropertyRef Name="eml_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_emt_Emotions_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="emt_Emotions" Type="Self.emt_Emotions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="emt_Emotions">
+              <PropertyRef Name="emt_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_emt_Emotions_pre_PredefinedEmotion">
+          <End Role="pre_PredefinedEmotion" Type="Self.pre_PredefinedEmotion" Multiplicity="1" />
+          <End Role="emt_Emotions" Type="Self.emt_Emotions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pre_PredefinedEmotion">
+              <PropertyRef Name="pre_ID" />
+            </Principal>
+            <Dependent Role="emt_Emotions">
+              <PropertyRef Name="emt_pre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_exr_Exercise_exi_ExerciseIntensity">
+          <End Role="exi_ExerciseIntensity" Type="Self.exi_ExerciseIntensity" Multiplicity="1" />
+          <End Role="exr_Exercise" Type="Self.exr_Exercise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="exi_ExerciseIntensity">
+              <PropertyRef Name="exi_id" />
+            </Principal>
+            <Dependent Role="exr_Exercise">
+              <PropertyRef Name="exr_exi_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_exr_Exercise_ext_ExerciseTypes">
+          <End Role="ext_ExerciseTypes" Type="Self.ext_ExerciseTypes" Multiplicity="1" />
+          <End Role="exr_Exercise" Type="Self.exr_Exercise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ext_ExerciseTypes">
+              <PropertyRef Name="ext_ID" />
+            </Principal>
+            <Dependent Role="exr_Exercise">
+              <PropertyRef Name="exr_ext_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_exr_Exercise_usr_User">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="exr_Exercise" Type="Self.exr_Exercise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="exr_Exercise">
+              <PropertyRef Name="exr_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ftg_FatigueLevels_usr_User">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ftg_FatigueLevels" Type="Self.ftg_FatigueLevels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ftg_FatigueLevels">
+              <PropertyRef Name="ftg_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_gft_GoalsForTomorrow_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="gft_GoalsForTomorrow" Type="Self.gft_GoalsForTomorrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="gft_GoalsForTomorrow">
+              <PropertyRef Name="gft_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_imc_ImmediateConsequences_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="imc_ImmediateConsequences" Type="Self.imc_ImmediateConsequences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="imc_ImmediateConsequences">
+              <PropertyRef Name="imc_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ltc_LongTermConsequences_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="ltc_LongTermConsequences" Type="Self.ltc_LongTermConsequences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="ltc_LongTermConsequences">
+              <PropertyRef Name="ltc_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ltg_LongTermGoal_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="ltg_LongTermGoal" Type="Self.ltg_LongTermGoal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="ltg_LongTermGoal">
+              <PropertyRef Name="ltg_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rwd_Rewards_rwd_Rewards">
+          <End Role="rwd_Rewards" Type="Self.rwd_Rewards" Multiplicity="1" />
+          <End Role="rwd_Rewards1" Type="Self.rwd_Rewards" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="rwd_Rewards">
+              <PropertyRef Name="rwd_ID" />
+            </Principal>
+            <Dependent Role="rwd_Rewards1">
+              <PropertyRef Name="rwd_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rwd_Rewards_usr_User">
+          <End Role="gsr_GlobalSuggestions" Type="Self.gsr_GlobalSuggestions" Multiplicity="0..1" />
+          <End Role="rwd_Rewards" Type="Self.rwd_Rewards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gsr_GlobalSuggestions">
+              <PropertyRef Name="gsr_id" />
+            </Principal>
+            <Dependent Role="rwd_Rewards">
+              <PropertyRef Name="rwd_gsr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stg_ShortTermGoals_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="stg_ShortTermGoals" Type="Self.stg_ShortTermGoals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="stg_ShortTermGoals">
+              <PropertyRef Name="stg_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tht_Thought_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="tht_Thought" Type="Self.tht_Thought" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="tht_Thought">
+              <PropertyRef Name="tht_chn_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vul_Vulnerability_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="vul_Vulnerability" Type="Self.vul_Vulnerability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="vul_Vulnerability">
+              <PropertyRef Name="vul_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wtp_WaysToPrevent_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="wtp_WaysToPrevent" Type="Self.wtp_WaysToPrevent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="wtp_WaysToPrevent">
+              <PropertyRef Name="wtp_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SleepMonitorModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="awk_NighttimeAwakenings" EntityType="Self.awk_NighttimeAwakenings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bhv_Behavior" EntityType="Self.bhv_Behavior" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cfn_CaffeineConsumption" EntityType="Self.cfn_CaffeineConsumption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cft_CaffeineType" EntityType="Self.cft_CaffeineType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chn_ChainAnalysis" EntityType="Self.chn_ChainAnalysis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctr_ConcentrationLog" EntityType="Self.ctr_ConcentrationLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="eht_EmotionLogThought" EntityType="Self.eht_EmotionLogThought" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="eml_EmotionLog" EntityType="Self.eml_EmotionLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="emt_Emotions" EntityType="Self.emt_Emotions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="exi_ExerciseIntensity" EntityType="Self.exi_ExerciseIntensity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="exr_Exercise" EntityType="Self.exr_Exercise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ext_ExerciseTypes" EntityType="Self.ext_ExerciseTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ftg_FatigueLevels" EntityType="Self.ftg_FatigueLevels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gft_GoalsForTomorrow" EntityType="Self.gft_GoalsForTomorrow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gsr_GlobalSuggestions" EntityType="Self.gsr_GlobalSuggestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="imc_ImmediateConsequences" EntityType="Self.imc_ImmediateConsequences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ltc_LongTermConsequences" EntityType="Self.ltc_LongTermConsequences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ltg_LongTermGoal" EntityType="Self.ltg_LongTermGoal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prd_Product" EntityType="Self.prd_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pre_PredefinedEmotion" EntityType="Self.pre_PredefinedEmotion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rwd_Rewards" EntityType="Self.rwd_Rewards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="slp_SleepLog" EntityType="Self.slp_SleepLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stg_ShortTermGoals" EntityType="Self.stg_ShortTermGoals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tht_Thought" EntityType="Self.tht_Thought" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vul_Vulnerability" EntityType="Self.vul_Vulnerability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wtp_WaysToPrevent" EntityType="Self.wtp_WaysToPrevent" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_awk_NighttimeAwakenings_slp_SleepLog" Association="Self.FK_awk_NighttimeAwakenings_slp_SleepLog">
+            <End Role="slp_SleepLog" EntitySet="slp_SleepLog" />
+            <End Role="awk_NighttimeAwakenings" EntitySet="awk_NighttimeAwakenings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bhv_Behavior_chn_ChainAnalysis" Association="Self.FK_bhv_Behavior_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="bhv_Behavior" EntitySet="bhv_Behavior" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cfn_CaffeineConsumption_AspNetUsers" Association="Self.FK_cfn_CaffeineConsumption_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="cfn_CaffeineConsumption" EntitySet="cfn_CaffeineConsumption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cft_CaffeineType_prd_Product" Association="Self.FK_cft_CaffeineType_prd_Product">
+            <End Role="prd_Product" EntitySet="prd_Product" />
+            <End Role="cft_CaffeineType" EntitySet="cft_CaffeineType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chn_ChainAnalysis_usr_User" Association="Self.FK_chn_ChainAnalysis_usr_User">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctr_ConcentrationLog_usr_User" Association="Self.FK_ctr_ConcentrationLog_usr_User">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ctr_ConcentrationLog" EntitySet="ctr_ConcentrationLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eml_EmotionLog_pre_PredefinedEmotion" Association="Self.FK_eml_EmotionLog_pre_PredefinedEmotion">
+            <End Role="pre_PredefinedEmotion" EntitySet="pre_PredefinedEmotion" />
+            <End Role="eml_EmotionLog" EntitySet="eml_EmotionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eml_EmotionLog_usr_User" Association="Self.FK_eml_EmotionLog_usr_User">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="eml_EmotionLog" EntitySet="eml_EmotionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_emt_Emotions_chn_ChainAnalysis" Association="Self.FK_emt_Emotions_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="emt_Emotions" EntitySet="emt_Emotions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_emt_Emotions_pre_PredefinedEmotion" Association="Self.FK_emt_Emotions_pre_PredefinedEmotion">
+            <End Role="pre_PredefinedEmotion" EntitySet="pre_PredefinedEmotion" />
+            <End Role="emt_Emotions" EntitySet="emt_Emotions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_exr_Exercise_exi_ExerciseIntensity" Association="Self.FK_exr_Exercise_exi_ExerciseIntensity">
+            <End Role="exi_ExerciseIntensity" EntitySet="exi_ExerciseIntensity" />
+            <End Role="exr_Exercise" EntitySet="exr_Exercise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_exr_Exercise_ext_ExerciseTypes" Association="Self.FK_exr_Exercise_ext_ExerciseTypes">
+            <End Role="ext_ExerciseTypes" EntitySet="ext_ExerciseTypes" />
+            <End Role="exr_Exercise" EntitySet="exr_Exercise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_exr_Exercise_usr_User" Association="Self.FK_exr_Exercise_usr_User">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="exr_Exercise" EntitySet="exr_Exercise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ftg_FatigueLevels_usr_User" Association="Self.FK_ftg_FatigueLevels_usr_User">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ftg_FatigueLevels" EntitySet="ftg_FatigueLevels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_gft_GoalsForTomorrow_chn_ChainAnalysis" Association="Self.FK_gft_GoalsForTomorrow_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="gft_GoalsForTomorrow" EntitySet="gft_GoalsForTomorrow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_imc_ImmediateConsequences_chn_ChainAnalysis" Association="Self.FK_imc_ImmediateConsequences_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="imc_ImmediateConsequences" EntitySet="imc_ImmediateConsequences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ltc_LongTermConsequences_chn_ChainAnalysis" Association="Self.FK_ltc_LongTermConsequences_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="ltc_LongTermConsequences" EntitySet="ltc_LongTermConsequences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ltg_LongTermGoal_chn_ChainAnalysis" Association="Self.FK_ltg_LongTermGoal_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="ltg_LongTermGoal" EntitySet="ltg_LongTermGoal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rwd_Rewards_rwd_Rewards" Association="Self.FK_rwd_Rewards_rwd_Rewards">
+            <End Role="rwd_Rewards" EntitySet="rwd_Rewards" />
+            <End Role="rwd_Rewards1" EntitySet="rwd_Rewards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rwd_Rewards_usr_User" Association="Self.FK_rwd_Rewards_usr_User">
+            <End Role="gsr_GlobalSuggestions" EntitySet="gsr_GlobalSuggestions" />
+            <End Role="rwd_Rewards" EntitySet="rwd_Rewards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stg_ShortTermGoals_chn_ChainAnalysis" Association="Self.FK_stg_ShortTermGoals_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="stg_ShortTermGoals" EntitySet="stg_ShortTermGoals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tht_Thought_chn_ChainAnalysis" Association="Self.FK_tht_Thought_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="tht_Thought" EntitySet="tht_Thought" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vul_Vulnerability_chn_ChainAnalysis" Association="Self.FK_vul_Vulnerability_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="vul_Vulnerability" EntitySet="vul_Vulnerability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wtp_WaysToPrevent_chn_ChainAnalysis" Association="Self.FK_wtp_WaysToPrevent_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="wtp_WaysToPrevent" EntitySet="wtp_WaysToPrevent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SleepMonitorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hometown" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="cfn_CaffeineConsumption" Relationship="Self.FK_cfn_CaffeineConsumption_AspNetUsers" FromRole="AspNetUsers" ToRole="cfn_CaffeineConsumption" />
+          <NavigationProperty Name="chn_ChainAnalysis" Relationship="Self.FK_chn_ChainAnalysis_usr_User" FromRole="AspNetUsers" ToRole="chn_ChainAnalysis" />
+          <NavigationProperty Name="ctr_ConcentrationLog" Relationship="Self.FK_ctr_ConcentrationLog_usr_User" FromRole="AspNetUsers" ToRole="ctr_ConcentrationLog" />
+          <NavigationProperty Name="eml_EmotionLog" Relationship="Self.FK_eml_EmotionLog_usr_User" FromRole="AspNetUsers" ToRole="eml_EmotionLog" />
+          <NavigationProperty Name="exr_Exercise" Relationship="Self.FK_exr_Exercise_usr_User" FromRole="AspNetUsers" ToRole="exr_Exercise" />
+          <NavigationProperty Name="ftg_FatigueLevels" Relationship="Self.FK_ftg_FatigueLevels_usr_User" FromRole="AspNetUsers" ToRole="ftg_FatigueLevels" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="awk_NighttimeAwakenings">
+          <Key>
+            <PropertyRef Name="awk_ID" />
+          </Key>
+          <Property Name="awk_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="awk_start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="awk_end" Type="DateTime" Precision="3" />
+          <Property Name="awk_slp_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="slp_SleepLog" Relationship="Self.FK_awk_NighttimeAwakenings_slp_SleepLog" FromRole="awk_NighttimeAwakenings" ToRole="slp_SleepLog" />
+        </EntityType>
+        <EntityType Name="bhv_Behavior">
+          <Key>
+            <PropertyRef Name="bhv_order" />
+            <PropertyRef Name="bhv_chn_id" />
+          </Key>
+          <Property Name="bhv_order" Type="Int32" Nullable="false" />
+          <Property Name="bhv_chn_id" Type="Int32" Nullable="false" />
+          <Property Name="bhv_BehaviorDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="chn_ChainAnalysis" Relationship="Self.FK_bhv_Behavior_chn_ChainAnalysis" FromRole="bhv_Behavior" ToRole="chn_ChainAnalysis" />
+        </EntityType>
+        <EntityType Name="cfn_CaffeineConsumption">
+          <Key>
+            <PropertyRef Name="cfn_ID" />
+          </Key>
+          <Property Name="cfn_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cfn_DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cfn_cft_ID" Type="Int32" Nullable="false" />
+          <Property Name="cfn_aur_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cfn_number" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_cfn_CaffeineConsumption_AspNetUsers" FromRole="cfn_CaffeineConsumption" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="cft_CaffeineType">
+          <Key>
+            <PropertyRef Name="cft_id" />
+          </Key>
+          <Property Name="cft_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cft_amount" Type="Double" Nullable="false" />
+          <Property Name="cft_size" Type="Double" Nullable="false" />
+          <Property Name="prd_Product" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="prd_Product1" Relationship="Self.FK_cft_CaffeineType_prd_Product" FromRole="cft_CaffeineType" ToRole="prd_Product" />
+        </EntityType>
+        <EntityType Name="chn_ChainAnalysis">
+          <Key>
+            <PropertyRef Name="chn_ID" />
+          </Key>
+          <Property Name="chn_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chn_aur_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="chn_ProblemBehavior" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="chn_DateAndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="chn_Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_chn_ChainAnalysis_usr_User" FromRole="chn_ChainAnalysis" ToRole="AspNetUsers" />
+          <NavigationProperty Name="bhv_Behavior" Relationship="Self.FK_bhv_Behavior_chn_ChainAnalysis" FromRole="chn_ChainAnalysis" ToRole="bhv_Behavior" />
+          <NavigationProperty Name="emt_Emotions" Relationship="Self.FK_emt_Emotions_chn_ChainAnalysis" FromRole="chn_ChainAnalysis" ToRole="emt_Emotions" />
+          <NavigationProperty Name="gft_GoalsForTomorrow" Relationship="Self.FK_gft_GoalsForTomorrow_chn_ChainAnalysis" FromRole="chn_ChainAnalysis" ToRole="gft_GoalsForTomorrow" />
+          <NavigationProperty Name="imc_ImmediateConsequences" Relationship="Self.FK_imc_ImmediateConsequences_chn_ChainAnalysis" FromRole="chn_ChainAnalysis" ToRole="imc_ImmediateConsequences" />
+          <NavigationProperty Name="ltc_LongTermConsequences" Relationship="Self.FK_ltc_LongTermConsequences_chn_ChainAnalysis" FromRole="chn_ChainAnalysis" ToRole="ltc_LongTermConsequences" />
+          <NavigationProperty Name="ltg_LongTermGoal" Relationship="Self.FK_ltg_LongTermGoal_chn_ChainAnalysis" FromRole="chn_ChainAnalysis" ToRole="ltg_LongTermGoal" />
+          <NavigationProperty Name="stg_ShortTermGoals" Relationship="Self.FK_stg_ShortTermGoals_chn_ChainAnalysis" FromRole="chn_ChainAnalysis" ToRole="stg_ShortTermGoals" />
+          <NavigationProperty Name="tht_Thought" Relationship="Self.FK_tht_Thought_chn_ChainAnalysis" FromRole="chn_ChainAnalysis" ToRole="tht_Thought" />
+          <NavigationProperty Name="vul_Vulnerability" Relationship="Self.FK_vul_Vulnerability_chn_ChainAnalysis" FromRole="chn_ChainAnalysis" ToRole="vul_Vulnerability" />
+          <NavigationProperty Name="wtp_WaysToPrevent" Relationship="Self.FK_wtp_WaysToPrevent_chn_ChainAnalysis" FromRole="chn_ChainAnalysis" ToRole="wtp_WaysToPrevent" />
+        </EntityType>
+        <EntityType Name="ctr_ConcentrationLog">
+          <Key>
+            <PropertyRef Name="ctr_id" />
+          </Key>
+          <Property Name="ctr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ctr_logDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ctr_aur_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ctr_concentrationLevels" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_ctr_ConcentrationLog_usr_User" FromRole="ctr_ConcentrationLog" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="eht_EmotionLogThought">
+          <Key>
+            <PropertyRef Name="eth_order" />
+            <PropertyRef Name="eth_eml_ID" />
+          </Key>
+          <Property Name="eth_order" Type="Int32" Nullable="false" />
+          <Property Name="eth_eml_ID" Type="Int32" Nullable="false" />
+          <Property Name="eth_Thought" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eml_EmotionLog">
+          <Key>
+            <PropertyRef Name="eml_ID" />
+          </Key>
+          <Property Name="eml_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eml_logTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="eml_aur_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="eml_pre_id" Type="Int32" Nullable="false" />
+          <Property Name="eml_intensity" Type="Int16" Nullable="false" />
+          <Property Name="eml_trigger" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_eml_EmotionLog_usr_User" FromRole="eml_EmotionLog" ToRole="AspNetUsers" />
+          <NavigationProperty Name="pre_PredefinedEmotion" Relationship="Self.FK_eml_EmotionLog_pre_PredefinedEmotion" FromRole="eml_EmotionLog" ToRole="pre_PredefinedEmotion" />
+        </EntityType>
+        <EntityType Name="emt_Emotions">
+          <Key>
+            <PropertyRef Name="emt_order" />
+            <PropertyRef Name="emt_chn_id" />
+          </Key>
+          <Property Name="emt_order" Type="Int32" Nullable="false" />
+          <Property Name="emt_pre_id" Type="Int32" Nullable="false" />
+          <Property Name="emt_chn_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="chn_ChainAnalysis" Relationship="Self.FK_emt_Emotions_chn_ChainAnalysis" FromRole="emt_Emotions" ToRole="chn_ChainAnalysis" />
+          <NavigationProperty Name="pre_PredefinedEmotion" Relationship="Self.FK_emt_Emotions_pre_PredefinedEmotion" FromRole="emt_Emotions" ToRole="pre_PredefinedEmotion" />
+        </EntityType>
+        <EntityType Name="exi_ExerciseIntensity">
+          <Key>
+            <PropertyRef Name="exi_id" />
+          </Key>
+          <Property Name="exi_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="exi_intensity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="exr_Exercise" Relationship="Self.FK_exr_Exercise_exi_ExerciseIntensity" FromRole="exi_ExerciseIntensity" ToRole="exr_Exercise" />
+        </EntityType>
+        <EntityType Name="exr_Exercise">
+          <Key>
+            <PropertyRef Name="exr_ID" />
+          </Key>
+          <Property Name="exr_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="exr_aur_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="exr_exi_ID" Type="Int32" Nullable="false" />
+          <Property Name="exr_start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="exr_end" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="exr_ext_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_exr_Exercise_usr_User" FromRole="exr_Exercise" ToRole="AspNetUsers" />
+          <NavigationProperty Name="exi_ExerciseIntensity" Relationship="Self.FK_exr_Exercise_exi_ExerciseIntensity" FromRole="exr_Exercise" ToRole="exi_ExerciseIntensity" />
+          <NavigationProperty Name="ext_ExerciseTypes" Relationship="Self.FK_exr_Exercise_ext_ExerciseTypes" FromRole="exr_Exercise" ToRole="ext_ExerciseTypes" />
+        </EntityType>
+        <EntityType Name="ext_ExerciseTypes">
+          <Key>
+            <PropertyRef Name="ext_ID" />
+          </Key>
+          <Property Name="ext_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ext_exi_intensity" Type="Int32" Nullable="false" />
+          <Property Name="ext_calories_per_hour" Type="Double" Nullable="false" />
+          <Property Name="ext_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="exr_Exercise" Relationship="Self.FK_exr_Exercise_ext_ExerciseTypes" FromRole="ext_ExerciseTypes" ToRole="exr_Exercise" />
+        </EntityType>
+        <EntityType Name="ftg_FatigueLevels">
+          <Key>
+            <PropertyRef Name="ftg_ID" />
+          </Key>
+          <Property Name="ftg_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ftg_level" Type="Int16" Nullable="false" />
+          <Property Name="ftg_logTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ftg_aur_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_ftg_FatigueLevels_usr_User" FromRole="ftg_FatigueLevels" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="gft_GoalsForTomorrow">
+          <Key>
+            <PropertyRef Name="gft_order" />
+            <PropertyRef Name="gft_chn_id" />
+          </Key>
+          <Property Name="gft_order" Type="Int32" Nullable="false" />
+          <Property Name="gft_chn_id" Type="Int32" Nullable="false" />
+          <Property Name="gft_Goal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="chn_ChainAnalysis" Relationship="Self.FK_gft_GoalsForTomorrow_chn_ChainAnalysis" FromRole="gft_GoalsForTomorrow" ToRole="chn_ChainAnalysis" />
+        </EntityType>
+        <EntityType Name="gsr_GlobalSuggestions">
+          <Key>
+            <PropertyRef Name="gsr_id" />
+          </Key>
+          <Property Name="gsr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gsr_RewardName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gsr_CheckMarksNeeded" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="rwd_Rewards" Relationship="Self.FK_rwd_Rewards_usr_User" FromRole="gsr_GlobalSuggestions" ToRole="rwd_Rewards" />
+        </EntityType>
+        <EntityType Name="imc_ImmediateConsequences">
+          <Key>
+            <PropertyRef Name="imc_order" />
+            <PropertyRef Name="imc_chn_id" />
+          </Key>
+          <Property Name="imc_order" Type="Int32" Nullable="false" />
+          <Property Name="imc_chn_id" Type="Int32" Nullable="false" />
+          <Property Name="imc_Consequence" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="chn_ChainAnalysis" Relationship="Self.FK_imc_ImmediateConsequences_chn_ChainAnalysis" FromRole="imc_ImmediateConsequences" ToRole="chn_ChainAnalysis" />
+        </EntityType>
+        <EntityType Name="ltc_LongTermConsequences">
+          <Key>
+            <PropertyRef Name="ltc_order" />
+            <PropertyRef Name="ltc_chn_id" />
+          </Key>
+          <Property Name="ltc_order" Type="Int32" Nullable="false" />
+          <Property Name="ltc_chn_id" Type="Int32" Nullable="false" />
+          <Property Name="ltc_Consequence" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="chn_ChainAnalysis" Relationship="Self.FK_ltc_LongTermConsequences_chn_ChainAnalysis" FromRole="ltc_LongTermConsequences" ToRole="chn_ChainAnalysis" />
+        </EntityType>
+        <EntityType Name="ltg_LongTermGoal">
+          <Key>
+            <PropertyRef Name="ltg_order" />
+            <PropertyRef Name="ltg_chn_id" />
+          </Key>
+          <Property Name="ltg_order" Type="Int32" Nullable="false" />
+          <Property Name="ltg_chn_id" Type="Int32" Nullable="false" />
+          <Property Name="ltg_Goal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="chn_ChainAnalysis" Relationship="Self.FK_ltg_LongTermGoal_chn_ChainAnalysis" FromRole="ltg_LongTermGoal" ToRole="chn_ChainAnalysis" />
+        </EntityType>
+        <EntityType Name="prd_Product">
+          <Key>
+            <PropertyRef Name="prd_ID" />
+          </Key>
+          <Property Name="prd_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prd_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cft_CaffeineType" Relationship="Self.FK_cft_CaffeineType_prd_Product" FromRole="prd_Product" ToRole="cft_CaffeineType" />
+        </EntityType>
+        <EntityType Name="pre_PredefinedEmotion">
+          <Key>
+            <PropertyRef Name="pre_ID" />
+          </Key>
+          <Property Name="pre_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pre_Emotion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="eml_EmotionLog" Relationship="Self.FK_eml_EmotionLog_pre_PredefinedEmotion" FromRole="pre_PredefinedEmotion" ToRole="eml_EmotionLog" />
+          <NavigationProperty Name="emt_Emotions" Relationship="Self.FK_emt_Emotions_pre_PredefinedEmotion" FromRole="pre_PredefinedEmotion" ToRole="emt_Emotions" />
+        </EntityType>
+        <EntityType Name="rwd_Rewards">
+          <Key>
+            <PropertyRef Name="rwd_ID" />
+          </Key>
+          <Property Name="rwd_aur_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rwd_RewardName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rwd_gsr_id" Type="Int32" />
+          <Property Name="rwd_NumCheckMarksRequired" Type="Int32" />
+          <Property Name="rwd_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="gsr_GlobalSuggestions" Relationship="Self.FK_rwd_Rewards_usr_User" FromRole="rwd_Rewards" ToRole="gsr_GlobalSuggestions" />
+          <NavigationProperty Name="rwd_Rewards1" Relationship="Self.FK_rwd_Rewards_rwd_Rewards" FromRole="rwd_Rewards" ToRole="rwd_Rewards1" />
+          <NavigationProperty Name="rwd_Rewards2" Relationship="Self.FK_rwd_Rewards_rwd_Rewards" FromRole="rwd_Rewards1" ToRole="rwd_Rewards" />
+        </EntityType>
+        <EntityType Name="slp_SleepLog">
+          <Key>
+            <PropertyRef Name="slp_ID" />
+          </Key>
+          <Property Name="slp_ID" Type="Int32" Nullable="false" />
+          <Property Name="slp_aur_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="slp_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="slp_TimeToSleepUserLogged" Type="Time" Precision="7" />
+          <Property Name="slp_TimeToBed" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="slp_SleepQuality" Type="Int16" />
+          <Property Name="slp_FatigueLevel" Type="Int16" />
+          <NavigationProperty Name="awk_NighttimeAwakenings" Relationship="Self.FK_awk_NighttimeAwakenings_slp_SleepLog" FromRole="slp_SleepLog" ToRole="awk_NighttimeAwakenings" />
+        </EntityType>
+        <EntityType Name="stg_ShortTermGoals">
+          <Key>
+            <PropertyRef Name="stg_order" />
+            <PropertyRef Name="stg_chn_id" />
+          </Key>
+          <Property Name="stg_order" Type="Int32" Nullable="false" />
+          <Property Name="stg_chn_id" Type="Int32" Nullable="false" />
+          <Property Name="stg_Goal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="chn_ChainAnalysis" Relationship="Self.FK_stg_ShortTermGoals_chn_ChainAnalysis" FromRole="stg_ShortTermGoals" ToRole="chn_ChainAnalysis" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tht_Thought">
+          <Key>
+            <PropertyRef Name="tht_order" />
+            <PropertyRef Name="tht_chn_ID" />
+          </Key>
+          <Property Name="tht_order" Type="Int32" Nullable="false" />
+          <Property Name="tht_chn_ID" Type="Int32" Nullable="false" />
+          <Property Name="tht_Thought1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="chn_ChainAnalysis" Relationship="Self.FK_tht_Thought_chn_ChainAnalysis" FromRole="tht_Thought" ToRole="chn_ChainAnalysis" />
+        </EntityType>
+        <EntityType Name="vul_Vulnerability">
+          <Key>
+            <PropertyRef Name="vul_order" />
+            <PropertyRef Name="vul_chn_id" />
+          </Key>
+          <Property Name="vul_order" Type="Int32" Nullable="false" />
+          <Property Name="vul_chn_id" Type="Int32" Nullable="false" />
+          <Property Name="vul_Vulnerability1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="chn_ChainAnalysis" Relationship="Self.FK_vul_Vulnerability_chn_ChainAnalysis" FromRole="vul_Vulnerability" ToRole="chn_ChainAnalysis" />
+        </EntityType>
+        <EntityType Name="wtp_WaysToPrevent">
+          <Key>
+            <PropertyRef Name="wtp_order" />
+            <PropertyRef Name="wtp_chn_id" />
+          </Key>
+          <Property Name="wtp_order" Type="Int32" Nullable="false" />
+          <Property Name="wtp_chn_id" Type="Int32" Nullable="false" />
+          <Property Name="wtp_WayToPrevent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="chn_ChainAnalysis" Relationship="Self.FK_wtp_WaysToPrevent_chn_ChainAnalysis" FromRole="wtp_WaysToPrevent" ToRole="chn_ChainAnalysis" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cfn_CaffeineConsumption_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="cfn_CaffeineConsumption" Type="Self.cfn_CaffeineConsumption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="cfn_CaffeineConsumption">
+              <PropertyRef Name="cfn_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_chn_ChainAnalysis_usr_User">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctr_ConcentrationLog_usr_User">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="ctr_ConcentrationLog" Type="Self.ctr_ConcentrationLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ctr_ConcentrationLog">
+              <PropertyRef Name="ctr_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eml_EmotionLog_usr_User">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="eml_EmotionLog" Type="Self.eml_EmotionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="eml_EmotionLog">
+              <PropertyRef Name="eml_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_exr_Exercise_usr_User">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="exr_Exercise" Type="Self.exr_Exercise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="exr_Exercise">
+              <PropertyRef Name="exr_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ftg_FatigueLevels_usr_User">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="ftg_FatigueLevels" Type="Self.ftg_FatigueLevels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ftg_FatigueLevels">
+              <PropertyRef Name="ftg_aur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_awk_NighttimeAwakenings_slp_SleepLog">
+          <End Role="slp_SleepLog" Type="Self.slp_SleepLog" Multiplicity="1" />
+          <End Role="awk_NighttimeAwakenings" Type="Self.awk_NighttimeAwakenings" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="slp_SleepLog">
+              <PropertyRef Name="slp_ID" />
+            </Principal>
+            <Dependent Role="awk_NighttimeAwakenings">
+              <PropertyRef Name="awk_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bhv_Behavior_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="bhv_Behavior" Type="Self.bhv_Behavior" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="bhv_Behavior">
+              <PropertyRef Name="bhv_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cft_CaffeineType_prd_Product">
+          <End Role="prd_Product" Type="Self.prd_Product" Multiplicity="1" />
+          <End Role="cft_CaffeineType" Type="Self.cft_CaffeineType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="prd_Product">
+              <PropertyRef Name="prd_ID" />
+            </Principal>
+            <Dependent Role="cft_CaffeineType">
+              <PropertyRef Name="cft_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_emt_Emotions_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="emt_Emotions" Type="Self.emt_Emotions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="emt_Emotions">
+              <PropertyRef Name="emt_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_gft_GoalsForTomorrow_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="gft_GoalsForTomorrow" Type="Self.gft_GoalsForTomorrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="gft_GoalsForTomorrow">
+              <PropertyRef Name="gft_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_imc_ImmediateConsequences_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="imc_ImmediateConsequences" Type="Self.imc_ImmediateConsequences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="imc_ImmediateConsequences">
+              <PropertyRef Name="imc_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ltc_LongTermConsequences_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="ltc_LongTermConsequences" Type="Self.ltc_LongTermConsequences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="ltc_LongTermConsequences">
+              <PropertyRef Name="ltc_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ltg_LongTermGoal_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="ltg_LongTermGoal" Type="Self.ltg_LongTermGoal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="ltg_LongTermGoal">
+              <PropertyRef Name="ltg_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stg_ShortTermGoals_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="stg_ShortTermGoals" Type="Self.stg_ShortTermGoals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="stg_ShortTermGoals">
+              <PropertyRef Name="stg_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tht_Thought_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="tht_Thought" Type="Self.tht_Thought" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="tht_Thought">
+              <PropertyRef Name="tht_chn_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vul_Vulnerability_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="vul_Vulnerability" Type="Self.vul_Vulnerability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="vul_Vulnerability">
+              <PropertyRef Name="vul_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wtp_WaysToPrevent_chn_ChainAnalysis">
+          <End Role="chn_ChainAnalysis" Type="Self.chn_ChainAnalysis" Multiplicity="1" />
+          <End Role="wtp_WaysToPrevent" Type="Self.wtp_WaysToPrevent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chn_ChainAnalysis">
+              <PropertyRef Name="chn_ID" />
+            </Principal>
+            <Dependent Role="wtp_WaysToPrevent">
+              <PropertyRef Name="wtp_chn_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_eml_EmotionLog_pre_PredefinedEmotion">
+          <End Role="pre_PredefinedEmotion" Type="Self.pre_PredefinedEmotion" Multiplicity="1" />
+          <End Role="eml_EmotionLog" Type="Self.eml_EmotionLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pre_PredefinedEmotion">
+              <PropertyRef Name="pre_ID" />
+            </Principal>
+            <Dependent Role="eml_EmotionLog">
+              <PropertyRef Name="eml_pre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_emt_Emotions_pre_PredefinedEmotion">
+          <End Role="pre_PredefinedEmotion" Type="Self.pre_PredefinedEmotion" Multiplicity="1" />
+          <End Role="emt_Emotions" Type="Self.emt_Emotions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pre_PredefinedEmotion">
+              <PropertyRef Name="pre_ID" />
+            </Principal>
+            <Dependent Role="emt_Emotions">
+              <PropertyRef Name="emt_pre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_exr_Exercise_exi_ExerciseIntensity">
+          <End Role="exi_ExerciseIntensity" Type="Self.exi_ExerciseIntensity" Multiplicity="1" />
+          <End Role="exr_Exercise" Type="Self.exr_Exercise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="exi_ExerciseIntensity">
+              <PropertyRef Name="exi_id" />
+            </Principal>
+            <Dependent Role="exr_Exercise">
+              <PropertyRef Name="exr_exi_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_exr_Exercise_ext_ExerciseTypes">
+          <End Role="ext_ExerciseTypes" Type="Self.ext_ExerciseTypes" Multiplicity="1" />
+          <End Role="exr_Exercise" Type="Self.exr_Exercise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ext_ExerciseTypes">
+              <PropertyRef Name="ext_ID" />
+            </Principal>
+            <Dependent Role="exr_Exercise">
+              <PropertyRef Name="exr_ext_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rwd_Rewards_usr_User">
+          <End Role="gsr_GlobalSuggestions" Type="Self.gsr_GlobalSuggestions" Multiplicity="0..1" />
+          <End Role="rwd_Rewards" Type="Self.rwd_Rewards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gsr_GlobalSuggestions">
+              <PropertyRef Name="gsr_id" />
+            </Principal>
+            <Dependent Role="rwd_Rewards">
+              <PropertyRef Name="rwd_gsr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rwd_Rewards_rwd_Rewards">
+          <End Role="rwd_Rewards" Type="Self.rwd_Rewards" Multiplicity="1" />
+          <End Role="rwd_Rewards1" Type="Self.rwd_Rewards" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="rwd_Rewards">
+              <PropertyRef Name="rwd_ID" />
+            </Principal>
+            <Dependent Role="rwd_Rewards1">
+              <PropertyRef Name="rwd_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SleepMonitorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="awk_NighttimeAwakenings" EntityType="Self.awk_NighttimeAwakenings" />
+          <EntitySet Name="bhv_Behavior" EntityType="Self.bhv_Behavior" />
+          <EntitySet Name="cfn_CaffeineConsumption" EntityType="Self.cfn_CaffeineConsumption" />
+          <EntitySet Name="cft_CaffeineType" EntityType="Self.cft_CaffeineType" />
+          <EntitySet Name="chn_ChainAnalysis" EntityType="Self.chn_ChainAnalysis" />
+          <EntitySet Name="ctr_ConcentrationLog" EntityType="Self.ctr_ConcentrationLog" />
+          <EntitySet Name="eht_EmotionLogThought" EntityType="Self.eht_EmotionLogThought" />
+          <EntitySet Name="eml_EmotionLog" EntityType="Self.eml_EmotionLog" />
+          <EntitySet Name="emt_Emotions" EntityType="Self.emt_Emotions" />
+          <EntitySet Name="exi_ExerciseIntensity" EntityType="Self.exi_ExerciseIntensity" />
+          <EntitySet Name="exr_Exercise" EntityType="Self.exr_Exercise" />
+          <EntitySet Name="ext_ExerciseTypes" EntityType="Self.ext_ExerciseTypes" />
+          <EntitySet Name="ftg_FatigueLevels" EntityType="Self.ftg_FatigueLevels" />
+          <EntitySet Name="gft_GoalsForTomorrow" EntityType="Self.gft_GoalsForTomorrow" />
+          <EntitySet Name="gsr_GlobalSuggestions" EntityType="Self.gsr_GlobalSuggestions" />
+          <EntitySet Name="imc_ImmediateConsequences" EntityType="Self.imc_ImmediateConsequences" />
+          <EntitySet Name="ltc_LongTermConsequences" EntityType="Self.ltc_LongTermConsequences" />
+          <EntitySet Name="ltg_LongTermGoal" EntityType="Self.ltg_LongTermGoal" />
+          <EntitySet Name="prd_Product" EntityType="Self.prd_Product" />
+          <EntitySet Name="pre_PredefinedEmotion" EntityType="Self.pre_PredefinedEmotion" />
+          <EntitySet Name="rwd_Rewards" EntityType="Self.rwd_Rewards" />
+          <EntitySet Name="slp_SleepLog" EntityType="Self.slp_SleepLog" />
+          <EntitySet Name="stg_ShortTermGoals" EntityType="Self.stg_ShortTermGoals" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tht_Thought" EntityType="Self.tht_Thought" />
+          <EntitySet Name="vul_Vulnerability" EntityType="Self.vul_Vulnerability" />
+          <EntitySet Name="wtp_WaysToPrevent" EntityType="Self.wtp_WaysToPrevent" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cfn_CaffeineConsumption_AspNetUsers" Association="Self.FK_cfn_CaffeineConsumption_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="cfn_CaffeineConsumption" EntitySet="cfn_CaffeineConsumption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chn_ChainAnalysis_usr_User" Association="Self.FK_chn_ChainAnalysis_usr_User">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctr_ConcentrationLog_usr_User" Association="Self.FK_ctr_ConcentrationLog_usr_User">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ctr_ConcentrationLog" EntitySet="ctr_ConcentrationLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eml_EmotionLog_usr_User" Association="Self.FK_eml_EmotionLog_usr_User">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="eml_EmotionLog" EntitySet="eml_EmotionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_exr_Exercise_usr_User" Association="Self.FK_exr_Exercise_usr_User">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="exr_Exercise" EntitySet="exr_Exercise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ftg_FatigueLevels_usr_User" Association="Self.FK_ftg_FatigueLevels_usr_User">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ftg_FatigueLevels" EntitySet="ftg_FatigueLevels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_awk_NighttimeAwakenings_slp_SleepLog" Association="Self.FK_awk_NighttimeAwakenings_slp_SleepLog">
+            <End Role="slp_SleepLog" EntitySet="slp_SleepLog" />
+            <End Role="awk_NighttimeAwakenings" EntitySet="awk_NighttimeAwakenings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bhv_Behavior_chn_ChainAnalysis" Association="Self.FK_bhv_Behavior_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="bhv_Behavior" EntitySet="bhv_Behavior" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cft_CaffeineType_prd_Product" Association="Self.FK_cft_CaffeineType_prd_Product">
+            <End Role="prd_Product" EntitySet="prd_Product" />
+            <End Role="cft_CaffeineType" EntitySet="cft_CaffeineType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_emt_Emotions_chn_ChainAnalysis" Association="Self.FK_emt_Emotions_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="emt_Emotions" EntitySet="emt_Emotions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_gft_GoalsForTomorrow_chn_ChainAnalysis" Association="Self.FK_gft_GoalsForTomorrow_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="gft_GoalsForTomorrow" EntitySet="gft_GoalsForTomorrow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_imc_ImmediateConsequences_chn_ChainAnalysis" Association="Self.FK_imc_ImmediateConsequences_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="imc_ImmediateConsequences" EntitySet="imc_ImmediateConsequences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ltc_LongTermConsequences_chn_ChainAnalysis" Association="Self.FK_ltc_LongTermConsequences_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="ltc_LongTermConsequences" EntitySet="ltc_LongTermConsequences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ltg_LongTermGoal_chn_ChainAnalysis" Association="Self.FK_ltg_LongTermGoal_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="ltg_LongTermGoal" EntitySet="ltg_LongTermGoal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stg_ShortTermGoals_chn_ChainAnalysis" Association="Self.FK_stg_ShortTermGoals_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="stg_ShortTermGoals" EntitySet="stg_ShortTermGoals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tht_Thought_chn_ChainAnalysis" Association="Self.FK_tht_Thought_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="tht_Thought" EntitySet="tht_Thought" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vul_Vulnerability_chn_ChainAnalysis" Association="Self.FK_vul_Vulnerability_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="vul_Vulnerability" EntitySet="vul_Vulnerability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wtp_WaysToPrevent_chn_ChainAnalysis" Association="Self.FK_wtp_WaysToPrevent_chn_ChainAnalysis">
+            <End Role="chn_ChainAnalysis" EntitySet="chn_ChainAnalysis" />
+            <End Role="wtp_WaysToPrevent" EntitySet="wtp_WaysToPrevent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_eml_EmotionLog_pre_PredefinedEmotion" Association="Self.FK_eml_EmotionLog_pre_PredefinedEmotion">
+            <End Role="pre_PredefinedEmotion" EntitySet="pre_PredefinedEmotion" />
+            <End Role="eml_EmotionLog" EntitySet="eml_EmotionLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_emt_Emotions_pre_PredefinedEmotion" Association="Self.FK_emt_Emotions_pre_PredefinedEmotion">
+            <End Role="pre_PredefinedEmotion" EntitySet="pre_PredefinedEmotion" />
+            <End Role="emt_Emotions" EntitySet="emt_Emotions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_exr_Exercise_exi_ExerciseIntensity" Association="Self.FK_exr_Exercise_exi_ExerciseIntensity">
+            <End Role="exi_ExerciseIntensity" EntitySet="exi_ExerciseIntensity" />
+            <End Role="exr_Exercise" EntitySet="exr_Exercise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_exr_Exercise_ext_ExerciseTypes" Association="Self.FK_exr_Exercise_ext_ExerciseTypes">
+            <End Role="ext_ExerciseTypes" EntitySet="ext_ExerciseTypes" />
+            <End Role="exr_Exercise" EntitySet="exr_Exercise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rwd_Rewards_usr_User" Association="Self.FK_rwd_Rewards_usr_User">
+            <End Role="gsr_GlobalSuggestions" EntitySet="gsr_GlobalSuggestions" />
+            <End Role="rwd_Rewards" EntitySet="rwd_Rewards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rwd_Rewards_rwd_Rewards" Association="Self.FK_rwd_Rewards_rwd_Rewards">
+            <End Role="rwd_Rewards" EntitySet="rwd_Rewards" />
+            <End Role="rwd_Rewards1" EntitySet="rwd_Rewards" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SleepMonitorModelStoreContainer" CdmEntityContainer="SleepMonitorEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="SleepMonitorModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="SleepMonitorModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="SleepMonitorModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="SleepMonitorModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="SleepMonitorModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Hometown" ColumnName="Hometown" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="awk_NighttimeAwakenings">
+            <EntityTypeMapping TypeName="SleepMonitorModel.awk_NighttimeAwakenings">
+              <MappingFragment StoreEntitySet="awk_NighttimeAwakenings">
+                <ScalarProperty Name="awk_ID" ColumnName="awk_ID" />
+                <ScalarProperty Name="awk_start" ColumnName="awk_start" />
+                <ScalarProperty Name="awk_end" ColumnName="awk_end" />
+                <ScalarProperty Name="awk_slp_ID" ColumnName="awk_slp_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bhv_Behavior">
+            <EntityTypeMapping TypeName="SleepMonitorModel.bhv_Behavior">
+              <MappingFragment StoreEntitySet="bhv_Behavior">
+                <ScalarProperty Name="bhv_order" ColumnName="bhv_order" />
+                <ScalarProperty Name="bhv_chn_id" ColumnName="bhv_chn_id" />
+                <ScalarProperty Name="bhv_BehaviorDesc" ColumnName="bhv_BehaviorDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cfn_CaffeineConsumption">
+            <EntityTypeMapping TypeName="SleepMonitorModel.cfn_CaffeineConsumption">
+              <MappingFragment StoreEntitySet="cfn_CaffeineConsumption">
+                <ScalarProperty Name="cfn_ID" ColumnName="cfn_ID" />
+                <ScalarProperty Name="cfn_DateTime" ColumnName="cfn_DateTime" />
+                <ScalarProperty Name="cfn_cft_ID" ColumnName="cfn_cft_ID" />
+                <ScalarProperty Name="cfn_aur_id" ColumnName="cfn_aur_id" />
+                <ScalarProperty Name="cfn_number" ColumnName="cfn_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cft_CaffeineType">
+            <EntityTypeMapping TypeName="SleepMonitorModel.cft_CaffeineType">
+              <MappingFragment StoreEntitySet="cft_CaffeineType">
+                <ScalarProperty Name="cft_id" ColumnName="cft_id" />
+                <ScalarProperty Name="cft_amount" ColumnName="cft_amount" />
+                <ScalarProperty Name="cft_size" ColumnName="cft_size" />
+                <ScalarProperty Name="prd_Product" ColumnName="prd_Product" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chn_ChainAnalysis">
+            <EntityTypeMapping TypeName="SleepMonitorModel.chn_ChainAnalysis">
+              <MappingFragment StoreEntitySet="chn_ChainAnalysis">
+                <ScalarProperty Name="chn_ID" ColumnName="chn_ID" />
+                <ScalarProperty Name="chn_aur_id" ColumnName="chn_aur_id" />
+                <ScalarProperty Name="chn_ProblemBehavior" ColumnName="chn_ProblemBehavior" />
+                <ScalarProperty Name="chn_DateAndTime" ColumnName="chn_DateAndTime" />
+                <ScalarProperty Name="chn_Location" ColumnName="chn_Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctr_ConcentrationLog">
+            <EntityTypeMapping TypeName="SleepMonitorModel.ctr_ConcentrationLog">
+              <MappingFragment StoreEntitySet="ctr_ConcentrationLog">
+                <ScalarProperty Name="ctr_id" ColumnName="ctr_id" />
+                <ScalarProperty Name="ctr_logDate" ColumnName="ctr_logDate" />
+                <ScalarProperty Name="ctr_aur_id" ColumnName="ctr_aur_id" />
+                <ScalarProperty Name="ctr_concentrationLevels" ColumnName="ctr_concentrationLevels" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eht_EmotionLogThought">
+            <EntityTypeMapping TypeName="SleepMonitorModel.eht_EmotionLogThought">
+              <MappingFragment StoreEntitySet="eht_EmotionLogThought">
+                <ScalarProperty Name="eth_order" ColumnName="eth_order" />
+                <ScalarProperty Name="eth_eml_ID" ColumnName="eth_eml_ID" />
+                <ScalarProperty Name="eth_Thought" ColumnName="eth_Thought" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eml_EmotionLog">
+            <EntityTypeMapping TypeName="SleepMonitorModel.eml_EmotionLog">
+              <MappingFragment StoreEntitySet="eml_EmotionLog">
+                <ScalarProperty Name="eml_ID" ColumnName="eml_ID" />
+                <ScalarProperty Name="eml_logTime" ColumnName="eml_logTime" />
+                <ScalarProperty Name="eml_aur_id" ColumnName="eml_aur_id" />
+                <ScalarProperty Name="eml_pre_id" ColumnName="eml_pre_id" />
+                <ScalarProperty Name="eml_intensity" ColumnName="eml_intensity" />
+                <ScalarProperty Name="eml_trigger" ColumnName="eml_trigger" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="emt_Emotions">
+            <EntityTypeMapping TypeName="SleepMonitorModel.emt_Emotions">
+              <MappingFragment StoreEntitySet="emt_Emotions">
+                <ScalarProperty Name="emt_order" ColumnName="emt_order" />
+                <ScalarProperty Name="emt_pre_id" ColumnName="emt_pre_id" />
+                <ScalarProperty Name="emt_chn_id" ColumnName="emt_chn_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="exi_ExerciseIntensity">
+            <EntityTypeMapping TypeName="SleepMonitorModel.exi_ExerciseIntensity">
+              <MappingFragment StoreEntitySet="exi_ExerciseIntensity">
+                <ScalarProperty Name="exi_id" ColumnName="exi_id" />
+                <ScalarProperty Name="exi_intensity" ColumnName="exi_intensity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="exr_Exercise">
+            <EntityTypeMapping TypeName="SleepMonitorModel.exr_Exercise">
+              <MappingFragment StoreEntitySet="exr_Exercise">
+                <ScalarProperty Name="exr_ID" ColumnName="exr_ID" />
+                <ScalarProperty Name="exr_aur_id" ColumnName="exr_aur_id" />
+                <ScalarProperty Name="exr_exi_ID" ColumnName="exr_exi_ID" />
+                <ScalarProperty Name="exr_start" ColumnName="exr_start" />
+                <ScalarProperty Name="exr_end" ColumnName="exr_end" />
+                <ScalarProperty Name="exr_ext_id" ColumnName="exr_ext_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ext_ExerciseTypes">
+            <EntityTypeMapping TypeName="SleepMonitorModel.ext_ExerciseTypes">
+              <MappingFragment StoreEntitySet="ext_ExerciseTypes">
+                <ScalarProperty Name="ext_ID" ColumnName="ext_ID" />
+                <ScalarProperty Name="ext_exi_intensity" ColumnName="ext_exi_intensity" />
+                <ScalarProperty Name="ext_calories_per_hour" ColumnName="ext_calories_per_hour" />
+                <ScalarProperty Name="ext_name" ColumnName="ext_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ftg_FatigueLevels">
+            <EntityTypeMapping TypeName="SleepMonitorModel.ftg_FatigueLevels">
+              <MappingFragment StoreEntitySet="ftg_FatigueLevels">
+                <ScalarProperty Name="ftg_ID" ColumnName="ftg_ID" />
+                <ScalarProperty Name="ftg_level" ColumnName="ftg_level" />
+                <ScalarProperty Name="ftg_logTime" ColumnName="ftg_logTime" />
+                <ScalarProperty Name="ftg_aur_id" ColumnName="ftg_aur_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gft_GoalsForTomorrow">
+            <EntityTypeMapping TypeName="SleepMonitorModel.gft_GoalsForTomorrow">
+              <MappingFragment StoreEntitySet="gft_GoalsForTomorrow">
+                <ScalarProperty Name="gft_order" ColumnName="gft_order" />
+                <ScalarProperty Name="gft_chn_id" ColumnName="gft_chn_id" />
+                <ScalarProperty Name="gft_Goal" ColumnName="gft_Goal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gsr_GlobalSuggestions">
+            <EntityTypeMapping TypeName="SleepMonitorModel.gsr_GlobalSuggestions">
+              <MappingFragment StoreEntitySet="gsr_GlobalSuggestions">
+                <ScalarProperty Name="gsr_id" ColumnName="gsr_id" />
+                <ScalarProperty Name="gsr_RewardName" ColumnName="gsr_RewardName" />
+                <ScalarProperty Name="gsr_CheckMarksNeeded" ColumnName="gsr_CheckMarksNeeded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="imc_ImmediateConsequences">
+            <EntityTypeMapping TypeName="SleepMonitorModel.imc_ImmediateConsequences">
+              <MappingFragment StoreEntitySet="imc_ImmediateConsequences">
+                <ScalarProperty Name="imc_order" ColumnName="imc_order" />
+                <ScalarProperty Name="imc_chn_id" ColumnName="imc_chn_id" />
+                <ScalarProperty Name="imc_Consequence" ColumnName="imc_Consequence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ltc_LongTermConsequences">
+            <EntityTypeMapping TypeName="SleepMonitorModel.ltc_LongTermConsequences">
+              <MappingFragment StoreEntitySet="ltc_LongTermConsequences">
+                <ScalarProperty Name="ltc_order" ColumnName="ltc_order" />
+                <ScalarProperty Name="ltc_chn_id" ColumnName="ltc_chn_id" />
+                <ScalarProperty Name="ltc_Consequence" ColumnName="ltc_Consequence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ltg_LongTermGoal">
+            <EntityTypeMapping TypeName="SleepMonitorModel.ltg_LongTermGoal">
+              <MappingFragment StoreEntitySet="ltg_LongTermGoal">
+                <ScalarProperty Name="ltg_order" ColumnName="ltg_order" />
+                <ScalarProperty Name="ltg_chn_id" ColumnName="ltg_chn_id" />
+                <ScalarProperty Name="ltg_Goal" ColumnName="ltg_Goal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prd_Product">
+            <EntityTypeMapping TypeName="SleepMonitorModel.prd_Product">
+              <MappingFragment StoreEntitySet="prd_Product">
+                <ScalarProperty Name="prd_ID" ColumnName="prd_ID" />
+                <ScalarProperty Name="prd_Name" ColumnName="prd_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pre_PredefinedEmotion">
+            <EntityTypeMapping TypeName="SleepMonitorModel.pre_PredefinedEmotion">
+              <MappingFragment StoreEntitySet="pre_PredefinedEmotion">
+                <ScalarProperty Name="pre_ID" ColumnName="pre_ID" />
+                <ScalarProperty Name="pre_Emotion" ColumnName="pre_Emotion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rwd_Rewards">
+            <EntityTypeMapping TypeName="SleepMonitorModel.rwd_Rewards">
+              <MappingFragment StoreEntitySet="rwd_Rewards">
+                <ScalarProperty Name="rwd_aur_id" ColumnName="rwd_aur_id" />
+                <ScalarProperty Name="rwd_RewardName" ColumnName="rwd_RewardName" />
+                <ScalarProperty Name="rwd_gsr_id" ColumnName="rwd_gsr_id" />
+                <ScalarProperty Name="rwd_NumCheckMarksRequired" ColumnName="rwd_NumCheckMarksRequired" />
+                <ScalarProperty Name="rwd_ID" ColumnName="rwd_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="slp_SleepLog">
+            <EntityTypeMapping TypeName="SleepMonitorModel.slp_SleepLog">
+              <MappingFragment StoreEntitySet="slp_SleepLog">
+                <ScalarProperty Name="slp_ID" ColumnName="slp_ID" />
+                <ScalarProperty Name="slp_aur_id" ColumnName="slp_aur_id" />
+                <ScalarProperty Name="slp_date" ColumnName="slp_date" />
+                <ScalarProperty Name="slp_TimeToSleepUserLogged" ColumnName="slp_TimeToSleepUserLogged" />
+                <ScalarProperty Name="slp_TimeToBed" ColumnName="slp_TimeToBed" />
+                <ScalarProperty Name="slp_SleepQuality" ColumnName="slp_SleepQuality" />
+                <ScalarProperty Name="slp_FatigueLevel" ColumnName="slp_FatigueLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stg_ShortTermGoals">
+            <EntityTypeMapping TypeName="SleepMonitorModel.stg_ShortTermGoals">
+              <MappingFragment StoreEntitySet="stg_ShortTermGoals">
+                <ScalarProperty Name="stg_order" ColumnName="stg_order" />
+                <ScalarProperty Name="stg_chn_id" ColumnName="stg_chn_id" />
+                <ScalarProperty Name="stg_Goal" ColumnName="stg_Goal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SleepMonitorModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tht_Thought">
+            <EntityTypeMapping TypeName="SleepMonitorModel.tht_Thought">
+              <MappingFragment StoreEntitySet="tht_Thought">
+                <ScalarProperty Name="tht_order" ColumnName="tht_order" />
+                <ScalarProperty Name="tht_chn_ID" ColumnName="tht_chn_ID" />
+                <ScalarProperty Name="tht_Thought1" ColumnName="tht_Thought" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vul_Vulnerability">
+            <EntityTypeMapping TypeName="SleepMonitorModel.vul_Vulnerability">
+              <MappingFragment StoreEntitySet="vul_Vulnerability">
+                <ScalarProperty Name="vul_order" ColumnName="vul_order" />
+                <ScalarProperty Name="vul_chn_id" ColumnName="vul_chn_id" />
+                <ScalarProperty Name="vul_Vulnerability1" ColumnName="vul_Vulnerability" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wtp_WaysToPrevent">
+            <EntityTypeMapping TypeName="SleepMonitorModel.wtp_WaysToPrevent">
+              <MappingFragment StoreEntitySet="wtp_WaysToPrevent">
+                <ScalarProperty Name="wtp_order" ColumnName="wtp_order" />
+                <ScalarProperty Name="wtp_chn_id" ColumnName="wtp_chn_id" />
+                <ScalarProperty Name="wtp_WayToPrevent" ColumnName="wtp_WayToPrevent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SleepMonitorModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
