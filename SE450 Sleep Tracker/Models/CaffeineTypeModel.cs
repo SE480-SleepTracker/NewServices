@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using SE450Database;
-using System.Configuration;
 
 namespace SE450_Sleep_Tracker.Models
 {
@@ -31,14 +30,12 @@ namespace SE450_Sleep_Tracker.Models
 
         public CaffeineTypeModel(int id)
         {
-
             Cft_CaffeineType item;
 
             // I'm cheating on product because I'm lazy
             Prd_Product product;
 
-            string connectionString = ConfigurationManager.ConnectionStrings["LinqConnection"].ConnectionString;
-            using (var db = new SleepMonitor(connectionString))
+            using (var db = DataCurator.GetConnection())
             {
                 item = db.Cft_CaffeineType.FirstOrDefault(lg => lg.Cft_id == id);
 
