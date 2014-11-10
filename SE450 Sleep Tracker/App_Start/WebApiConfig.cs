@@ -5,6 +5,9 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.OData.Builder;
+using System.Web.Http.OData.Extensions;
+using SE450_Sleep_Tracker.Models;
 
 namespace SE450_Sleep_Tracker
 {
@@ -27,6 +30,13 @@ namespace SE450_Sleep_Tracker
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+            builder.EntitySet<CaffeineLogModel>("CaffeineLogModels");
+            builder.EntitySet<ExerciseLogModel>("ExerciseLogModels");
+            builder.EntitySet<EmotionLogModel>("EmotionLogModels");
+            builder.EntitySet<PredefinedEmotionModel>("PredefinedEmotionModels");
+            config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
         }
     }
 }
