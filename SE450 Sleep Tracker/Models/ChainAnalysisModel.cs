@@ -5,6 +5,8 @@ using System.Web;
 using SE450Database;
 using System.Threading;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SE450_Sleep_Tracker.Models
 {
@@ -45,6 +47,7 @@ namespace SE450_Sleep_Tracker.Models
         }
 
         #region Chain Analysis Object
+        [Key]
         public int ID
         {
             get;

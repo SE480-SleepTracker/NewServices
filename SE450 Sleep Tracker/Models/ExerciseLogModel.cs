@@ -4,14 +4,18 @@ using System.Linq;
 using System.Web;
 using SE450Database;
 using System.Configuration;
-using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SE450_Sleep_Tracker.Models
 {
+    [Table("Exr_Exercise")]
     public class ExerciseLogModel
     {
+        [Key]
         public int ID { get; set; }
 
+        //[System.ComponentModel.DataAnnotations.Schema.ForeignKey()]
         public string UserID { get; set; }
 
         public ExerciseTypeModel Type { get; set; }
@@ -21,6 +25,8 @@ namespace SE450_Sleep_Tracker.Models
         public DateTime Start { get; set; }
 
         public DateTime End { get; set; }
+
+        public ExerciseLogModel() { }
 
         public ExerciseLogModel(Exr_Exercise exercise)
         {
