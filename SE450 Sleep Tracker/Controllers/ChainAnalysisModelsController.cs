@@ -59,8 +59,19 @@ namespace SE450_Sleep_Tracker.Controllers
                 return BadRequest(ex.Message);
             }
 
-            // return Ok<IEnumerable<ChainAnalysisModel>>(chainAnalysisModels);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            IQueryable result;
+
+            using (var db = new SleepMonitor(connectionString))
+            {
+                result = queryOptions.ApplyTo(db.Slp_SleepLog.AsQueryable());
+            }
+
+            var toReturn = result as IEnumerable<ChainAnalysisModel>;
+
+            if (toReturn == null)
+                return NotFound();
+            else
+                return Json(toReturn);
         }
 
         // GET: odata/ChainAnalysisModels(5)

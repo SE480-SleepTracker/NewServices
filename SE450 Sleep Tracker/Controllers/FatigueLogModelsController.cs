@@ -41,8 +41,8 @@ namespace SE450_Sleep_Tracker.Controllers
         /// <summary>
         /// Get the fatigue levels for a user
         /// </summary>
-        /// <param name="userID"></param>
-        /// <returns></returns>
+        /// <param name="userID">ID of the user we are getting the log for</param>
+        /// <returns>JSON list</returns>
         [HttpGet]
         public IHttpActionResult GetFatigueLogModels([FromODataUri] string userID)
         {
@@ -66,8 +66,9 @@ namespace SE450_Sleep_Tracker.Controllers
         /// Gefatigue levels for a uder by date
         /// </summary>
         /// <param name="userID">ID of the user. From URL.</param>
-        /// <param name="date">Log date. From URL.</param>
+        /// <param name="date">Log date. Note that the time component will be ignored. From URL.</param>
         /// <returns></returns>
+        [HttpGet]
         public IHttpActionResult GetFatigueLogModels([FromODataUri] string userID, [FromODataUri] DateTime date)
         {
             List<FatigueLogModel> list;
@@ -86,7 +87,6 @@ namespace SE450_Sleep_Tracker.Controllers
                 return Json(list);
             else
                 return NotFound();
-
         }
 
         // GET: odata/FatigueLogModels
@@ -103,8 +103,21 @@ namespace SE450_Sleep_Tracker.Controllers
                 return BadRequest(ex.Message);
             }
 
-            // return Ok<IEnumerable<FatigueLogModel>>(fatigueLogModels);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            IQueryable result;
+            using (var db = new SleepMonitor(connectionString))
+            {
+                result = queryOptions.ApplyTo(db.Ftg_FatigueLevels.AsQueryable());
+            }
+
+            var toReturn = result as IEnumerable<Ftg_FatigueLevels>;
+
+            if (toReturn == null)
+                return NotFound();
+            else
+            {
+                var converted = toReturn.Select(ftg => new FatigueLogModel(ftg));
+                return Json(converted);
+            }
         }
 
 
@@ -115,15 +128,13 @@ namespace SE450_Sleep_Tracker.Controllers
         {
             // TODO validate the query/user
 
+            Ftg_FatigueLevels item;
             using (var db = new SleepMonitor(connectionString))
             {
-                var item = db.Ftg_FatigueLevels.FirstOrDefault(log => log.Ftg_ID == key);
-
-                return Json(new FatigueLogModel(item));
+                item = db.Ftg_FatigueLevels.FirstOrDefault(log => log.Ftg_ID == key);
             }
 
-            // return Ok<FatigueLogModel>(fatigueLogModel);
-            return BadRequest("Unknown error");
+            return Json(new FatigueLogModel(item));
         }
 
         // PUT: odata/FatigueLogModels(5)

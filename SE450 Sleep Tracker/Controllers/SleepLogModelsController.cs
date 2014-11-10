@@ -53,6 +53,23 @@ namespace SE450_Sleep_Tracker.Controllers
                 return BadRequest(ex.Message);
             }
 
+            IQueryable results;
+            using (var db = new SleepMonitor(connectionString))
+            {
+                results = queryOptions.ApplyTo(db.Slp_SleepLog.AsQueryable());
+            }
+
+            var toReturn = results as IEnumerable<Slp_SleepLog>;
+
+            if (toReturn == null)
+                return NotFound();
+            else
+            {
+                var converted = toReturn.Select(slp => new SleepLogModel(slp));
+
+                return Json(converted);
+            }
+
             // return Ok<IEnumerable<SleepLogModel>>(sleepLogModels);
             return StatusCode(HttpStatusCode.NotImplemented);
         }
