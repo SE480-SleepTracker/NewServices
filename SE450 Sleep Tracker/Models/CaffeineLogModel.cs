@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using SE450Database;
-using System.Configuration;
 
 namespace SE450_Sleep_Tracker.Models
 {
@@ -31,12 +30,15 @@ namespace SE450_Sleep_Tracker.Models
 
         public CaffeineLogModel(int id)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["LinqConnection"].ConnectionString;
-            using (var db = new SleepMonitor(connectionString))
+            using (var db = DataCurator.GetConnection())
             {
                 var log = db.Cfn_CaffeineConsumption.FirstOrDefault(lg => lg.Cfn_ID == id);
 
-                // TODO finish
+                ID = log.Cfn_ID;
+                LogDateTime = log.Cfn_DateTime;
+                UserID = log.Cfn_aur_id;
+                CaffeineType = new CaffeineTypeModel(log.Cfn_cft_ID); // TODO: really should put it on the same one
+                NumberConsumed = log.Cfn_number;
             }
 
         }
