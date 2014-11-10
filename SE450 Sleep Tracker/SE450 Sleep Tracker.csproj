@@ -231,6 +231,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CaffeineLogModelsController.cs" />
     <Compile Include="Controllers\ChainAnalysisModelsController.cs" />
+    <Compile Include="Controllers\EmotionLogModelsController.cs" />
     <Compile Include="Controllers\ExerciseLogModelsController.cs" />
     <Compile Include="Controllers\FatigueLogModelsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ManualContext.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CaffeineLogModel.cs" />
@@ -251,6 +253,8 @@
     <Compile Include="Models\ExerciseTypeModel.cs" />
     <Compile Include="Models\FatigueLogModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\NighttimeAwakeningsModel.cs" />
+    <Compile Include="Models\PredefinedEmotionModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\SleepLogModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -336,6 +340,9 @@
       <Project>{13e3d8ce-ef46-4976-8d78-c801392623ad}</Project>
       <Name>SE450Database</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
