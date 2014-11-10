@@ -182,8 +182,7 @@ namespace SE450_Sleep_Tracker.Controllers
                 db.SubmitChanges();
             }
 
-            // return Created(chainAnalysisModel);
-            return Created(dbObj);
+            return Created(chainAnalysisModel);
         }
 
         // PATCH: odata/ChainAnalysisModels(5)

@@ -11,7 +11,7 @@ using System.Web.Http.OData.Query;
 using System.Web.Http.OData.Routing;
 using SE450_Sleep_Tracker.Models;
 using Microsoft.Data.OData;
-using System.Configuration;
+//using System.Configuration;
 using SE450Database;
 
 namespace SE450_Sleep_Tracker.Controllers
@@ -29,17 +29,19 @@ namespace SE450_Sleep_Tracker.Controllers
     public class ExerciseLogModelsController : ODataController
     {
         private static ODataValidationSettings _validationSettings = new ODataValidationSettings();
+        private ManualContext context = new ManualContext();
 
-        private readonly string connectionString;
+        /*private readonly string connectionString;
 
         public ExerciseLogModelsController()
         {
             connectionString = ConfigurationManager.ConnectionStrings["LinqConnection"].ConnectionString;
-        }
+        }*/
 
         // GET: odata/ExerciseLogModels
         public IHttpActionResult GetExerciseLogModels(ODataQueryOptions<ExerciseLogModel> queryOptions)
         {
+            // TODO: this'll work if we switch to EF
             // validate the query.
             try
             {
@@ -51,9 +53,9 @@ namespace SE450_Sleep_Tracker.Controllers
             }
 
             IQueryable result;
-            using (var db = new SleepMonitor(connectionString))
+            using (var db = DataCurator.GetConnection())
             {
-                result = queryOptions.ApplyTo(db.Exr_Exercise.AsQueryable());
+                result = queryOptions.ApplyTo(context.ExerciseLogs.AsQueryable());
             }
 
             var toReturn = result as IEnumerable<Exr_Exercise>;
@@ -72,7 +74,7 @@ namespace SE450_Sleep_Tracker.Controllers
         public IHttpActionResult GetExerciseLogModel([FromODataUri] int key)
         {
             Exr_Exercise exercise;
-            using (var db = new SleepMonitor(connectionString))
+            using (var db = DataCurator.GetConnection())
             {
                 exercise = db.Exr_Exercise.FirstOrDefault(ex => ex.Exr_ID == key);
             }
@@ -93,6 +95,15 @@ namespace SE450_Sleep_Tracker.Controllers
                 return BadRequest(ModelState);
             }
 
+            using (var db = DataCurator.GetConnection())
+            {
+                var result = db.Exr_Exercise.FirstOrDefault(exr => exr.Exr_ID == key);
+
+                result = delta.ToDbObject();
+
+                db.SubmitChanges();
+            }
+
             // TODO: Get the entity here.
 
             // delta.Put(exerciseLogModel);
@@ -104,7 +115,7 @@ namespace SE450_Sleep_Tracker.Controllers
         }
 
         // POST: odata/ExerciseLogModels
-        public IHttpActionResult Post(ExerciseLogModel exerciseLogModel)
+        public IHttpActionResult Post([FromBody] ExerciseLogModel exerciseLogModel)
         {
             if (!ModelState.IsValid)
             {
@@ -117,8 +128,6 @@ namespace SE450_Sleep_Tracker.Controllers
 
                 db.SubmitChanges();
             }
-
-            // TODO: Add create logic here.
 
             return Created(exerciseLogModel);
         }
@@ -134,6 +143,11 @@ namespace SE450_Sleep_Tracker.Controllers
                 return BadRequest(ModelState);
             }
 
+            var entity = delta.GetEntity();
+
+            delta.Patch(entity);
+
+
             // TODO: Get the entity here.
 
             // delta.Patch(exerciseLogModel);
@@ -147,6 +161,8 @@ namespace SE450_Sleep_Tracker.Controllers
         // DELETE: odata/ExerciseLogModels(5)
         public IHttpActionResult Delete([FromODataUri] int key)
         {
+
+
             // TODO: Add delete logic here.
 
             // return StatusCode(HttpStatusCode.NoContent);
