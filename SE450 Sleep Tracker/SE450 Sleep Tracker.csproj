@@ -236,7 +236,6 @@
     <Compile Include="Controllers\ExerciseLogModelsController.cs" />
     <Compile Include="Controllers\FatigueLogModelsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NighttimeAwakeningsModelsController.cs" />
     <Compile Include="Controllers\SleepLogModelsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
