@@ -2,7 +2,7 @@
 <#@ include file="EF6.Utility.CS.ttinclude"#><#@ 
  output extension=".cs"#><#
 
-const string inputFile = @"Framework.edmx";
+const string inputFile = @"E:\My Documents\Visual Studio 2013\Projects\SE450 Sleep Tracker\SE450Database\Framework.edmx";
 var textTransform = DynamicTextTransformation.Create(this);
 var code = new CodeGenerationTools(this);
 var ef = new MetadataTools(this);
