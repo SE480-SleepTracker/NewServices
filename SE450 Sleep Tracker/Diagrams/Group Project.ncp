@@ -1,0 +1,981 @@
+<Project>
+  <Name>Group Project</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Chain Analysis</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>chn_ChainAnalysis</Name>
+        <Access>Public</Access>
+        <Location left="778" top="85" />
+        <Size width="329" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int ID { get; set; }</Member>
+        <Member type="Property">public DateTime DateAndTime { get; set; }</Member>
+        <Member type="Property">public int chn_ProblemBehavior { get; set; }</Member>
+        <Member type="Property">public int chn_usr_ID { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>usr_User</Name>
+        <Access>Public</Access>
+        <Location left="335" top="66" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int ID { get; set; }</Member>
+        <Member type="Property">public string FirstName { get; set; }</Member>
+        <Member type="Property">public string LastName { get; set; }</Member>
+        <Member type="Property">public string Email { get; set; }</Member>
+        <Member type="Property">public string CellPhone { get; set; }</Member>
+        <Member type="Property">public string HomePhone { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>bhv_Behavior</Name>
+        <Access>Public</Access>
+        <Location left="601" top="449" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int chn_ID { get; set; }</Member>
+        <Member type="Property">public int Order { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>vul_Vulerabilities</Name>
+        <Access>Public</Access>
+        <Location left="833" top="449" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ltc_LongTermConsequences</Name>
+        <Access>Public</Access>
+        <Location left="1056" top="449" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int ltc_ID { get; set; }</Member>
+        <Member type="Property">public string ltc_Consequence { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>imc_ImmediateConsequences</Name>
+        <Access>Public</Access>
+        <Location left="1247" top="453" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int imc_ID { get; set; }</Member>
+        <Member type="Property">public int ltc_chn_ID { get; set; }</Member>
+        <Member type="Property">public int NewProperty { get; set; }</Member>
+        <Member type="Property">public string imc_Consequence { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>wtp_WaysToPrevent</Name>
+        <Access>Public</Access>
+        <Location left="1455" top="449" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ltg_LongTermGoals</Name>
+        <Access>Public</Access>
+        <Location left="1670" top="453" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>stg_ShortTermGoals</Name>
+        <Access>Public</Access>
+        <Location left="1865" top="449" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int stg_ID { get; set; }</Member>
+        <Member type="Property">public string stg_Goal { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>gft_GoalsForTomorrow</Name>
+        <Access>Public</Access>
+        <Location left="2060" top="453" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public string gft_Goal { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>tht_Thoughts</Name>
+        <Access>Public</Access>
+        <Location left="1421" top="74" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int tht_ID { get; set; }</Member>
+        <Member type="Property">public string tht_Thought { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>emt_Emotions</Name>
+        <Access>Public</Access>
+        <Location left="1650" top="74" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int emt_ID { get; set; }</Member>
+        <Member type="Property">public int emt_chn_ID { get; set; }</Member>
+        <Member type="Property">public string emt_Emotion { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text> A user can have any number of chain analysis, including several on the same day.</Text>
+        <Location left="571" top="17" />
+        <Size width="160" height="75" />
+      </Entity>
+      <Entity type="Comment">
+        <Text>All of the children are either mandatory (1 or more) or optional (0 or more). In either case, there can be multiple copies.</Text>
+        <Location left="1186" top="40" />
+        <Size width="170" height="106" />
+      </Entity>
+      <Entity type="Comment">
+        <Text>Even if not explicitly stated, each has an order, a relationship with its parent (the chain analysis), and the string in question.</Text>
+        <Location left="833" top="758" />
+        <Size width="225" height="113" />
+      </Entity>
+      <Entity type="Class">
+        <Name>pre_PredefinedEmotions</Name>
+        <Access>Public</Access>
+        <Location left="1868" top="73" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>I thought about combining these and using a GoalType enum equivalent as a primary key to distinguish between them but I thought that it would unnecessarily complicate the design (even if it would save tables)</Text>
+        <Location left="1775" top="745" />
+        <Size width="272" height="145" />
+      </Entity>
+      <Entity type="Comment">
+        <Text>The combination of the order and chain ID is a primary key</Text>
+        <Location left="393" top="758" />
+        <Size width="160" height="75" />
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="1" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>548</X>
+          <Y>133</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>734</X>
+          <Y>133</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>801</X>
+          <Y>334</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>904</X>
+          <Y>326</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>904</X>
+          <Y>422</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1061</X>
+          <Y>355</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="5">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1156</X>
+          <Y>165</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="10">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="11">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1132</X>
+          <Y>239</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1631</X>
+          <Y>317</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="7">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1001</X>
+          <Y>351</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>860</X>
+          <Y>411</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1903</X>
+          <Y>424</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="9">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1089</X>
+          <Y>331</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Comment" first="12" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="13" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="14" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="14" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="14" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="14" second="5">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="14" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="14" second="7">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="14" second="11">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1239</X>
+          <Y>851</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1650</X>
+          <Y>322</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Comment" first="14" second="10">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1306</X>
+          <Y>810</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1441</X>
+          <Y>317</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="11" second="15">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Comment" first="16" second="7">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1787</X>
+          <Y>695</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Comment" first="16" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="16" second="9">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="17" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>448</X>
+          <Y>720</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>613</X>
+          <Y>690</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Comment" first="17" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>868</X>
+          <Y>723</Y>
+        </BendPoint>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Web Services</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Structure">
+        <Name>UserWS</Name>
+        <Access>Public</Access>
+        <Location left="53" top="455" />
+        <Size width="752" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public bool ValidateLogin(String username, String password)</Member>
+        <Member type="Method">public void CreateNewUser(String username, String password, String firstName, String lastName)</Member>
+        <Member type="Method">public void ChangePassword(String username, String oldPassword, String newPassword)</Member>
+      </Entity>
+      <Entity type="Structure">
+        <Name>ChainAnalysis</Name>
+        <Access>Public</Access>
+        <Location left="890" top="455" />
+        <Size width="225" height="216" />
+        <Collapsed>False</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>ch_ChainAnalysis</Name>
+        <Access>Public</Access>
+        <Location left="890" top="80" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>Database table. See separate UML table for info on this.</Text>
+        <Location left="584" top="297" />
+        <Size width="160" height="75" />
+      </Entity>
+      <Entity type="Class">
+        <Name>usr_User</Name>
+        <Access>Public</Access>
+        <Location left="242" top="42" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Structure">
+        <Name>AndroidLoginPage</Name>
+        <Access>Public</Access>
+        <Location left="70" top="844" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+      </Entity>
+      <Entity type="Structure">
+        <Name>AndroidCreateNewUser</Name>
+        <Access>Public</Access>
+        <Location left="273" top="844" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+      </Entity>
+      <Entity type="Structure">
+        <Name>WebUICreateNewUser</Name>
+        <Access>Public</Access>
+        <Location left="521" top="847" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+      </Entity>
+      <Entity type="Comment">
+        <Text>Etc. We need to create use cases for this, but this web service will be used by all UIs to do all account maintenance.</Text>
+        <Location left="556" top="1174" />
+        <Size width="160" height="99" />
+      </Entity>
+      <Entity type="Structure">
+        <Name>RewardsWS</Name>
+        <Access>Public</Access>
+        <Location left="1244" top="455" />
+        <Size width="392" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public List&lt;String&gt; GlobalRewards { get; set; }</Member>
+        <Member type="Method">public void UseGlobalReward(int userID)</Member>
+        <Member type="Method">public void GetCustomRewards(int userID)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>rwd_Rewards</Name>
+        <Access>Public</Access>
+        <Location left="1244" top="91" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Structure">
+        <Name>AnalyticsWS</Name>
+        <Access>Public</Access>
+        <Location left="1742" top="455" />
+        <Size width="273" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public float CorrelationSleepAndCaffeineIntake()</Member>
+        <Member type="Method">public float GoodnessOfSleepHygeineScore()</Member>
+        <Member type="Method">public float SleepTimeAndQualityCorrelation()</Member>
+      </Entity>
+      <Entity type="Comment">
+        <Text>Not sure if these'll be the final methods.
+
+I'm actually not entirely happy about this design - it would require us to add a separate method for each new analytic.
+
+Obviously recompilation, updating, and publishing are no big deal since we control the server that they're sitting on, but this could clutter the API and add work for maintenance.
+
+On the other hand, the benefit here is that we want thin clients; this'll enable us to meet that design goal.
+
+Anyone have suggestions on another design here?</Text>
+        <Location left="2113" top="455" />
+        <Size width="274" height="241" />
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Comment" first="3" second="2">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>924</X>
+          <Y>321</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="1" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="0" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="3" second="4">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="5" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="6" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="7" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="4" second="2">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>433</X>
+          <Y>214</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Comment" first="3" second="10">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1272</X>
+          <Y>350</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="9" second="10">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="10" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1213</X>
+          <Y>58</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Comment" first="8" second="7">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>619</X>
+          <Y>1135</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>619</X>
+          <Y>1105</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Comment" first="8" second="6">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>470</X>
+          <Y>1213</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Comment" first="12" second="11">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="11" second="10">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="11" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="4" second="11">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>288</X>
+          <Y>283</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1795</X>
+          <Y>430</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Rewards System</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>usr_User</Name>
+        <Access>Public</Access>
+        <Location left="119" top="41" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>rwd_Rewards</Name>
+        <Access>Public</Access>
+        <Location left="504" top="41" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int rwd_usr_id { get; set; }</Member>
+        <Member type="Property">public String rwd_RewardName { get; set; }</Member>
+        <Member type="Property">public int rwd_gsr_id { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>gsr_GlobalSuggestedRewards</Name>
+        <Access>Public</Access>
+        <Location left="861" top="41" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>chk_CheckMarks</Name>
+        <Access>Public</Access>
+        <Location left="504" top="369" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int chk_rwd_ID { get; set; }</Member>
+        <Member type="Property">public int chk_usr_id { get; set; }</Member>
+        <Member type="Property">public int chk_CurrentCount { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>I might just integrate this into the usr_User table, I haven't thought of any columns that this would contain besides the current number check marks. On the one hand it seems a little architecturally inappropriate to include this in the usr_User table but on the other hand it seems like having a separate table just for one column would be a waste of DB space and just create unnecessary joins.</Text>
+        <Location left="164" top="431" />
+        <Size width="249" height="137" />
+      </Entity>
+      <Entity type="Comment">
+        <Text>This has suggested rewards. The idea is that users can either create their own custom rewards or just use one of our suggested rewards.</Text>
+        <Location left="1194" top="94" />
+        <Size width="313" height="59" />
+      </Entity>
+      <Entity type="Comment">
+        <Text>A reward may be, for example, "10 check marks = 1 concert ticket" (i.e. the user will allow themselves to purchase a concert ticket after getting 10 check marks as a reward)</Text>
+        <Location left="777" top="353" />
+        <Size width="462" height="101" />
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="0" second="1">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="1" second="2">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>541</X>
+          <Y>343</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Comment" first="4" second="3">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="5" second="2">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="6" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="6" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>941</X>
+          <Y>327</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>941</X>
+          <Y>282</Y>
+        </BendPoint>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>External System</Name>
+    <Language>CSharp</Language>
+    <Entities />
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Analytics</Name>
+    <Language>CSharp</Language>
+    <Entities />
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Logging</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>usr_User</Name>
+        <Access>Public</Access>
+        <Location left="83" top="83" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>exr_Exercise</Name>
+        <Access>Public</Access>
+        <Location left="376" top="78" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ext_ExerciseTypes</Name>
+        <Access>Public</Access>
+        <Location left="704" top="10" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>cft_CaffeineTypes</Name>
+        <Access>Public</Access>
+        <Location left="718" top="353" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int src_ID { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>cfn_CaffeineConsumption</Name>
+        <Access>Public</Access>
+        <Location left="378" top="352" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>SleepTypes</Name>
+        <Access>Public</Access>
+        <Location left="679" top="604" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+      </Entity>
+      <Entity type="Class">
+        <Name>slp_SleepLog</Name>
+        <Access>Public</Access>
+        <Location left="107" top="404" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public Date Day { get; set; }</Member>
+        <Member type="Property">public int usr_ID { get; set; }</Member>
+        <Member type="Property">public short Quality { get; set; }</Member>
+        <Member type="Property">public DateTime TimeToSleep { get; set; }</Member>
+        <Member type="Property">public DateTime TimeToBed { get; set; }</Member>
+        <Member type="Property">public short Fatigue { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>prd_Product</Name>
+        <Access>Public</Access>
+        <Location left="971" top="353" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>exi_ExerciseIntensity</Name>
+        <Access>Public</Access>
+        <Location left="917" top="90" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>TimeToSleep, Fatigue, and Quality are all nullable because we might have a partial record - for example, users might start a log the night before and enter the time to bed, and then enter the time to sleep, quality, and fatigue the next morning.
+
+The fact that these will eventually be set will be enforced by the applications.
+
+TimeToSleep cannot be before TimeToBed.
+
+Fatigue and sleep quality must be between 1 and 10 (inclusive).</Text>
+        <Location left="45" top="670" />
+        <Size width="297" height="194" />
+      </Entity>
+      <Entity type="Class">
+        <Name>awk_NighttimeAwakenings</Name>
+        <Access>Public</Access>
+        <Location left="394" top="670" />
+        <Size width="230" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int ID { get; set; }</Member>
+        <Member type="Property">public int awk_slp_id { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="0" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>235</X>
+          <Y>326</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="1" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="4" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>140</X>
+          <Y>325</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="3" second="7">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <StartMultiplicity>1..*</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="2" second="8">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <StartMultiplicity>*</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="1" second="8">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>570</X>
+          <Y>250</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Comment" first="9" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="6" second="10">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>237</X>
+          <Y>645</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
