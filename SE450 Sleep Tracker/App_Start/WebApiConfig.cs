@@ -8,6 +8,7 @@ using Newtonsoft.Json.Serialization;
 using System.Web.Http.OData.Builder;
 using System.Web.Http.OData.Extensions;
 using SE450_Sleep_Tracker.Models;
+using System.Net.Http.Formatting;
 
 namespace SE450_Sleep_Tracker
 {
@@ -15,12 +16,10 @@ namespace SE450_Sleep_Tracker
     {
         public static void Register(HttpConfiguration config)
         {
-            config.EnableQuerySupport();
-
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
-            config.SuppressDefaultHostAuthentication();
-            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            //config.SuppressDefaultHostAuthentication();
+            //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -33,10 +32,23 @@ namespace SE450_Sleep_Tracker
 
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<CaffeineLogModel>("CaffeineLogModels");
+            builder.EntitySet<ChainAnalysisModel>("ChainAnalysisModels");
             builder.EntitySet<ExerciseLogModel>("ExerciseLogModels");
             builder.EntitySet<EmotionLogModel>("EmotionLogModels");
-            builder.EntitySet<PredefinedEmotionModel>("PredefinedEmotionModels");
-            config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
+            builder.EntitySet<ApplicationUser>("User");
+            builder.EntitySet<FatigueLogModel>("FatigueLog");
+            builder.EntitySet<SleepLogModel>("SleepLog");
+            builder.EntitySet<ProductModel>("Product");
+            builder.EntitySet<ExerciseIntensityModel>("ExerciseIntensityModels");
+            builder.EntitySet<ExerciseTypeModel>("ExerciseTypeModels");
+            builder.EntitySet<FatigueLogModel>("FatigueLogModels");
+            //builder.EntitySet<PredefinedEmotionModel>("PredefinedEmotionModels");
+            config.Routes.MapODataServiceRoute("ODataRoute", "odata", builder.GetEdmModel());
+
+            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            config.EnableQuerySupport();
         }
     }
 }
