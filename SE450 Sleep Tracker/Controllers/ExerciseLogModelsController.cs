@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
-using System.Web.Http.OData.Query;
 using System.Web.Http.OData.Routing;
 using SE450_Sleep_Tracker.Models;
-using Microsoft.Data.OData;
-//using System.Configuration;
-using SE450Database;
 
 namespace SE450_Sleep_Tracker.Controllers
 {
@@ -24,149 +22,158 @@ namespace SE450_Sleep_Tracker.Controllers
     using SE450_Sleep_Tracker.Models;
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
     builder.EntitySet<ExerciseLogModel>("ExerciseLogModels");
+    builder.EntitySet<ExerciseIntensityModel>("ExerciseIntensityModels"); 
+    builder.EntitySet<ExerciseTypeModel>("ExerciseTypeModels"); 
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
     public class ExerciseLogModelsController : ODataController
     {
-        private static ODataValidationSettings _validationSettings = new ODataValidationSettings();
-        private ManualContext context = new ManualContext();
-
-        /*private readonly string connectionString;
-
-        public ExerciseLogModelsController()
-        {
-            connectionString = ConfigurationManager.ConnectionStrings["LinqConnection"].ConnectionString;
-        }*/
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: odata/ExerciseLogModels
-        public IHttpActionResult GetExerciseLogModels(ODataQueryOptions<ExerciseLogModel> queryOptions)
+        [EnableQuery]
+        public IQueryable<ExerciseLogModel> GetExerciseLogModels()
         {
-            // TODO: this'll work if we switch to EF
-            // validate the query.
-            try
-            {
-                queryOptions.Validate(_validationSettings);
-            }
-            catch (ODataException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-            IQueryable result;
-            using (var db = DataCurator.GetConnection())
-            {
-                result = queryOptions.ApplyTo(context.ExerciseLogs.AsQueryable());
-            }
-
-            var toReturn = result as IEnumerable<Exr_Exercise>;
-
-            if (toReturn == null)
-                return NotFound();
-            else
-            {
-                var converted = toReturn.Select(ret => new ExerciseLogModel(ret));
-
-                return Json(converted);
-            }
+            return db.ExerciseLogModels;
         }
 
         // GET: odata/ExerciseLogModels(5)
-        public IHttpActionResult GetExerciseLogModel([FromODataUri] int key)
+        [EnableQuery]
+        public SingleResult<ExerciseLogModel> GetExerciseLogModel([FromODataUri] int key)
         {
-            Exr_Exercise exercise;
-            using (var db = DataCurator.GetConnection())
-            {
-                exercise = db.Exr_Exercise.FirstOrDefault(ex => ex.Exr_ID == key);
-            }
-
-            if (exercise == null)
-                return NotFound();
-            else
-                return Json(new ExerciseLogModel(exercise));
+            return SingleResult.Create(db.ExerciseLogModels.Where(exerciseLogModel => exerciseLogModel.ID == key));
         }
 
         // PUT: odata/ExerciseLogModels(5)
-        public IHttpActionResult Put([FromODataUri] int key, [FromBody] ExerciseLogModel delta)
+        public IHttpActionResult Put([FromODataUri] int key, Delta<ExerciseLogModel> patch)
         {
-            //Validate(delta.GetEntity());
+            Validate(patch.GetEntity());
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            using (var db = DataCurator.GetConnection())
+            ExerciseLogModel exerciseLogModel = db.ExerciseLogModels.Find(key);
+            if (exerciseLogModel == null)
             {
-                var result = db.Exr_Exercise.FirstOrDefault(exr => exr.Exr_ID == key);
-
-                result = delta.ToDbObject();
-
-                db.SubmitChanges();
+                return NotFound();
             }
 
-            // TODO: Get the entity here.
+            patch.Put(exerciseLogModel);
 
-            // delta.Put(exerciseLogModel);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ExerciseLogModelExists(key))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            // TODO: Save the patched entity.
-
-            // return Updated(exerciseLogModel);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            return Updated(exerciseLogModel);
         }
 
         // POST: odata/ExerciseLogModels
-        public IHttpActionResult Post([FromBody] ExerciseLogModel exerciseLogModel)
+        public IHttpActionResult Post(ExerciseLogModel exerciseLogModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            using (var db = DataCurator.GetConnection())
-            {
-                db.Exr_Exercise.InsertOnSubmit(exerciseLogModel.ToDbObject());
-
-                db.SubmitChanges();
-            }
+            db.ExerciseLogModels.Add(exerciseLogModel);
+            db.SaveChanges();
 
             return Created(exerciseLogModel);
         }
 
         // PATCH: odata/ExerciseLogModels(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public IHttpActionResult Patch([FromODataUri] int key, Delta<ExerciseLogModel> delta)
+        public IHttpActionResult Patch([FromODataUri] int key, Delta<ExerciseLogModel> patch)
         {
-            Validate(delta.GetEntity());
+            Validate(patch.GetEntity());
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var entity = delta.GetEntity();
+            ExerciseLogModel exerciseLogModel = db.ExerciseLogModels.Find(key);
+            if (exerciseLogModel == null)
+            {
+                return NotFound();
+            }
 
-            delta.Patch(entity);
+            patch.Patch(exerciseLogModel);
 
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ExerciseLogModelExists(key))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            // TODO: Get the entity here.
-
-            // delta.Patch(exerciseLogModel);
-
-            // TODO: Save the patched entity.
-
-            // return Updated(exerciseLogModel);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            return Updated(exerciseLogModel);
         }
 
         // DELETE: odata/ExerciseLogModels(5)
         public IHttpActionResult Delete([FromODataUri] int key)
         {
+            ExerciseLogModel exerciseLogModel = db.ExerciseLogModels.Find(key);
+            if (exerciseLogModel == null)
+            {
+                return NotFound();
+            }
 
+            db.ExerciseLogModels.Remove(exerciseLogModel);
+            db.SaveChanges();
 
-            // TODO: Add delete logic here.
+            return StatusCode(HttpStatusCode.NoContent);
+        }
 
-            // return StatusCode(HttpStatusCode.NoContent);
-            return StatusCode(HttpStatusCode.NotImplemented);
+        // GET: odata/ExerciseLogModels(5)/Intensity
+        [EnableQuery]
+        public SingleResult<ExerciseIntensityModel> GetIntensity([FromODataUri] int key)
+        {
+            return SingleResult.Create(db.ExerciseLogModels.Where(m => m.ID == key).Select(m => m.Intensity));
+        }
+
+        // GET: odata/ExerciseLogModels(5)/Type
+        [EnableQuery]
+        public SingleResult<ExerciseTypeModel> GetType([FromODataUri] int key)
+        {
+            return SingleResult.Create(db.ExerciseLogModels.Where(m => m.ID == key).Select(m => m.Type));
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool ExerciseLogModelExists(int key)
+        {
+            return db.ExerciseLogModels.Count(e => e.ID == key) > 0;
         }
     }
 }

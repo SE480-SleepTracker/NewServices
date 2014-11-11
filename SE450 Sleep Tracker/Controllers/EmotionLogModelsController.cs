@@ -10,7 +10,6 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
-using SE450_Sleep_Tracker;
 using SE450_Sleep_Tracker.Models;
 
 namespace SE450_Sleep_Tracker.Controllers
@@ -28,20 +27,20 @@ namespace SE450_Sleep_Tracker.Controllers
     */
     public class EmotionLogModelsController : ODataController
     {
-        private ManualContext db = new ManualContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: odata/EmotionLogModels
         [EnableQuery]
         public IQueryable<EmotionLogModel> GetEmotionLogModels()
         {
-            return db.EmotionLogs;
+            return db.EmotionLogModels;
         }
 
         // GET: odata/EmotionLogModels(5)
         [EnableQuery]
         public SingleResult<EmotionLogModel> GetEmotionLogModel([FromODataUri] int key)
         {
-            return SingleResult.Create(db.EmotionLogs.Where(emotionLogModel => emotionLogModel.ID == key));
+            return SingleResult.Create(db.EmotionLogModels.Where(emotionLogModel => emotionLogModel.ID == key));
         }
 
         // PUT: odata/EmotionLogModels(5)
@@ -54,7 +53,7 @@ namespace SE450_Sleep_Tracker.Controllers
                 return BadRequest(ModelState);
             }
 
-            EmotionLogModel emotionLogModel = db.EmotionLogs.Find(key);
+            EmotionLogModel emotionLogModel = db.EmotionLogModels.Find(key);
             if (emotionLogModel == null)
             {
                 return NotFound();
@@ -89,7 +88,7 @@ namespace SE450_Sleep_Tracker.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.EmotionLogs.Add(emotionLogModel);
+            db.EmotionLogModels.Add(emotionLogModel);
             db.SaveChanges();
 
             return Created(emotionLogModel);
@@ -106,7 +105,7 @@ namespace SE450_Sleep_Tracker.Controllers
                 return BadRequest(ModelState);
             }
 
-            EmotionLogModel emotionLogModel = db.EmotionLogs.Find(key);
+            EmotionLogModel emotionLogModel = db.EmotionLogModels.Find(key);
             if (emotionLogModel == null)
             {
                 return NotFound();
@@ -136,13 +135,13 @@ namespace SE450_Sleep_Tracker.Controllers
         // DELETE: odata/EmotionLogModels(5)
         public IHttpActionResult Delete([FromODataUri] int key)
         {
-            EmotionLogModel emotionLogModel = db.EmotionLogs.Find(key);
+            EmotionLogModel emotionLogModel = db.EmotionLogModels.Find(key);
             if (emotionLogModel == null)
             {
                 return NotFound();
             }
 
-            db.EmotionLogs.Remove(emotionLogModel);
+            db.EmotionLogModels.Remove(emotionLogModel);
             db.SaveChanges();
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -152,7 +151,7 @@ namespace SE450_Sleep_Tracker.Controllers
         [EnableQuery]
         public SingleResult<PredefinedEmotionModel> GetPredefinedEmotion([FromODataUri] int key)
         {
-            return SingleResult.Create(db.EmotionLogs.Where(m => m.ID == key).Select(m => m.PredefinedEmotion));
+            return SingleResult.Create(db.EmotionLogModels.Where(m => m.ID == key).Select(m => m.PredefinedEmotion));
         }
 
         protected override void Dispose(bool disposing)
@@ -166,7 +165,7 @@ namespace SE450_Sleep_Tracker.Controllers
 
         private bool EmotionLogModelExists(int key)
         {
-            return db.EmotionLogs.Count(e => e.ID == key) > 0;
+            return db.EmotionLogModels.Count(e => e.ID == key) > 0;
         }
     }
 }

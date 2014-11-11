@@ -69,9 +69,6 @@ namespace SE450_Sleep_Tracker.Controllers
 
                 return Json(converted);
             }
-
-            // return Ok<IEnumerable<SleepLogModel>>(sleepLogModels);
-            return StatusCode(HttpStatusCode.NotImplemented);
         }
 
         // GET: odata/SleepLogModels(5)
