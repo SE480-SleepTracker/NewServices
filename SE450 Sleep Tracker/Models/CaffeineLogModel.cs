@@ -28,7 +28,7 @@ namespace SE450_Sleep_Tracker.Models
         /// </summary>
         public int NumberConsumed { get; set; }
 
-        public CaffeineLogModel(int id)
+        /*public CaffeineLogModel(int id)
         {
             using (var db = DataCurator.GetConnection())
             {
@@ -62,6 +62,6 @@ namespace SE450_Sleep_Tracker.Models
                 Cfn_cft_ID = CaffeineType.ID,
                 Cfn_number = NumberConsumed
             };
-        }
+        }*/
     }
 }

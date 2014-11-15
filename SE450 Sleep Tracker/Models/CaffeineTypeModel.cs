@@ -28,7 +28,7 @@ namespace SE450_Sleep_Tracker.Models
         /// </summary>
         public double Size { get; set; }
 
-        public CaffeineTypeModel(int id)
+        /*public CaffeineTypeModel(int id)
         {
             Cft_CaffeineType item;
 
@@ -51,6 +51,6 @@ namespace SE450_Sleep_Tracker.Models
                 ID = product.Prd_ID,
                 Name = product.Prd_Name
             };
-        }
+        }*/
     }
 }
