@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-//using SE450Database;
 
 namespace SE450_Sleep_Tracker.Models
 {
@@ -14,6 +13,9 @@ namespace SE450_Sleep_Tracker.Models
 
         public double CaloriesPerHour { get; set; }
 
+        /// <summary>
+        /// Get or set the name of the exercise type
+        /// </summary>
         public string Name { get; set; }
     }
 }

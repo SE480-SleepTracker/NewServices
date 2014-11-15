@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
-//using SE450Database;
 
 namespace SE450_Sleep_Tracker.Models
 {
@@ -19,7 +18,7 @@ namespace SE450_Sleep_Tracker.Models
         public string UserID { get; set; }
 
         /// <summary>
-        /// Caffeine-containing product consumed
+        /// Get or set the caffeine-containing product consumed
         /// </summary>
         public CaffeineTypeModel CaffeineType { get; set; }
 
