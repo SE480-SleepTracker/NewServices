@@ -27,41 +27,5 @@ namespace SE450_Sleep_Tracker.Models
         /// Get or set the number of items consumed that are being logged
         /// </summary>
         public int NumberConsumed { get; set; }
-
-        /*public CaffeineLogModel(int id)
-        {
-            using (var db = DataCurator.GetConnection())
-            {
-                var log = db.Cfn_CaffeineConsumption.FirstOrDefault(lg => lg.Cfn_ID == id);
-
-                ID = log.Cfn_ID;
-                LogDateTime = log.Cfn_DateTime;
-                UserID = log.Cfn_aur_id;
-                CaffeineType = new CaffeineTypeModel(log.Cfn_cft_ID); // TODO: really should put it on the same one
-                NumberConsumed = log.Cfn_number;
-            }
-
-        }
-
-        public CaffeineLogModel(Cfn_CaffeineConsumption cfn)
-        {
-            ID = cfn.Cfn_ID;
-            LogDateTime = cfn.Cfn_DateTime;
-            UserID = cfn.Cfn_aur_id;
-            NumberConsumed = cfn.Cfn_number;
-            CaffeineType = new CaffeineTypeModel(cfn.Cfn_cft_ID);
-        }
-
-        public Cfn_CaffeineConsumption ToDbObject()
-        {
-            return new Cfn_CaffeineConsumption()
-            {
-                Cfn_aur_id =  UserID,
-                Cfn_DateTime = LogDateTime,
-                Cfn_ID = ID,
-                Cfn_cft_ID = CaffeineType.ID,
-                Cfn_number = NumberConsumed
-            };
-        }*/
     }
 }

@@ -27,30 +27,5 @@ namespace SE450_Sleep_Tracker.Models
         /// Get or set the size of this product
         /// </summary>
         public double Size { get; set; }
-
-        /*public CaffeineTypeModel(int id)
-        {
-            Cft_CaffeineType item;
-
-            // I'm cheating on product because I'm lazy
-            Prd_Product product;
-
-            using (var db = DataCurator.GetConnection())
-            {
-                item = db.Cft_CaffeineType.FirstOrDefault(lg => lg.Cft_id == id);
-
-                product = db.Prd_Product.FirstOrDefault(prd => prd.Prd_ID == item.Prd_Product);
-                // TODO finish
-            }
-
-            ID = item.Cft_id;
-            CaffeineAmount = item.Cft_amount;
-            Size = item.Cft_size;
-            Product = new ProductModel
-            {
-                ID = product.Prd_ID,
-                Name = product.Prd_Name
-            };
-        }*/
     }
 }

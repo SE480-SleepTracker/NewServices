@@ -51,7 +51,7 @@ namespace SE450_Sleep_Tracker.Models
             }
         }
 
-        public Exr_Exercise ToDbObject() 
+        /*public Exr_Exercise ToDbObject() 
         {
             return new Exr_Exercise
             {
@@ -64,6 +64,6 @@ namespace SE450_Sleep_Tracker.Models
                 Ext_ExerciseTypes = Type.ToDbObject(),
                 Exi_ExerciseIntensity = Intensity.ToDbObject()
             };
-        }
+        }*/
     }
 }
