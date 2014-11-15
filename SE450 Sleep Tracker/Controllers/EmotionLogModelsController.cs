@@ -25,6 +25,7 @@ namespace SE450_Sleep_Tracker.Controllers
     builder.EntitySet<PredefinedEmotionModel>("PredefinedEmotionModels"); 
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
+    [Authorize]
     public class EmotionLogModelsController : ODataController
     {
         private ApplicationDbContext db = new ApplicationDbContext();

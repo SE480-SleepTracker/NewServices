@@ -25,6 +25,7 @@ namespace SE450_Sleep_Tracker.Controllers
     builder.EntitySet<CaffeineTypeModel>("CaffeineTypeModels"); 
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
+    [Authorize]
     public class CaffeineLogModelsController : ODataController
     {
         private ApplicationDbContext db = new ApplicationDbContext();

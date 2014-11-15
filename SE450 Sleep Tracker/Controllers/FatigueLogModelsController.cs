@@ -24,6 +24,7 @@ namespace SE450_Sleep_Tracker.Controllers
     builder.EntitySet<FatigueLogModel>("FatigueLogModels");
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
+    [Authorize]
     public class FatigueLogModelsController : ODataController
     {
         private ApplicationDbContext db = new ApplicationDbContext();

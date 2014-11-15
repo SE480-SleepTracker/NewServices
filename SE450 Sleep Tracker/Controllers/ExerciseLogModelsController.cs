@@ -26,6 +26,7 @@ namespace SE450_Sleep_Tracker.Controllers
     builder.EntitySet<ExerciseTypeModel>("ExerciseTypeModels"); 
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
+    [Authorize]
     public class ExerciseLogModelsController : ODataController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
