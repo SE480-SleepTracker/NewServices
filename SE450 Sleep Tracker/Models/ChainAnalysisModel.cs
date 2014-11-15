@@ -9,23 +9,35 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SE450_Sleep_Tracker.Models
 {
+    /// <summary>
+    /// Model of a chain analysis
+    /// </summary>
     public class ChainAnalysisModel
     {
         #region Chain Analysis Object
+        /// <summary>
+        /// Get or set the ID (primary key)
+        /// </summary>
         [Key]
+        [Required]
         public int ID
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Get or set the ID of the user that this is associated with
+        /// </summary>
+        [Required]
         public string UserID
         {
             get;
             set;
         }
 
-        public String ProblemBehavior
+
+        public string ProblemBehavior
         {
             get;
             set;
