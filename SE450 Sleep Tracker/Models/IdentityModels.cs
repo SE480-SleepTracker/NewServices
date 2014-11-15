@@ -37,5 +37,9 @@ namespace SE450_Sleep_Tracker.Models
         public System.Data.Entity.DbSet<SE450_Sleep_Tracker.Models.EmotionLogModel> EmotionLogModels { get; set; }
 
         public System.Data.Entity.DbSet<SE450_Sleep_Tracker.Models.ChainAnalysisModel> ChainAnalysisModels { get; set; }
+
+        public System.Data.Entity.DbSet<SE450_Sleep_Tracker.Models.CaffeineLogModel> CaffeineLogModels { get; set; }
+
+        public System.Data.Entity.DbSet<SE450_Sleep_Tracker.Models.FatigueLogModel> FatigueLogModels { get; set; }
     }
 }
