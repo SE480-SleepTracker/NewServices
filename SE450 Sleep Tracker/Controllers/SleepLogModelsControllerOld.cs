@@ -28,12 +28,12 @@ namespace SE450_Sleep_Tracker.Controllers
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
     [Authorize]
-    public class SleepLogModelsController : ODataController
+    public class SleepLogModelsControllerOld : ODataController
     {
         private static ODataValidationSettings _validationSettings = new ODataValidationSettings();
         private readonly string connectionString;
 
-        public SleepLogModelsController()
+        public SleepLogModelsControllerOld()
         {
             connectionString = ConfigurationManager.ConnectionStrings["LinqConnection"].ConnectionString;
         }
