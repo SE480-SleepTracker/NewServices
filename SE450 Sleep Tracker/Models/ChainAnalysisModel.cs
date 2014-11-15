@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using SE450Database;
+//using SE450Database;
 using System.Threading;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +12,7 @@ namespace SE450_Sleep_Tracker.Models
 {
     public class ChainAnalysisModel
     {
-        public ChainAnalysisModel(Chn_ChainAnalysis analysis)
+        /*public ChainAnalysisModel(Chn_ChainAnalysis analysis)
         {
             this.ID = analysis.Chn_ID;
             // TODO: finish
@@ -44,7 +44,7 @@ namespace SE450_Sleep_Tracker.Models
             
             // TODO: write
             return analysis;
-        }
+        }*/
 
         #region Chain Analysis Object
         [Key]

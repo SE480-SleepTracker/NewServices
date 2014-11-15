@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
-using SE450Database;
+//using SE450Database;
 
 namespace SE450_Sleep_Tracker.Models
 {
@@ -66,7 +66,7 @@ namespace SE450_Sleep_Tracker.Models
             }
         }
 
-        public SleepLogModel()
+        /*public SleepLogModel()
         {
         }
 
@@ -94,6 +94,6 @@ namespace SE450_Sleep_Tracker.Models
                 Slp_TimeToBed = new TimeSpan(TimeToBed.Hour, TimeToBed.Minute, TimeToBed.Second),
                 Slp_TimeToSleepUserLogged = this.TimeToSleepUserLogged == null ? null : (TimeSpan?)new TimeSpan(TimeToSleepUserLogged.Value.Hour, TimeToSleepUserLogged.Value.Minute, TimeToSleepUserLogged.Value.Second)
             };
-        }
+        }*/
     }
 }

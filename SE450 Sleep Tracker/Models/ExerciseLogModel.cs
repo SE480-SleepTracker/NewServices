@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using SE450Database;
+//using SE450Database;
 using System.Configuration;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,7 +26,7 @@ namespace SE450_Sleep_Tracker.Models
 
         public DateTime End { get; set; }
 
-        public ExerciseLogModel() { }
+        /*public ExerciseLogModel() { }
 
         public ExerciseLogModel(Exr_Exercise exercise)
         {
@@ -49,6 +49,6 @@ namespace SE450_Sleep_Tracker.Models
                     Name = tp.Ext_name
                 };
             }
-        }
+        }*/
     }
 }

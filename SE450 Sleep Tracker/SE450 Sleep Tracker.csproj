@@ -343,12 +343,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SE450Database\SE450Database.csproj">
-      <Project>{13e3d8ce-ef46-4976-8d78-c801392623ad}</Project>
-      <Name>SE450Database</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>

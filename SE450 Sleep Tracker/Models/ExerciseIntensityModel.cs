@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using SE450Database;
+//using SE450Database;
 
 namespace SE450_Sleep_Tracker.Models
 {
@@ -14,7 +14,7 @@ namespace SE450_Sleep_Tracker.Models
 
         public ExerciseIntensityModel() { }
 
-        public ExerciseIntensityModel(Exi_ExerciseIntensity log)
+        /*public ExerciseIntensityModel(Exi_ExerciseIntensity log)
         {
             ID = log.Exi_id;
             Intensity = log.Exi_intensity;
@@ -27,6 +27,6 @@ namespace SE450_Sleep_Tracker.Models
                 Exi_id = ID,
                 Exi_intensity = Intensity
             };
-        }
+        }*/
     }
 }
