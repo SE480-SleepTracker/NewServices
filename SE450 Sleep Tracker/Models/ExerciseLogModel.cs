@@ -50,20 +50,5 @@ namespace SE450_Sleep_Tracker.Models
                 };
             }
         }
-
-        /*public Exr_Exercise ToDbObject() 
-        {
-            return new Exr_Exercise
-            {
-                Exr_aur_id = UserID,
-                Exr_end = End,
-                Exr_exi_ID = Intensity.ID,
-                Exr_ext_id = Type.ID,
-                Exr_ID = ID,
-                Exr_start = Start,
-                Ext_ExerciseTypes = Type.ToDbObject(),
-                Exi_ExerciseIntensity = Intensity.ToDbObject()
-            };
-        }*/
     }
 }
