@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
-using System.Web.Http.OData.Query;
 using System.Web.Http.OData.Routing;
-using SE450Database;
 using SE450_Sleep_Tracker.Models;
-using Microsoft.Data.OData;
-using System.Configuration;
 
 namespace SE450_Sleep_Tracker.Controllers
 {
@@ -24,87 +22,62 @@ namespace SE450_Sleep_Tracker.Controllers
     using SE450_Sleep_Tracker.Models;
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
     builder.EntitySet<CaffeineLogModel>("CaffeineLogModels");
+    builder.EntitySet<CaffeineTypeModel>("CaffeineTypeModels"); 
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
-    //[Authorize]
     public class CaffeineLogModelsController : ODataController
     {
-        private static ODataValidationSettings _validationSettings = new ODataValidationSettings();
-
-        private readonly string connectionString;
-
-        public CaffeineLogModelsController()
-        {
-            connectionString = ConfigurationManager.ConnectionStrings["LinqConnection"].ConnectionString;
-        }
-
-        public IHttpActionResult GetCaffeineLogModel([FromODataUri] int id)
-        {
-            try
-            {
-                var product = new CaffeineLogModel(id);
-                return Json(product);
-            }
-            catch (Exception)
-            {
-                return NotFound();
-            }
-        }
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: odata/CaffeineLogModels
-        [HttpGet]
-        public IHttpActionResult GetCaffeineLogModels(ODataQueryOptions<CaffeineLogModel> queryOptions)
+        [EnableQuery]
+        public IQueryable<CaffeineLogModel> GetCaffeineLogModels()
         {
-            // validate the query.
-            try
-            {
-                queryOptions.Validate(_validationSettings);
-            }
-            catch (ODataException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-            // return Ok<IEnumerable<CaffeineLogModel>>(caffeineLogModels);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            return db.CaffeineLogModels;
         }
 
         // GET: odata/CaffeineLogModels(5)
-        [HttpGet]
-        public IHttpActionResult GetCaffeineLogModel([FromODataUri] int key, ODataQueryOptions<CaffeineLogModel> queryOptions)
+        [EnableQuery]
+        public SingleResult<CaffeineLogModel> GetCaffeineLogModel([FromODataUri] int key)
         {
-            // validate the query.
-            try
-            {
-                queryOptions.Validate(_validationSettings);
-            }
-            catch (ODataException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-            // return Ok<CaffeineLogModel>(caffeineLogModel);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            return SingleResult.Create(db.CaffeineLogModels.Where(caffeineLogModel => caffeineLogModel.ID == key));
         }
 
         // PUT: odata/CaffeineLogModels(5)
-        public IHttpActionResult Put([FromODataUri] int key, Delta<CaffeineLogModel> delta)
+        public IHttpActionResult Put([FromODataUri] int key, Delta<CaffeineLogModel> patch)
         {
-            Validate(delta.GetEntity());
+            Validate(patch.GetEntity());
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            // TODO: Get the entity here.
+            CaffeineLogModel caffeineLogModel = db.CaffeineLogModels.Find(key);
+            if (caffeineLogModel == null)
+            {
+                return NotFound();
+            }
 
-            // delta.Put(caffeineLogModel);
+            patch.Put(caffeineLogModel);
 
-            // TODO: Save the patched entity.
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CaffeineLogModelExists(key))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            // return Updated(caffeineLogModel);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            return Updated(caffeineLogModel);
         }
 
         // POST: odata/CaffeineLogModels
@@ -115,44 +88,84 @@ namespace SE450_Sleep_Tracker.Controllers
                 return BadRequest(ModelState);
             }
 
-            using (var db = new SleepMonitor(connectionString))
-            {
-                db.Cfn_CaffeineConsumption.InsertOnSubmit(caffeineLogModel.ToDbObject());
-
-                db.SubmitChanges();
-            }
+            db.CaffeineLogModels.Add(caffeineLogModel);
+            db.SaveChanges();
 
             return Created(caffeineLogModel);
         }
 
         // PATCH: odata/CaffeineLogModels(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public IHttpActionResult Patch([FromODataUri] int key, Delta<CaffeineLogModel> delta)
+        public IHttpActionResult Patch([FromODataUri] int key, Delta<CaffeineLogModel> patch)
         {
-            Validate(delta.GetEntity());
+            Validate(patch.GetEntity());
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            // TODO: Get the entity here.
+            CaffeineLogModel caffeineLogModel = db.CaffeineLogModels.Find(key);
+            if (caffeineLogModel == null)
+            {
+                return NotFound();
+            }
 
-            // delta.Patch(caffeineLogModel);
+            patch.Patch(caffeineLogModel);
 
-            // TODO: Save the patched entity.
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CaffeineLogModelExists(key))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-            // return Updated(caffeineLogModel);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            return Updated(caffeineLogModel);
         }
 
         // DELETE: odata/CaffeineLogModels(5)
         public IHttpActionResult Delete([FromODataUri] int key)
         {
-            // TODO: Add delete logic here.
+            CaffeineLogModel caffeineLogModel = db.CaffeineLogModels.Find(key);
+            if (caffeineLogModel == null)
+            {
+                return NotFound();
+            }
 
-            // return StatusCode(HttpStatusCode.NoContent);
-            return StatusCode(HttpStatusCode.NotImplemented);
+            db.CaffeineLogModels.Remove(caffeineLogModel);
+            db.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // GET: odata/CaffeineLogModels(5)/CaffeineType
+        [EnableQuery]
+        public SingleResult<CaffeineTypeModel> GetCaffeineType([FromODataUri] int key)
+        {
+            return SingleResult.Create(db.CaffeineLogModels.Where(m => m.ID == key).Select(m => m.CaffeineType));
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool CaffeineLogModelExists(int key)
+        {
+            return db.CaffeineLogModels.Count(e => e.ID == key) > 0;
         }
     }
 }
