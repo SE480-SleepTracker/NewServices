@@ -237,13 +237,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CaffeineLogModelsController.cs" />
     <Compile Include="Controllers\ChainAnalysisModelsController.cs" />
-    <Compile Include="Controllers\ChainAnalysisModelsControllerOld.cs" />
     <Compile Include="Controllers\EmotionLogModelsController.cs" />
     <Compile Include="Controllers\ExerciseLogModelsController.cs" />
     <Compile Include="Controllers\FatigueLogModelsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SleepLogModelsController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\NighttimeAwakeningsModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -252,7 +250,6 @@
     <Compile Include="Models\CaffeineLogModel.cs" />
     <Compile Include="Models\CaffeineTypeModel.cs" />
     <Compile Include="Models\ChainAnalysisModel.cs" />
-    <Compile Include="Models\DataCurator.cs" />
     <Compile Include="Models\EmotionLogModel.cs" />
     <Compile Include="Models\ExerciseIntensityModel.cs" />
     <Compile Include="Models\ExerciseLogModel.cs" />
