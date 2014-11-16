@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e1cfcecd12946a4bd327b1850e31403" Name="Diagram1">
+        <EntityTypeShape EntityType="SleepMonitorModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.AspNetRole" Width="1.5" PointX="0.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.AspNetUser" Width="1.5" PointX="3" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.awk_NighttimeAwakenings" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.bhv_Behavior" Width="1.5" PointX="7.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.cfn_CaffeineConsumption" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.cft_CaffeineType" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.chn_ChainAnalysis" Width="1.5" PointX="5.25" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.ctr_ConcentrationLog" Width="1.5" PointX="5.25" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.eht_EmotionLogThought" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.eml_EmotionLog" Width="1.5" PointX="5.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.emt_Emotions" Width="1.5" PointX="10.5" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.exi_ExerciseIntensity" Width="1.5" PointX="8" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.exr_Exercise" Width="1.5" PointX="10.25" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.ext_ExerciseTypes" Width="1.5" PointX="8" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.ftg_FatigueLevels" Width="1.5" PointX="5.25" PointY="48.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.gft_GoalsForTomorrow" Width="1.5" PointX="7.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.gsr_GlobalSuggestions" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.imc_ImmediateConsequences" Width="1.5" PointX="7.5" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.ltc_LongTermConsequences" Width="1.5" PointX="7.5" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.ltg_LongTermGoal" Width="1.5" PointX="7.5" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.prd_Product" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.pre_PredefinedEmotion" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.rwd_Rewards" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.slp_SleepLog" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.stg_ShortTermGoals" Width="1.5" PointX="7.5" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.sysdiagram" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.tht_Thought" Width="1.5" PointX="7.5" PointY="34" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.vul_Vulnerability" Width="1.5" PointX="7.5" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SleepMonitorModel.wtp_WaysToPrevent" Width="1.5" PointX="7.5" PointY="39.125" IsExpanded="true" />
+        <AssociationConnector Association="SleepMonitorModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_cfn_CaffeineConsumption_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_chn_ChainAnalysis_usr_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_ctr_ConcentrationLog_usr_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_eml_EmotionLog_usr_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_exr_Exercise_usr_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_ftg_FatigueLevels_usr_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_awk_NighttimeAwakenings_slp_SleepLog" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_bhv_Behavior_chn_ChainAnalysis" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_cft_CaffeineType_prd_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_emt_Emotions_chn_ChainAnalysis" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_gft_GoalsForTomorrow_chn_ChainAnalysis" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_imc_ImmediateConsequences_chn_ChainAnalysis" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_ltc_LongTermConsequences_chn_ChainAnalysis" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_ltg_LongTermGoal_chn_ChainAnalysis" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_stg_ShortTermGoals_chn_ChainAnalysis" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_tht_Thought_chn_ChainAnalysis" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_vul_Vulnerability_chn_ChainAnalysis" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_wtp_WaysToPrevent_chn_ChainAnalysis" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_eml_EmotionLog_pre_PredefinedEmotion" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_emt_Emotions_pre_PredefinedEmotion" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_exr_Exercise_exi_ExerciseIntensity" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_exr_Exercise_ext_ExerciseTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_rwd_Rewards_usr_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.FK_rwd_Rewards_rwd_Rewards" ManuallyRouted="false" />
+        <AssociationConnector Association="SleepMonitorModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
